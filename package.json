@@ -1,0 +1,21 @@
+{
+  "name": "jugglingdb-oracle",
+  "version": "0.0.1",
+  "description": "Oracle adapter for JugglingDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "jugglingdb": "git://github.com/1602/jugglingdb.git",
+    "oracle": "git://github.com/raymondfeng/node-oracle.git"
+  },
+  "devDependencies": {
+    "should": "~1.2.2",
+    "mocha": "~1.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongloop/jugglingdb-oracle.git"
+  }
+}
