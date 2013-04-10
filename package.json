@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "jugglingdb": "git://github.com/1602/jugglingdb.git",
-    "oracle": "git://github.com/raymondfeng/node-oracle.git"
+    "oracle": "git://github.com/raymondfeng/node-oracle.git",
+    "async": "latest"
   },
   "devDependencies": {
     "should": "~1.2.2",
