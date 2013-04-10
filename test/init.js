@@ -5,7 +5,8 @@ global.getSchema = function() {
         host:'127.0.0.1',
         database:'XE',
         username:'strongloop',
-        password:'password'
+        password:'password',
+        debug: true
     });
     db.log = function (a) { console.log(a); };
     return db;
