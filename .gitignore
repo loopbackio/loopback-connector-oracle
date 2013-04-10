@@ -1,3 +1,6 @@
+node_modules
+.project
+coverage
 lib-cov
 *.seed
 *.log
