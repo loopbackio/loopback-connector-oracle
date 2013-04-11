@@ -2,6 +2,16 @@
 
 Oracle adapter for JugglingDB.
 
+## Installation
+
+You need to install Oracle instance client:
+
+http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+
+    export OCI_HOME=<directory where you install Oracle instance client>
+    export OCI_LIB_DIR=$OCI_HOME
+    export OCI_INCLUDE_DIR=$OCI_HOME/sdk/include
+
 ## Usage
 
 To use it you need `jugglingdb@0.2.x`.
@@ -24,13 +34,12 @@ To use it you need `jugglingdb@0.2.x`.
     ```javascript
         var Schema = require('jugglingdb').Schema;
         var schema = new Schema('oracle', {
-            database: 'myapp_test',
-            username: 'oracle'
-            // host: 'localhost',
-            // port: 1521,
-            // password: s.password,
-            // database: 'XE',
-            // debug: false
+            host: 'localhost',
+            port: 1521,
+            username: 'oracle',
+            password: 'password',
+            database: 'XE',
+            debug: false
         });
     ```
 
