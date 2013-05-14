@@ -139,3 +139,37 @@ describe('Discover model properties', function() {
     });
   });  
 });
+
+describe('Discover model primary keys', function () {
+    it('should return an array of primary keys for PRODUCT', function (done) {
+        db.discoverPrimaryKeys(null, 'PRODUCT',function (err, models) {
+            if (err) {
+                console.error(err);
+                done(err);
+            } else {
+                models.forEach(function (m) {
+                    console.dir(m);
+                    assert(m.TABLE_NAME === 'PRODUCT');
+                });
+                done(null, models);
+            }
+        });
+    });
+});
+
+describe('Discover model foreign keys', function () {
+    it('should return an array of foreign keys for INVENTORY', function (done) {
+        db.discoverForeignKeys(null, 'INVENTORY',function (err, models) {
+            if (err) {
+                console.error(err);
+                done(err);
+            } else {
+                models.forEach(function (m) {
+                    console.dir(m);
+                    assert(m.PKTABLE_NAME === 'INVENTORY');
+                });
+                done(null, models);
+            }
+        });
+    });
+});
