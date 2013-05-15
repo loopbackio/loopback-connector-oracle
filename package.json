@@ -12,6 +12,7 @@
     "async": "latest"
   },
   "devDependencies": {
+    "semicov": "*",
     "should": "~1.2.2",
     "mocha": "~1.8.2"
   },
