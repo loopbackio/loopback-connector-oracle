@@ -155,11 +155,40 @@ describe('Discover model primary keys', function () {
             }
         });
     });
+
+    it('should return an array of primary keys for STRONGLOOP.PRODUCT', function (done) {
+        db.discoverPrimaryKeys('STRONGLOOP', 'PRODUCT',function (err, models) {
+            if (err) {
+                console.error(err);
+                done(err);
+            } else {
+                models.forEach(function (m) {
+                    console.dir(m);
+                    assert(m.TABLE_NAME === 'PRODUCT');
+                });
+                done(null, models);
+            }
+        });
+    });
 });
 
 describe('Discover model foreign keys', function () {
     it('should return an array of foreign keys for INVENTORY', function (done) {
         db.discoverForeignKeys(null, 'INVENTORY',function (err, models) {
+            if (err) {
+                console.error(err);
+                done(err);
+            } else {
+                models.forEach(function (m) {
+                    console.dir(m);
+                    assert(m.PKTABLE_NAME === 'INVENTORY');
+                });
+                done(null, models);
+            }
+        });
+    });
+    it('should return an array of foreign keys for STRONGLOOP.INVENTORY', function (done) {
+        db.discoverForeignKeys('STRONGLOOP', 'INVENTORY',function (err, models) {
             if (err) {
                 console.error(err);
                 done(err);
