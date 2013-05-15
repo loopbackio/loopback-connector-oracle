@@ -4,9 +4,14 @@ Oracle adapter for JugglingDB.
 
 ## Installation
 
-You need to install Oracle instance client:
+You need to download and install Oracle instant client from the following link:
 
 http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+
+Two packages are required:
+
+* Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications 
+* Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
 
 On MacOS or Linux:
 
