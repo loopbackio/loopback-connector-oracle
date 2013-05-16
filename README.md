@@ -14,6 +14,7 @@ Two packages are required:
 * Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
 
 *Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit*
+
 *Unzip the two files into the same directory, such as /opt/instantclient*
 
 On MacOS or Linux:
@@ -23,6 +24,7 @@ On MacOS or Linux:
     export OCI_HOME=<directory of Oracle instance client>
     export OCI_LIB_DIR=$OCI_HOME
     export OCI_INCLUDE_DIR=$OCI_HOME/sdk/include
+
 
 2. Create the following symbolic links:
 
