@@ -13,20 +13,19 @@ Two packages are required:
 * Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications 
 * Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
 
-*Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit*
+**Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit**
 
-*Unzip the two files into the same directory, such as /opt/instantclient*
+**Unzip the two files into the same directory, such as /opt/instantclient**
 
 On MacOS or Linux:
 
-1. Set up the following environment variables:
+1. Set up the following environment variables
 
-    export OCI_HOME=<directory of Oracle instance client>
+    export OCI_HOME=*directory of Oracle instance client*
     export OCI_LIB_DIR=$OCI_HOME
     export OCI_INCLUDE_DIR=$OCI_HOME/sdk/include
 
-
-2. Create the following symbolic links:
+2. Create the following symbolic links
 
 MacOS:
 
