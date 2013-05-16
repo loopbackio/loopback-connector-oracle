@@ -21,7 +21,9 @@ On MacOS or Linux:
 
 1. Set up the following environment variables
 
-    export OCI_HOME=*directory of Oracle instance client*
+MacOS/Linux:
+
+    export OCI_HOME=<directory of Oracle instant client>
     export OCI_LIB_DIR=$OCI_HOME
     export OCI_INCLUDE_DIR=$OCI_HOME/sdk/include
 
