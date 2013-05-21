@@ -18,11 +18,15 @@ function show(err, models) {
     }
 }
 
-db.discoverModels({views: true, limit: 3}, show);
+db.discoverModels({views: true, limit: 20}, show);
 
-db.discoverModelProperties({model: 'PRODUCT'}, show);
+db.discoverModelProperties(null, 'PRODUCT', show);
 
-db.discoverModelProperties({model: 'INVENTORY_VIEW'}, show);
+db.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
 
 db.discoverPrimaryKeys(null, 'INVENTORY',  show);
 db.discoverForeignKeys(null, 'INVENTORY',  show);
+
+db.discoverSchema('STRONGLOOP', 'INVENTORY_VIEW', function (err, schema) {
+    console.log('%j', schema);
+});
