@@ -4,7 +4,7 @@
   "description": "Oracle adapter for JugglingDB",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 10000 --require ./test/init.js test/*.test.js"
+    "test": "./node_modules/.bin/mocha --timeout 30000 --require ./test/init.js test/*.test.js"
   },
   "dependencies": {
     "jugglingdb": "git+ssh://git@github.com:strongloop/jugglingdb.git",

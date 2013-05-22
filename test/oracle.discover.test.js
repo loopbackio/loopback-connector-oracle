@@ -113,7 +113,8 @@ describe('Discover model properties', function() {
       });
     });
   });
-  
+
+  /*
   describe('Discover all models', function() {
     it('should return an array of columns for PRODUCT', function(done) {
       db.discoverModelProperties(null, null, function(err, models) {
@@ -133,7 +134,8 @@ describe('Discover model properties', function() {
         }
       });
     });
-  });  
+  });
+    */
 });
 
 describe('Discover model primary keys', function () {
