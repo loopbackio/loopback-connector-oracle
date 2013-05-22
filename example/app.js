@@ -29,7 +29,9 @@ db.discoverPrimaryKeys(null, 'INVENTORY',  show);
 db.discoverForeignKeys(null, 'INVENTORY',  show);
 */
 
-db.discoverSchema('STRONGLOOP', 'INVENTORY', function (err, schema) {
+var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY';
+
+db.discoverSchema('STRONGLOOP', table, function (err, schema) {
     console.log('%j', schema);
 
     var model = db.define(schema.name, schema.properties, schema.options);
