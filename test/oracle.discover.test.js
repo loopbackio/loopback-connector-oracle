@@ -99,9 +99,7 @@ describe('Discover models including other users', function() {
 describe('Discover model properties', function() {
   describe('Discover a named model', function() {
     it('should return an array of columns for PRODUCT', function(done) {
-      db.discoverModelProperties({
-        model : 'PRODUCT'
-      }, function(err, models) {
+      db.discoverModelProperties(null, 'PRODUCT', function(err, models) {
         if (err) {
           console.error(err);
           done(err);
@@ -118,9 +116,7 @@ describe('Discover model properties', function() {
   
   describe('Discover all models', function() {
     it('should return an array of columns for PRODUCT', function(done) {
-      db.discoverModelProperties({
-        limit: 5
-      }, function(err, models) {
+      db.discoverModelProperties(null, null, function(err, models) {
         if (err) {
           console.error(err);
           done(err);
@@ -149,7 +145,7 @@ describe('Discover model primary keys', function () {
             } else {
                 models.forEach(function (m) {
                     console.dir(m);
-                    assert(m.TABLE_NAME === 'PRODUCT');
+                    assert(m.tableName === 'PRODUCT');
                 });
                 done(null, models);
             }
@@ -164,7 +160,7 @@ describe('Discover model primary keys', function () {
             } else {
                 models.forEach(function (m) {
                     console.dir(m);
-                    assert(m.TABLE_NAME === 'PRODUCT');
+                    assert(m.tableName === 'PRODUCT');
                 });
                 done(null, models);
             }
@@ -181,7 +177,7 @@ describe('Discover model foreign keys', function () {
             } else {
                 models.forEach(function (m) {
                     console.dir(m);
-                    assert(m.PKTABLE_NAME === 'INVENTORY');
+                    assert(m.fkTableName === 'INVENTORY');
                 });
                 done(null, models);
             }
@@ -195,7 +191,7 @@ describe('Discover model foreign keys', function () {
             } else {
                 models.forEach(function (m) {
                     console.dir(m);
-                    assert(m.PKTABLE_NAME === 'INVENTORY');
+                    assert(m.fkTableName === 'INVENTORY');
                 });
                 done(null, models);
             }
