@@ -1,6 +1,6 @@
-var Schema = require('jugglingdb').Schema;
+var DataSource = require('jugglingdb').DataSource;
 
-var db = new Schema(require('../'), {
+var db = new DataSource(require('../'), {
   host : '127.0.0.1',
   database : 'XE',
   username : 'strongloop',
