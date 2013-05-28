@@ -4,25 +4,24 @@ Oracle adapter for JugglingDB.
 
 ## Installation
 
-You need to download and install Oracle instant client from the following link:
+You need to download and install Oracle instant client from following links:
 
 http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
-
-Two packages are required:
 
 1. Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications
 2. Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
 
-For Windows, one more file is required:
+One patch is required for Windows:
+
+http://www.oracle.com/technetwork/database/occidownloads-083553.html
 
 3. OCCI for Visual Studio 2010 - Visual C++10 (VS 2010)[Windows 64-bit/Windows 32-bit]
 
-http://www.oracle.com/technetwork/database/occidownloads-083553.html
 
 <ul>
 <li>Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit
 <li>Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_11_2_11_2
-<li>Unzip the files 3 into the vc10 sub directory, such as c:\instantclient_11_2\vc10
+<li>Unzip the Windows OCCI patch into the vc10 sub directory, such as c:\instantclient_11_2\vc10
 </ul>
 
 
