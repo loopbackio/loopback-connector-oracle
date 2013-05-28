@@ -19,11 +19,11 @@ For Windows, one more file is required:
 
 http://www.oracle.com/technetwork/database/occidownloads-083553.html
 
-
-**Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit**
-
-**Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_11_2_11_2**
-**Unzip the files 3 into the vc10 sub directory, such as c:\instantclient_11_2\vc10**
+<ul>
+<li>Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit
+<li>Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_11_2_11_2
+<li>Unzip the files 3 into the vc10 sub directory, such as c:\instantclient_11_2\vc10
+</ul>
 
 
 On MacOS or Linux:
@@ -58,13 +58,14 @@ MacOS:
 
 On Windows, you need to set the environment variables:
 
-    OCI_INCLUDE_DIR=<instclient_11_2>\sdk\include
-    OCI_LIB_DIR=<instantclient_11_2>\vc10
+    OCI_INCLUDE_DIR=c:\instclient_11_2\sdk\include
+    OCI_LIB_DIR=c:\instantclient_11_2\vc10
 
 And append the OCI path to the PATH environment variable:
-    Path=...;<instantclient_11_2>\vc10;<instantclient_11_2>
 
-** Please make sure <instantclient_11_2>\vc10 comes before <instantclient_11_2>**
+    Path=...;c:\instantclient_11_2\vc10;c:\instantclient_11_2
+
+**Please make sure c:\instantclient_11_2\vc10 comes before c:\instantclient_11_2**
 
 ## Usage
 
