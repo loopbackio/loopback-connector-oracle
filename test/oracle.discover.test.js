@@ -200,3 +200,25 @@ describe('Discover model foreign keys', function () {
         });
     });
 });
+
+describe('Discover ADL schema from a table', function () {
+    it('should return an ADL schema for INVENTORY', function (done) {
+        db.discoverSchema('STRONGLOOP', "INVENTORY", function (err, schema) {
+            console.log('%j', schema);
+            assert(schema.name === 'Inventory');
+            assert(schema.options.oracle.schema === 'STRONGLOOP');
+            assert(schema.options.oracle.table === 'INVENTORY');
+            assert(schema.properties.productId);
+            assert(schema.properties.productId.type === 'String');
+            assert(schema.properties.productId.oracle.columnName === 'PRODUCT_ID');
+            assert(schema.properties.locationId);
+            assert(schema.properties.locationId.type === 'String');
+            assert(schema.properties.locationId.oracle.columnName === 'LOCATION_ID');
+            assert(schema.properties.available);
+            assert(schema.properties.available.type === 'Number');
+            assert(schema.properties.total);
+            assert(schema.properties.total.type === 'Number');
+            done(null, schema);
+        });
+    });
+});

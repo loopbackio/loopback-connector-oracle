@@ -1,11 +1,11 @@
 var DataSource = require('jugglingdb').DataSource;
 
-var db = new DataSource(require('../'), {
+var ds = new DataSource(require('../'), {
   host : '127.0.0.1',
   database : 'XE',
   username : 'strongloop',
   password : 'password',
-  debug : true
+  debug : false
 });
 
 function show(err, models) {
@@ -18,23 +18,22 @@ function show(err, models) {
     }
 }
 
-/*
-db.discoverModels({views: true, limit: 20}, show);
+ds.discoverModels({views: true, limit: 20}, show);
 
-db.discoverModelProperties(null, 'PRODUCT', show);
+ds.discoverModelProperties(null, 'PRODUCT', show);
 
-db.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
+ds.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
 
-db.discoverPrimaryKeys(null, 'INVENTORY',  show);
-db.discoverForeignKeys(null, 'INVENTORY',  show);
-*/
+ds.discoverPrimaryKeys(null, 'INVENTORY',  show);
+ds.discoverForeignKeys(null, 'INVENTORY',  show);
+
 
 var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY';
 
-db.discoverSchema('STRONGLOOP', table, function (err, schema) {
+ds.discoverSchema('STRONGLOOP', table, function (err, schema) {
     console.log('%j', schema);
 
-    var model = db.define(schema.name, schema.properties, schema.options);
+    var model = ds.define(schema.name, schema.properties, schema.options);
     console.log(model);
     model.all(show);
 });
