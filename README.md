@@ -10,12 +10,21 @@ http://www.oracle.com/technetwork/database/features/instant-client/index-097480.
 
 Two packages are required:
 
-* Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications 
-* Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
+1. Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications
+2. Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
+
+For Windows, one more file is required:
+
+3. OCCI for Visual Studio 2010 - Visual C++10 (VS 2010)[Windows 64-bit/Windows 32-bit]
+
+http://www.oracle.com/technetwork/database/occidownloads-083553.html
+
 
 **Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit**
 
-**Unzip the two files into the same directory, such as /opt/instantclient**
+**Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_11_2_11_2**
+**Unzip the files 3 into the vc10 sub directory, such as c:\instantclient_11_2\vc10**
+
 
 On MacOS or Linux:
 
@@ -50,42 +59,14 @@ MacOS:
 On Windows, you need to set the environment variables:
 
     OCI_INCLUDE_DIR=<instclient_11_2>\sdk\include
-    OCI_LIB_DIR=<instantclient_11_2>\sdk\lib\msvc
+    OCI_LIB_DIR=<instantclient_11_2>\vc10
 
 And append the OCI path to the PATH environment variable:
-    Path=...;<instantclient_11_2>
+    Path=...;<instantclient_11_2>\vc10;<instantclient_11_2>
 
+** Please make sure <instantclient_11_2>\vc10 comes before <instantclient_11_2>**
 
 ## Usage
-
-To use it you need `jugglingdb@0.2.x`.
-
-1. Setup dependencies in `package.json`:
-
-    ```json
-    {
-      ...
-      "dependencies": {
-        "jugglingdb": "0.2.x",
-        "jugglingdb-oracle": "latest"
-      },
-      ...
-    }
-    ```
-
-2. Use:
-
-    ```javascript
-        var Schema = require('jugglingdb').Schema;
-        var schema = new Schema('oracle', {
-            host: 'localhost',
-            port: 1521,
-            username: 'oracle',
-            password: 'password',
-            database: 'XE',
-            debug: false
-        });
-    ```
 
 ## Running tests
 
