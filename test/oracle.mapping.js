@@ -32,18 +32,20 @@ describe('Mapping models', function () {
                 }
             },
             "properties": {
+                /*
                 "id": {
                     "type": "String", "required": true, "length": 20, "id": 1, "oracle": {
                         "columnName": "INVENTORY_ID", "dataType": "VARCHAR2", "nullable": "N"
                     }
                 },
+                */
                 "productId": {
-                    "type": "String", "required": true, "length": 20, "oracle": {
+                    "type": "String", "required": true, "length": 20, "id": 1, "oracle": {
                         "columnName": "PRODUCT_ID", "dataType": "VARCHAR2", "nullable": "N"
                     }
                 },
                 "locationId": {
-                    "type": "String", "required": true, "length": 20, "oracle": {
+                    "type": "String", "required": true, "length": 20, "id": 2, "oracle": {
                         "columnName": "LOCATION_ID", "dataType": "VARCHAR2", "nullable": "N"
                     }
                 },
@@ -63,7 +65,7 @@ describe('Mapping models', function () {
         console.log(models);
         var Model = models['inventorytest'];
 
-        db.autoupdate(function (err, data) {
+        db.automigrate(function (err, data) {
             async.series([
                 function (callback) {
                     Model.destroyAll(callback);
