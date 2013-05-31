@@ -56,10 +56,13 @@ ds.discoverSchemas('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true},
     };
 
     models.Inventory.findOne({}, function(err, inv) {
-       console.log("............Inventory: ", inv);
+       console.log("\nInventory: ", inv);
        inv.product(function(err, prod) {
-           console.log("............Product: ", prod);
+           console.log("\nProduct: ", prod);
+           ds.disconnect();
        });
     });
 });
+
+
 
