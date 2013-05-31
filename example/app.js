@@ -5,7 +5,7 @@ var ds = new DataSource(require('../'), {
   database : 'XE',
   username : 'strongloop',
   password : 'password',
-  debug : false
+  debug : true
 });
 
 function show(err, models) {
@@ -18,6 +18,7 @@ function show(err, models) {
     }
 }
 
+/*
 ds.discoverModels({views: true, limit: 20}, show);
 
 ds.discoverModelProperties(null, 'PRODUCT', show);
@@ -26,14 +27,39 @@ ds.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
 
 ds.discoverPrimaryKeys(null, 'INVENTORY',  show);
 ds.discoverForeignKeys(null, 'INVENTORY',  show);
+*/
 
 
-var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY';
+var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY_VIEW';
 
-ds.discoverSchema('STRONGLOOP', table, function (err, schema) {
-    console.log('%j', schema);
-
+/*
+ds.discoverSchema('STRONGLOOP', table, function(err, schema) {
     var model = ds.define(schema.name, schema.properties, schema.options);
-    console.log(model);
+    // console.log(model);
     model.all(show);
 });
+*/
+
+ds.discoverSchemas('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true}, function (err, schemas) {
+    console.log('%j', schemas);
+
+    var schemaList = [];
+    for(var s in schemas) {
+        var schema = schemas[s];
+        schemaList.push(schema);
+    };
+
+    var models = ds.buildModels(schemaList);
+
+    for(var m in models) {
+        models[m].all(show);
+    };
+
+    models.Inventory.findOne({}, function(err, inv) {
+       console.log("............Inventory: ", inv);
+       inv.product(function(err, prod) {
+           console.log("............Product: ", prod);
+       });
+    });
+});
+
