@@ -61,9 +61,9 @@ describe('Mapping models', function () {
                 }
             }
         };
-        var models = DataSource.buildModels(db, schema);
+        var models = db.buildModels(schema);
         console.log(models);
-        var Model = models['inventorytest'];
+        var Model = models['InventoryTest'];
 
         db.automigrate(function (err, data) {
             async.series([
