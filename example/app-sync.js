@@ -26,6 +26,13 @@ console.log(results);
 results = ds.discoverForeignKeysSync(null, 'INVENTORY');
 console.log(results);
 
+results = ds.discoverForeignKeysSync(null, 'INVENTORY');
+console.log(results);
+
+results = ds.discoverExportedForeignKeysSync(null, 'PRODUCT');
+console.log(results);
+
+
 var models = ds.discoverAndBuildModelsSync('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true});
 
 function show(err, models) {
