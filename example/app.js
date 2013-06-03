@@ -27,6 +27,9 @@ ds.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
 
 ds.discoverPrimaryKeys(null, 'INVENTORY',  show);
 ds.discoverForeignKeys(null, 'INVENTORY',  show);
+
+ds.discoverExportedForeignKeys(null, 'PRODUCT',  show);
+
 */
 
 
