@@ -43,16 +43,7 @@ ds.discoverSchema('STRONGLOOP', table, function(err, schema) {
 });
 */
 
-ds.discoverSchemas('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true}, function (err, schemas) {
-    console.log('%j', schemas);
-
-    var schemaList = [];
-    for(var s in schemas) {
-        var schema = schemas[s];
-        schemaList.push(schema);
-    };
-
-    var models = ds.buildModels(schemaList);
+ds.discoverAndBuildModels('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true}, function (err, models) {
 
     for(var m in models) {
         models[m].all(show);
