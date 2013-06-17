@@ -11,7 +11,7 @@ var ds = new DataSource(require('../'), {
 var results = ds.adapter.querySync('SELECT * from PRODUCT');
 console.log(results);
 
-results = ds.discoverModelsSync({views: true, limit: 20});
+results = ds.discoverModelDefinitionsSync({views: true, limit: 20});
 console.log(results);
 
 results = ds.discoverModelPropertiesSync(null, 'PRODUCT');

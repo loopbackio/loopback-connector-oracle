@@ -22,7 +22,7 @@ describe('discoverModels', function() {
   describe('Discover models including views', function() {
     it('should return an array of tables and views', function(done) {
 
-      db.discoverModels({
+      db.discoverModelDefinitions({
         views : true,
         limit : 3
       }, function(err, models) {
@@ -47,7 +47,7 @@ describe('discoverModels', function() {
   describe('Discover models excluding views', function() {
     it('should return an array of only tables', function(done) {
 
-      db.discoverModels({
+      db.discoverModelDefinitions({
         views : false,
         limit : 3
       }, function(err, models) {
@@ -74,7 +74,7 @@ describe('discoverModels', function() {
 describe('Discover models including other users', function() {
   it('should return an array of all tables and views', function(done) {
 
-    db.discoverModels({
+    db.discoverModelDefinitions({
       all : true,
       limit : 3
     }, function(err, models) {

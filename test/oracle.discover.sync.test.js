@@ -18,11 +18,11 @@ before(function () {
 
 });
 
-describe('discoverModels', function () {
+describe('discoverModelDefinitions', function () {
     describe('Discover models including views', function () {
         it('should return an array of tables and views', function () {
 
-            var models = db.discoverModelsSync({
+            var models = db.discoverModelDefinitionsSync({
                 views: true,
                 limit: 3
             });
@@ -42,7 +42,7 @@ describe('discoverModels', function () {
     describe('Discover models excluding views', function () {
         it('should return an array of only tables', function () {
 
-            var models = db.discoverModelsSync({
+            var models = db.discoverModelDefinitionsSync({
                 views: false,
                 limit: 3
             });
@@ -63,7 +63,7 @@ describe('discoverModels', function () {
     describe('Discover models including other users', function () {
         it('should return an array of all tables and views', function () {
 
-            var models = db.discoverModelsSync({
+            var models = db.discoverModelDefinitionsSync({
                 all: true,
                 limit: 3
             });
