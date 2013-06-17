@@ -19,7 +19,7 @@ function show(err, models) {
 }
 
 /*
-ds.discoverModels({views: true, limit: 20}, show);
+ds.discoverModelDefinitions({views: true, limit: 20}, show);
 
 ds.discoverModelProperties(null, 'PRODUCT', show);
 
