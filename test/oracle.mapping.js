@@ -12,7 +12,7 @@ before(function () {
     db = new DataSource(require('../'), {
         host: '166.78.158.45',
         database: 'XE',
-        username: 'strongloop',
+        username: 'test',
         password: 'str0ng100pjs',
         debug: true
     });
