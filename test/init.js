@@ -4,7 +4,7 @@ global.getSchema = function() {
     var db = new Schema(require('../'), {
         host:'127.0.0.1',
         database:'XE',
-        username:'strongloop',
+        username:'test',
         password:'password',
         debug: true
     });
