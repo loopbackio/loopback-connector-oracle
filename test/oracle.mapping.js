@@ -24,11 +24,11 @@ describe('Mapping models', function () {
 
         var schema =
         {
-            "name": "InventoryTest",
+            "name": "TestInventory",
             "options": {
                 "idInjection": false,
                 "oracle": {
-                    "schema": "STRONGLOOP", "table": "INVENTORY_TEST"
+                    "schema": "STRONGLOOP", "table": "INVENTORYTEST"
                 }
             },
             "properties": {
@@ -63,7 +63,7 @@ describe('Mapping models', function () {
         };
         var models = db.buildModels(schema);
         console.log(models);
-        var Model = models['InventoryTest'];
+        var Model = models['TestInventory'];
 
         db.automigrate(function (err, data) {
             async.series([
