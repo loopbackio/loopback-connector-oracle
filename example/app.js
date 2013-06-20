@@ -21,14 +21,14 @@ function show(err, models) {
 /*
 ds.discoverModelDefinitions({views: true, limit: 20}, show);
 
-ds.discoverModelProperties(null, 'PRODUCT', show);
+ds.discoverModelProperties('PRODUCT', show);
 
-ds.discoverModelProperties('STRONGLOOP', 'INVENTORY_VIEW', show);
+ds.discoverModelProperties('INVENTORY_VIEW', {owner: 'STRONGLOOP'}, show);
 
-ds.discoverPrimaryKeys(null, 'INVENTORY',  show);
-ds.discoverForeignKeys(null, 'INVENTORY',  show);
+ds.discoverPrimaryKeys('INVENTORY',  show);
+ds.discoverForeignKeys('INVENTORY',  show);
 
-ds.discoverExportedForeignKeys(null, 'PRODUCT',  show);
+ds.discoverExportedForeignKeys('PRODUCT',  show);
 
 */
 
@@ -36,14 +36,14 @@ ds.discoverExportedForeignKeys(null, 'PRODUCT',  show);
 var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY_VIEW';
 
 /*
-ds.discoverSchema('STRONGLOOP', table, function(err, schema) {
+ds.discoverSchema(table, {owner: 'STRONGLOOP'}, function(err, schema) {
     var model = ds.define(schema.name, schema.properties, schema.options);
     // console.log(model);
     model.all(show);
 });
 */
 
-ds.discoverAndBuildModels('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true}, function (err, models) {
+ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true}, function (err, models) {
 
     for(var m in models) {
         models[m].all(show);
@@ -53,7 +53,8 @@ ds.discoverAndBuildModels('STRONGLOOP', 'INVENTORY', {visited: {}, associations:
        console.log("\nInventory: ", inv);
        inv.product(function(err, prod) {
            console.log("\nProduct: ", prod);
-           ds.disconnect();
+           console.log("\n ------------- ");
+           // ds.disconnect(); // This will crash node-oracle as the connection is disconnected while other statements are still running
        });
     });
 });

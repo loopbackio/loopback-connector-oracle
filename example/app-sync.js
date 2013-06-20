@@ -14,26 +14,26 @@ console.log(results);
 results = ds.discoverModelDefinitionsSync({views: true, limit: 20});
 console.log(results);
 
-results = ds.discoverModelPropertiesSync(null, 'PRODUCT');
+results = ds.discoverModelPropertiesSync('PRODUCT');
 console.log(results);
 
-results = ds.discoverModelPropertiesSync('STRONGLOOP', 'INVENTORY_VIEW');
+results = ds.discoverModelPropertiesSync('INVENTORY_VIEW', {owner: 'STRONGLOOP'});
 console.log(results);
 
-results = ds.discoverPrimaryKeysSync(null, 'INVENTORY');
+results = ds.discoverPrimaryKeysSync('INVENTORY');
 console.log(results);
 
-results = ds.discoverForeignKeysSync(null, 'INVENTORY');
+results = ds.discoverForeignKeysSync('INVENTORY');
 console.log(results);
 
-results = ds.discoverForeignKeysSync(null, 'INVENTORY');
+results = ds.discoverForeignKeysSync('INVENTORY');
 console.log(results);
 
-results = ds.discoverExportedForeignKeysSync(null, 'PRODUCT');
+results = ds.discoverExportedForeignKeysSync('PRODUCT');
 console.log(results);
 
 
-var models = ds.discoverAndBuildModelsSync('STRONGLOOP', 'INVENTORY', {visited: {}, associations: true});
+var models = ds.discoverAndBuildModelsSync('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true});
 
 function show(err, models) {
     if (err) {

@@ -90,7 +90,7 @@ describe('Discover models including other users', function() {
           }
         });
         assert(others, 'Should have tables/views owned by others');
-        done(null, models);
+        done(err, models);
       }
     });
   });
@@ -99,7 +99,7 @@ describe('Discover models including other users', function() {
 describe('Discover model properties', function() {
   describe('Discover a named model', function() {
     it('should return an array of columns for PRODUCT', function(done) {
-      db.discoverModelProperties(null, 'PRODUCT', function(err, models) {
+      db.discoverModelProperties('PRODUCT', function(err, models) {
         if (err) {
           console.error(err);
           done(err);
@@ -114,33 +114,11 @@ describe('Discover model properties', function() {
     });
   });
 
-  /*
-  describe('Discover all models', function() {
-    it('should return an array of columns for PRODUCT', function(done) {
-      db.discoverModelProperties(null, null, function(err, models) {
-        if (err) {
-          console.error(err);
-          done(err);
-        } else {
-          var others = false;
-          models.forEach(function(m) {
-            console.dir(m);
-            if(m.tableName !== 'PRODUCT') {
-              others = true;
-            }
-          });
-          assert(others);
-          done(null, models);
-        }
-      });
-    });
-  });
-    */
 });
 
 describe('Discover model primary keys', function () {
     it('should return an array of primary keys for PRODUCT', function (done) {
-        db.discoverPrimaryKeys(null, 'PRODUCT',function (err, models) {
+        db.discoverPrimaryKeys('PRODUCT',function (err, models) {
             if (err) {
                 console.error(err);
                 done(err);
@@ -155,7 +133,7 @@ describe('Discover model primary keys', function () {
     });
 
     it('should return an array of primary keys for STRONGLOOP.PRODUCT', function (done) {
-        db.discoverPrimaryKeys('STRONGLOOP', 'PRODUCT',function (err, models) {
+        db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'}, function (err, models) {
             if (err) {
                 console.error(err);
                 done(err);
@@ -172,7 +150,7 @@ describe('Discover model primary keys', function () {
 
 describe('Discover model foreign keys', function () {
     it('should return an array of foreign keys for INVENTORY', function (done) {
-        db.discoverForeignKeys(null, 'INVENTORY',function (err, models) {
+        db.discoverForeignKeys('INVENTORY',function (err, models) {
             if (err) {
                 console.error(err);
                 done(err);
@@ -186,7 +164,7 @@ describe('Discover model foreign keys', function () {
         });
     });
     it('should return an array of foreign keys for STRONGLOOP.INVENTORY', function (done) {
-        db.discoverForeignKeys('STRONGLOOP', 'INVENTORY',function (err, models) {
+        db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'}, function (err, models) {
             if (err) {
                 console.error(err);
                 done(err);
@@ -203,7 +181,7 @@ describe('Discover model foreign keys', function () {
 
 describe('Discover ADL schema from a table', function () {
     it('should return an ADL schema for INVENTORY', function (done) {
-        db.discoverSchema('STRONGLOOP', "INVENTORY", function (err, schema) {
+        db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'}, function (err, schema) {
             console.log('%j', schema);
             assert(schema.name === 'Inventory');
             assert(schema.options.oracle.schema === 'STRONGLOOP');
