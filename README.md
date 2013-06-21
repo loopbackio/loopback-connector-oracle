@@ -1,6 +1,6 @@
-## JugglingDB-Oracle 
+## Asteroid Oracle Connector
 
-Oracle adapter for JugglingDB.
+The Oracle adapter for JugglingDB.
 
 ## Installation
 
