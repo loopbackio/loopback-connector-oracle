@@ -11,17 +11,11 @@ http://www.oracle.com/technetwork/database/features/instant-client/index-097480.
 1. Instant Client Package - Basic: All files required to run OCI, OCCI, and JDBC-OCI applications
 2. Instant Client Package - SDK: Additional header files and an example makefile for developing Oracle applications with Instant Client
 
-One patch is required for Windows:
-
-http://www.oracle.com/technetwork/database/occidownloads-083553.html
-
-3. OCCI for Visual Studio 2010 - Visual C++10 (VS 2010)[Windows 64-bit/Windows 32-bit]
-
+For Windows, please make sure 12_1 version is used.
 
 <ul>
 <li>Please make sure you download the correct packages for your system architecture, such as 64 bit vs 32 bit
-<li>Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_11_2_11_2
-<li>Unzip the Windows OCCI patch into the vc10 sub directory, such as c:\instantclient_11_2\vc10
+<li>Unzip the files 1 and 2 into the same directory, such as /opt/instantclient_11_2 or c:\instantclient_12_1
 </ul>
 
 
@@ -57,14 +51,22 @@ MacOS:
 
 On Windows, you need to set the environment variables:
 
-    OCI_INCLUDE_DIR=c:\instclient_11_2\sdk\include
-    OCI_LIB_DIR=c:\instantclient_11_2\vc10
+If you have VisualStudio 2012 installed,
 
-And append the OCI path to the PATH environment variable:
+    OCI_INCLUDE_DIR=C:\instantclient_12_1\sdk\include
+    OCI_LIB_DIR=C:\instantclient_12_1\sdk\lib\msvc\vc11
+    Path=...;c:\instantclient_12_1\vc11;c:\instantclient_12_1
 
-    Path=...;c:\instantclient_11_2\vc10;c:\instantclient_11_2
+**Please make sure c:\instantclient_12_1\vc11 comes before c:\instantclient_12_1**
 
-**Please make sure c:\instantclient_11_2\vc10 comes before c:\instantclient_11_2**
+If you have VisualStudio 2010 installed,
+
+    OCI_INCLUDE_DIR=C:\instantclient_12_1\sdk\include
+    OCI_LIB_DIR=C:\instantclient_12_1\sdk\lib\msvc\vc10
+    Path=...;c:\instantclient_12_1\vc10;c:\instantclient_12_1
+
+**Please make sure c:\instantclient_12_1\vc10 comes before c:\instantclient_12_1**
+
 
 ## Usage
 
