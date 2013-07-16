@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "loopback-data": "git+ssh://git@github.com:strongloop/loopback-data.git",
-    "oracle": "git://github.com/raymondfeng/node-oracle.git",
+    "oracle": "git://github.com/strongloop/node-oracle.git",
     "async": "latest"
   },
   "devDependencies": {
