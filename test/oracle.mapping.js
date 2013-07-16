@@ -91,7 +91,21 @@ describe('Mapping models', function () {
                         });
                         callback(null, results);
                     });
-                }], done);
+                },
+                function (callback) {
+                    Model.find({fields: {'total' : false}}, function (err, results) {
+                        console.log(results);
+                        results.should.have.lengthOf(3);
+                        results.forEach(function(r) {
+                            r.should.have.property('productId');
+                            r.should.have.property('locationId');
+                            r.should.have.property('available');
+                            r.should.not.have.property('total');
+                        });
+                        callback(null, results);
+                    });
+                }
+            ], done);
         });
 
 
