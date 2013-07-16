@@ -1,7 +1,7 @@
 {
-  "name": "asteroid-connector-oracle",
+  "name": "loopback-connector-oracle",
   "version": "0.0.1",
-  "description": "Asteroid Oracle Connector",
+  "description": "Loopback Oracle Connector",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --timeout 30000 --require ./test/init.js test/*.test.js"
@@ -18,6 +18,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/strongloop/asteroid-connector-oracle.git"
+    "url": "https://github.com/strongloop/loopback-connector-oracle.git"
   }
 }
