@@ -3,7 +3,7 @@ require('should');
 
 var assert = require('assert');
 
-var Schema = require('jugglingdb').Schema;
+var Schema = require('loopback-data').Schema;
 var db;
 
 before(function() {
