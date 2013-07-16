@@ -80,12 +80,14 @@ describe('Mapping models', function () {
                     Model.create({productId: 'p002', locationId: 'l001', available: 15, total: 30}, callback);
                 },
                 function (callback) {
-                    Model.all(function (err, results) {
+                    Model.find({fields: ['productId', 'locationId', 'available']}, function (err, results) {
                         console.log(results);
                         results.should.have.lengthOf(3);
                         results.forEach(function(r) {
                             r.should.have.property('productId');
                             r.should.have.property('locationId');
+                            r.should.have.property('available');
+                            r.should.not.have.property('total');
                         });
                         callback(null, results);
                     });
