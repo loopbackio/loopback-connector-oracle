@@ -1,4 +1,4 @@
-## Asteroid Oracle Connector
+## Loopback Oracle Connector
 
 The Oracle adapter for JugglingDB.
 
