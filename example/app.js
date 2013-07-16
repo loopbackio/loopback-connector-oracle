@@ -1,4 +1,4 @@
-var DataSource = require('jugglingdb').DataSource;
+var DataSource = require('loopback-data').DataSource;
 
 var ds = new DataSource(require('../'), {
   host : '127.0.0.1',

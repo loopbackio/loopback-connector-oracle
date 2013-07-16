@@ -4,7 +4,7 @@ require('should');
 var assert = require('assert');
 var async = require('async');
 
-var DataSource = require('jugglingdb').DataSource;
+var DataSource = require('loopback-data').DataSource;
 var db;
 
 before(function () {

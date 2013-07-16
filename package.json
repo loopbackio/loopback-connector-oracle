@@ -7,7 +7,7 @@
     "test": "./node_modules/.bin/mocha --timeout 30000 --require ./test/init.js test/*.test.js"
   },
   "dependencies": {
-    "jugglingdb": "git+ssh://git@github.com:strongloop/jugglingdb.git",
+    "loopback-data": "git+ssh://git@github.com:strongloop/loopback-data.git",
     "oracle": "git://github.com/raymondfeng/node-oracle.git",
     "async": "latest"
   },
