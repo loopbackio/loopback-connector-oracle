@@ -74,6 +74,18 @@ Oracle data sources allow you to discover model definition information from exis
  - [dataSource.discoverModelDefinitions([username], fn)](https://github.com/strongloop/loopback#datasourcediscovermodeldefinitionsusername-fn)
  - [dataSource.discoverSchema([owner], name, fn)](https://github.com/strongloop/loopback#datasourcediscoverschemaowner-name-fn)
 
+**Type Mapping** TODO
+
+ - Number
+ - Boolean
+ - String
+ - null
+ - Object
+ - undefined
+ - Date
+ - Array
+ - Buffer
+
 ## Destroying Models
 
 Destroying models may result in errors due to foreign key integrity. Make sure to delete any related models first before calling delete on model's with relationships.
@@ -81,6 +93,12 @@ Destroying models may result in errors due to foreign key integrity. Make sure t
 ## Auto Migrate / Auto Update
 
 After making changes to your model properties you must call `Model.automigrate()` or `Model.autoupdate()`. Only call `Model.autoupdate()` on new models.
+
+## Type Mapping
+
+- 
+
+
 
 ## Running tests
 
