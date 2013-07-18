@@ -67,11 +67,21 @@ If you have VisualStudio 2010 installed,
 
 **Please make sure c:\instantclient_12_1\vc10 comes before c:\instantclient_12_1**
 
+## Discovering Models
 
-## Usage
+Oracle data sources allow you to discover model definition information from existing oracle databases. See the following APIs:
+
+ - [dataSource.discoverModelDefinitions([username], fn)](https://github.com/strongloop/loopback#datasourcediscovermodeldefinitionsusername-fn)
+ - [dataSource.discoverSchema([owner], name, fn)](https://github.com/strongloop/loopback#datasourcediscoverschemaowner-name-fn)
+
+## Destroying Models
+
+Destroying models may result in errors due to foreign key integrity. Make sure to delete any related models first before calling delete on model's with relationships.
+
+## Auto Migrate / Auto Update
+
+After making changes to your model properties you must call `Model.automigrate()` or `Model.autoupdate()`. Only call `Model.autoupdate()` on new models.
 
 ## Running tests
 
     npm test
-
-
