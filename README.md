@@ -1,6 +1,6 @@
 ## Loopback Oracle Connector
 
-The Oracle adapter for JugglingDB.
+Connect Loopback to Oracle
 
 ## Installation
 
