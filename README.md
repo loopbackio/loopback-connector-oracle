@@ -86,13 +86,37 @@ Oracle data sources allow you to discover model definition information from exis
  - Array
  - Buffer
 
+### JSON to Oracle Types
+
+* String|JSON|Text|default: VARCHAR2, default lenght is 1024
+* Number: NUMBER
+* Date: DATE
+* Timestamp: TIMESTAMP(3)
+* Boolean: CHAR(1)
+
+### Oracle Types to JSON
+
+* CHAR(1): Boolean
+* CHAR(n), VARCHAR, VARCHAR2, LONG VARCHAR, NCHAR, NVARCHAR2: String
+* LONG, BLOB, CLOB, NCLOB: Buffer
+* NUMBER, INTEGER, DECIMAL, DOUBLE, FLOAT, BIGINT, SMALLINT, REAL, NUMERIC, BINARY_FLOAT, BINARY_DOUBLE, UROWID, ROWID: Number
+* DATE, TIMESTAMP: Date
+* default: String
+
 ## Destroying Models
 
 Destroying models may result in errors due to foreign key integrity. Make sure to delete any related models first before calling delete on model's with relationships.
 
 ## Auto Migrate / Auto Update
 
-After making changes to your model properties you must call `Model.automigrate()` or `Model.autoupdate()`. Only call `Model.autoupdate()` on new models.
+After making changes to your model properties you must call `Model.automigrate()` or `Model.autoupdate()`. Only call `Model.automigrate()` on new models
+as it will drop existing tables.
+
+Loopback Oracle connector creates the following shema objects for a given model:
+
+* A table, for example, PRODUCT
+* A sequence for the primary key, for example, PRODUCT_ID_SEQUENCE
+* A trigger to generate the primary key from the sequnce, for example, PRODUCT_ID_TRIGGER
 
 ## Type Mapping
 
