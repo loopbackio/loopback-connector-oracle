@@ -4,7 +4,7 @@ require('loopback-data/test/include.test.js');
 return;
 
 test.it('should not generate malformed SQL for number columns set to empty string', function (test) {
-    var Post = schema.define('posts', {
+    var Post = dataSource.define('posts', {
         title: { type: String }
         , userId: { type: Number }
     });
@@ -23,7 +23,7 @@ test.it('should not generate malformed SQL for number columns set to empty strin
 });
 
 test.it('all should support regex', function (test) {
-    Post = schema.models.Post;
+    Post = dataSource.models.Post;
 
     Post.destroyAll(function () {
         Post.create({title:'Oracle Test Title'}, function (err, post) {
@@ -51,7 +51,7 @@ test.it('all should support arbitrary expressions', function (test) {
 })
 
 test.it('all should support like operator ', function (test) {
-    Post = schema.models.Post;
+    Post = dataSource.models.Post;
     Post.destroyAll(function () {
         Post.create({title:'Oracle Test Title'}, function (err, post) {
             var id = post.id
@@ -65,7 +65,7 @@ test.it('all should support like operator ', function (test) {
 });
 
 test.it('all should support \'not like\' operator ', function (test) {
-    Post = schema.models.Post;
+    Post = dataSource.models.Post;
     Post.destroyAll(function () {
         Post.create({title:'Oracle Test Title'}, function (err, post) {
             var id = post.id
@@ -79,7 +79,7 @@ test.it('all should support \'not like\' operator ', function (test) {
 });
 
 test.it('all should support arbitrary where clauses', function (test) {
-    Post = schema.models.Post;
+    Post = dataSource.models.Post;
     Post.destroyAll(function () {
         Post.create({title:'Oracle Test Title'}, function (err, post) {
             var id = post.id;
@@ -93,7 +93,7 @@ test.it('all should support arbitrary where clauses', function (test) {
 });
 
 test.it('all should support arbitrary parameterized where clauses', function (test) {
-    Post = schema.models.Post;
+    Post = dataSource.models.Post;
     Post.destroyAll(function () {
         Post.create({title:'Oracle Test Title'}, function (err, post) {
             var id = post.id;

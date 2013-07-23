@@ -8,7 +8,7 @@ var ds = new DataSource(require('../'), {
     debug: true
 });
 
-var results = ds.adapter.querySync('SELECT * from PRODUCT');
+var results = ds.connector.querySync('SELECT * from PRODUCT');
 console.log(results);
 
 results = ds.discoverModelDefinitionsSync({views: true, limit: 20});
