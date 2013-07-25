@@ -67,12 +67,71 @@ If you have VisualStudio 2010 installed,
 
 **Please make sure c:\instantclient_12_1\vc10 comes before c:\instantclient_12_1**
 
+## Connector settings
+
+The connector can be configured using the following settings from the data source.
+
+* host or hostname (default to 'localhost'): The host name or ip address of the Oracle DB server
+* port (default to 1521): The port number of the Oracle DB server
+* username or user: The user name to connect to the Oracle DB
+* password: The password
+* database (default to 'XE'): The Oracle DB listener name
+* debug (default to false)
+
 ## Discovering Models
 
 Oracle data sources allow you to discover model definition information from existing oracle databases. See the following APIs:
 
  - [dataSource.discoverModelDefinitions([username], fn)](https://github.com/strongloop/loopback#datasourcediscovermodeldefinitionsusername-fn)
  - [dataSource.discoverSchema([owner], name, fn)](https://github.com/strongloop/loopback#datasourcediscoverschemaowner-name-fn)
+
+### Asynchronous APIs for discovery
+
+* Oracle.prototype.discoverModelDefinitions = function (options, cb)
+  - options:
+    - all: {Boolean} To include tables/views from all schemas/owners
+    - owner/schema: {String} The schema/owner name
+    - views: {Boolean} To include views
+  - cb:
+    - Get a list of table/view names
+
+* Oracle.prototype.discoverModelProperties = function (table, options, cb)
+  - table: {String} The name of a table or view
+  - options:
+    - owner/schema: {String} The schema/owner name
+  - cb:
+    - Get a list of model property definitions
+
+* Oracle.prototype.discoverPrimaryKeys= function(table, options, cb)
+  - table: {String} The name of a table or view
+  - options:
+    - owner/schema: {String} The schema/owner name
+  - cb:
+    - Get a list of primary key definitions
+
+* Oracle.prototype.discoverForeignKeys= function(table, options, cb)
+  - table: {String} The name of a table or view
+  - options:
+    - owner/schema: {String} The schema/owner name
+  - cb:
+    - Get a list of foreign key definitions
+
+* Oracle.prototype.discoverExportedForeignKeys= function(table, options, cb)
+
+  - table: {String} The name of a table or view
+  - options:
+    - owner/schema: {String} The schema/owner name
+  - cb:
+    - Get a list of foreign key definitions that reference the primary key of the given table
+
+
+### Synchronous APIs for discovery
+
+* Oracle.prototype.discoverModelDefinitionsSync = function (options)
+* Oracle.prototype.discoverModelPropertiesSync = function (table, options)
+* Oracle.prototype.discoverPrimaryKeysSync= function(table, options)
+* Oracle.prototype.discoverForeignKeysSync= function(table, options)
+* Oracle.prototype.discoverExportedForeignKeysSync= function(table, options)
 
 **Type Mapping** TODO
 
