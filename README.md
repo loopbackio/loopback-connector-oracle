@@ -93,28 +93,71 @@ Oracle data sources allow you to discover model definition information from exis
     - owner/schema: {String} The schema/owner name
     - views: {Boolean} To include views
   - cb:
-    - Get a list of table/view names
+    - Get a list of table/view names, for example:
+
+        {type: 'table', name: 'INVENTORY', owner: 'STRONGLOOP' }
+        {type: 'table', name: 'LOCATION', owner: 'STRONGLOOP' }
+        {type: 'view', name: 'INVENTORY_VIEW', owner: 'STRONGLOOP' }
+
 
 * Oracle.prototype.discoverModelProperties = function (table, options, cb)
   - table: {String} The name of a table or view
   - options:
     - owner/schema: {String} The schema/owner name
   - cb:
-    - Get a list of model property definitions
+    - Get a list of model property definitions, for example:
+
+          { owner: 'STRONGLOOP',
+            tableName: 'PRODUCT',
+            columnName: 'ID',
+            dataType: 'VARCHAR2',
+            dataLength: 20,
+            nullable: 'N',
+            type: 'String' }
+          { owner: 'STRONGLOOP',
+            tableName: 'PRODUCT',
+            columnName: 'NAME',
+            dataType: 'VARCHAR2',
+            dataLength: 64,
+            nullable: 'Y',
+            type: 'String' }
+
 
 * Oracle.prototype.discoverPrimaryKeys= function(table, options, cb)
   - table: {String} The name of a table or view
   - options:
     - owner/schema: {String} The schema/owner name
   - cb:
-    - Get a list of primary key definitions
+    - Get a list of primary key definitions, for example:
+
+        { owner: 'STRONGLOOP',
+          tableName: 'INVENTORY',
+          columnName: 'PRODUCT_ID',
+          keySeq: 1,
+          pkName: 'ID_PK' }
+        { owner: 'STRONGLOOP',
+          tableName: 'INVENTORY',
+          columnName: 'LOCATION_ID',
+          keySeq: 2,
+          pkName: 'ID_PK' }
 
 * Oracle.prototype.discoverForeignKeys= function(table, options, cb)
   - table: {String} The name of a table or view
   - options:
     - owner/schema: {String} The schema/owner name
   - cb:
-    - Get a list of foreign key definitions
+    - Get a list of foreign key definitions, for example:
+
+        { fkOwner: 'STRONGLOOP',
+          fkName: 'PRODUCT_FK',
+          fkTableName: 'INVENTORY',
+          fkColumnName: 'PRODUCT_ID',
+          keySeq: 1,
+          pkOwner: 'STRONGLOOP',
+          pkName: 'PRODUCT_PK',
+          pkTableName: 'PRODUCT',
+          pkColumnName: 'ID' }
+
 
 * Oracle.prototype.discoverExportedForeignKeys= function(table, options, cb)
 
@@ -122,7 +165,17 @@ Oracle data sources allow you to discover model definition information from exis
   - options:
     - owner/schema: {String} The schema/owner name
   - cb:
-    - Get a list of foreign key definitions that reference the primary key of the given table
+    - Get a list of foreign key definitions that reference the primary key of the given table, for example:
+
+        { fkName: 'PRODUCT_FK',
+          fkOwner: 'STRONGLOOP',
+          fkTableName: 'INVENTORY',
+          fkColumnName: 'PRODUCT_ID',
+          keySeq: 1,
+          pkName: 'PRODUCT_PK',
+          pkOwner: 'STRONGLOOP',
+          pkTableName: 'PRODUCT',
+          pkColumnName: 'ID' }
 
 
 ### Synchronous APIs for discovery
@@ -133,7 +186,97 @@ Oracle data sources allow you to discover model definition information from exis
 * Oracle.prototype.discoverForeignKeysSync= function(table, options)
 * Oracle.prototype.discoverExportedForeignKeysSync= function(table, options)
 
-**Type Mapping** TODO
+### Discover/build/try the models
+
+The following example uses `discoverAndBuildModels` to discover, build and try the models:
+
+    dataSource.discoverAndBuildModels('INVENTORY', { owner: 'STRONGLOOP', visited: {}, associations: true},
+         function (err, models) {
+            // Show records from the models
+            for(var m in models) {
+                models[m].all(show);
+            };
+
+            // Find one record for inventory
+            models.Inventory.findOne({}, function(err, inv) {
+                console.log("\nInventory: ", inv);
+                // Follow the foreign key to navigate to the product
+                inv.product(function(err, prod) {
+                    console.log("\nProduct: ", prod);
+                    console.log("\n ------------- ");
+                });
+        });
+    }
+
+## Model definition for Oracle
+
+The model definition consists of the following properties:
+
+* name: Name of the model, by default, it's the camel case of the table
+* options: Model level operations and mapping to Oracle schema/table
+* properties: Property definitions, including mapping to Oracle column
+
+        {
+          "name":"Inventory",
+          "options":{
+            "idInjection":false,
+            "oracle":{
+              "schema":"STRONGLOOP",
+              "table":"INVENTORY"
+            }
+          },
+          "properties":{
+            "productId":{
+              "type":"String",
+              "required":true,
+              "length":20,
+              "id":1,
+              "oracle":{
+                "columnName":"PRODUCT_ID",
+                "dataType":"VARCHAR2",
+                "dataLength":20,
+                "nullable":"N"
+              }
+            },
+            "locationId":{
+              "type":"String",
+              "required":true,
+              "length":20,
+              "id":2,
+              "oracle":{
+                "columnName":"LOCATION_ID",
+                "dataType":"VARCHAR2",
+                "dataLength":20,
+                "nullable":"N"
+              }
+            },
+            "available":{
+              "type":"Number",
+              "required":false,
+              "length":22,
+              "oracle":{
+                "columnName":"AVAILABLE",
+                "dataType":"NUMBER",
+                "dataLength":22,
+                "nullable":"Y"
+              }
+            },
+            "total":{
+              "type":"Number",
+              "required":false,
+              "length":22,
+              "oracle":{
+                "columnName":"TOTAL",
+                "dataType":"NUMBER",
+                "dataLength":22,
+                "nullable":"Y"
+              }
+            }
+          }
+        }
+
+
+## Type Mapping
 
  - Number
  - Boolean
@@ -177,11 +320,11 @@ Loopback Oracle connector creates the following shema objects for a given model:
 * A sequence for the primary key, for example, PRODUCT_ID_SEQUENCE
 * A trigger to generate the primary key from the sequnce, for example, PRODUCT_ID_TRIGGER
 
-## Type Mapping
 
-- 
+## Running examples
 
-
+* example/app.js: Demonstrate the asynchonous discovery
+* example/app-sync.js: Demonstrate the synchronous discovery
 
 ## Running tests
 
