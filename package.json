@@ -4,7 +4,7 @@
   "description": "Loopback Oracle Connector",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 30000 --require ./test/init.js test/*.test.js"
+    "test": "./run-tests"
   },
   "dependencies": {
     "loopback-data": "git+ssh://git@github.com:strongloop/loopback-data.git",
