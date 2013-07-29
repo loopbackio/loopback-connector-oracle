@@ -11,8 +11,8 @@
     "loopback-oracle-installer": "git+ssh://git@github.com:strongloop/loopback-oracle-installer.git",
     "async": "latest"
   },
-  "oracleInstaller": {
-    "url": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
+  "config": {
+      "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
   },
   "devDependencies": {
     "semicov": "*",
