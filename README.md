@@ -43,13 +43,29 @@ Linux:
     ln -s libclntsh.so.11.1 libclntsh.so 
     ln -s libocci.so.11.1 libocci.so 
 
+`libaio` library is required on Linux systems:
+
+* On Unbuntu/Debian
+
+        ﻿sudo apt-get install libaio1
+
+* On Fedora/CentOS/RHEL
+
+        ﻿sudo yum install libaio
+
 3. Configure the dynamic library path
 
-MacOS:
+* MacOS:
 
     export DYLD_LIBRARY_PATH=$OCI_LIB_DIR
 
-On Windows, you need to set the environment variables:
+* Linux:
+
+    export LD_LIBRARY_PATH=$OCI_LIB_DIR
+
+* Windows:
+
+you need to set the environment variables:
 
 If you have VisualStudio 2012 installed,
 
