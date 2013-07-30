@@ -1,4 +1,4 @@
-var DataSource = require('loopback-data').DataSource;
+var DataSource = require('loopback-datasource-juggler').DataSource;
 
 var ds = new DataSource(require('../'), {
   host : '127.0.0.1',
@@ -23,26 +23,25 @@ ds.discoverModelDefinitions({views: true, limit: 20}, show);
 
 ds.discoverModelProperties('PRODUCT', show);
 
-ds.discoverModelProperties('INVENTORY_VIEW', {owner: 'STRONGLOOP'}, show);
+// ds.discoverModelProperties('INVENTORY_VIEW', {owner: 'STRONGLOOP'}, show);
 
 ds.discoverPrimaryKeys('INVENTORY',  show);
 ds.discoverForeignKeys('INVENTORY',  show);
 
 ds.discoverExportedForeignKeys('PRODUCT',  show);
-
 */
 
 
 var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY_VIEW';
 
-/*
 ds.discoverSchema(table, {owner: 'STRONGLOOP'}, function(err, schema) {
+    console.log(JSON.stringify(schema));
     var model = ds.define(schema.name, schema.properties, schema.options);
     // console.log(model);
     model.all(show);
 });
-*/
 
+/*
 ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true}, function (err, models) {
 
     for(var m in models) {
@@ -60,4 +59,5 @@ ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associ
 });
 
 
+*/
 

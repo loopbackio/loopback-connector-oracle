@@ -7,7 +7,7 @@
     "test": "./run-tests"
   },
   "dependencies": {
-    "loopback-data": "git+ssh://git@github.com:strongloop/loopback-data.git",
+    "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
     "loopback-oracle-installer": "git+ssh://git@github.com:strongloop/loopback-oracle-installer.git",
     "async": "latest"
   },

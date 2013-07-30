@@ -1,4 +1,4 @@
-var Schema = require('loopback-data').Schema;
+var Schema = require('loopback-datasource-juggler').Schema;
 
 global.getSchema = function() {
     var db = new Schema(require('../'), {
