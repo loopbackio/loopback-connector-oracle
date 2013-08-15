@@ -8,7 +8,7 @@
     "blanket": {
       "pattern": "//^((?!(node_modules|test)).)*$/"
     },
-    "coverage": "mocha -r blanket -R html-cov > coverage_loopback-connector-oracle.html"
+    "coverage": "./run-coverage"
   },
   "dependencies": {
     "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
@@ -19,7 +19,6 @@
       "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
   },
   "devDependencies": {
-    "semicov": "*",
     "should": "~1.2.2",
     "mocha": "~1.8.2",
     "blanket": "latest"
