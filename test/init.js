@@ -6,8 +6,10 @@ global.getSchema = function() {
         database:'XE',
         username:'test',
         password:'password',
-        debug: true
+        debug: false
     });
-    db.log = function (a) { console.log(a); };
+    db.log = function (a) { 
+	    // console.log(a); 
+    };
     return db;
 };
