@@ -14,7 +14,7 @@ before(function () {
         database: 'XE',
         username: 'test',
         password: 'str0ng100pjs',
-        debug: true
+        debug: false
     });
 
 });
@@ -62,7 +62,7 @@ describe('Mapping models', function () {
             }
         };
         var models = db.buildModels(schema);
-        console.log(models);
+        // console.log(models);
         var Model = models['TestInventory'];
 
         db.automigrate(function (err, data) {
@@ -81,7 +81,7 @@ describe('Mapping models', function () {
                 },
                 function (callback) {
                     Model.find({fields: ['productId', 'locationId', 'available']}, function (err, results) {
-                        console.log(results);
+                        // console.log(results);
                         results.should.have.lengthOf(3);
                         results.forEach(function(r) {
                             r.should.have.property('productId');
@@ -94,7 +94,7 @@ describe('Mapping models', function () {
                 },
                 function (callback) {
                     Model.find({fields: {'total' : false}}, function (err, results) {
-                        console.log(results);
+                        // console.log(results);
                         results.should.have.lengthOf(3);
                         results.forEach(function(r) {
                             r.should.have.property('productId');

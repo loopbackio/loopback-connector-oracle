@@ -13,7 +13,7 @@ before(function () {
         database: 'XE',
         username: 'strongloop',
         password: 'str0ng100pjs',
-        debug: true
+        debug: false
     });
 
 });
@@ -29,7 +29,7 @@ describe('discoverModelDefinitions', function () {
 
             var views = false;
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 if (m.type === 'view') {
                     views = true;
                 }
@@ -48,7 +48,7 @@ describe('discoverModelDefinitions', function () {
             });
             var views = false;
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 if (m.type === 'view') {
                     views = true;
                 }
@@ -69,7 +69,7 @@ describe('discoverModelDefinitions', function () {
             });
             var others = false;
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 if (m.owner !== 'STRONGLOOP') {
                     others = true;
                 }
@@ -84,7 +84,7 @@ describe('discoverModelDefinitions', function () {
             it('should return an array of columns for PRODUCT', function () {
                 var models = db.discoverModelPropertiesSync('PRODUCT');
                 models.forEach(function (m) {
-                    console.dir(m);
+                    // console.dir(m);
                     assert(m.tableName === 'PRODUCT');
                 });
 
@@ -97,7 +97,7 @@ describe('discoverModelDefinitions', function () {
         it('should return an array of primary keys for PRODUCT', function () {
             var models = db.discoverPrimaryKeysSync('PRODUCT');
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 assert(m.tableName === 'PRODUCT');
             });
 
@@ -106,7 +106,7 @@ describe('discoverModelDefinitions', function () {
         it('should return an array of primary keys for STRONGLOOP.PRODUCT', function () {
             var models = db.discoverPrimaryKeysSync('PRODUCT', {owner: 'STRONGLOOP'});
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 assert(m.tableName === 'PRODUCT');
             });
 
@@ -118,7 +118,7 @@ describe('discoverModelDefinitions', function () {
         it('should return an array of foreign keys for INVENTORY', function () {
             var models = db.discoverForeignKeysSync('INVENTORY');
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 assert(m.fkTableName === 'INVENTORY');
             });
 
@@ -128,7 +128,7 @@ describe('discoverModelDefinitions', function () {
         it('should return an array of foreign keys for STRONGLOOP.INVENTORY', function () {
             var models = db.discoverForeignKeysSync('INVENTORY', {owner: 'STRONGLOOP'});
             models.forEach(function (m) {
-                console.dir(m);
+                // console.dir(m);
                 assert(m.fkTableName === 'INVENTORY');
             });
         });
@@ -138,7 +138,7 @@ describe('discoverModelDefinitions', function () {
     describe('Discover ADL schema from a table', function () {
         it('should return an ADL schema for INVENTORY', function () {
             var schema = db.discoverSchemasSync('INVENTORY', {owner: 'STRONGLOOP', visited: {}})['STRONGLOOP.INVENTORY'];
-            console.log('%j', schema);
+            // console.log('%j', schema);
             assert(schema.name === 'Inventory');
             assert(schema.options.oracle.schema === 'STRONGLOOP');
             assert(schema.options.oracle.table === 'INVENTORY');
