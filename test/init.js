@@ -1,13 +1,10 @@
-var Schema = require('loopback-datasource-juggler').Schema;
+var DataSource = require('loopback-datasource-juggler').DataSource;
+
+var config = require('rc')('loopback');
+config = (config.test && config.test.oracle) || {};
 
 global.getSchema = function() {
-    var db = new Schema(require('../'), {
-        host:'127.0.0.1',
-        database:'XE',
-        username:'test',
-        password:'password',
-        debug: false
-    });
+    var db = new DataSource(require('../'), config);
     db.log = function (a) { 
 	    // console.log(a); 
     };

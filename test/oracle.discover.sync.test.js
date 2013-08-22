@@ -3,18 +3,14 @@ require('should');
 
 var assert = require('assert');
 
-var Schema = require('loopback-datasource-juggler').Schema;
+var DataSource = require('loopback-datasource-juggler').DataSource;
 var db;
 
 before(function () {
+    var config = require('rc')('loopback');
+    config = (config.dev && config.dev.oracle) || {};
 
-    db = new Schema(require('../'), {
-        host: '127.0.0.1',
-        database: 'XE',
-        username: 'strongloop',
-        password: 'password',
-        debug: false
-    });
+    db = new DataSource(require('../'), config);
 
 });
 

@@ -4,13 +4,7 @@ var ds;
 
 before(function () {
 
-    ds = new DataSource(require('../'), {
-        host: '127.0.0.1',
-        database: 'XE',
-        username: 'test',
-        password: 'password',
-        debug: false
-    });
+    ds = getSchema();
 
 });
 
