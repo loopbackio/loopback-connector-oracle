@@ -1,11 +1,14 @@
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
+var config = require('rc')('loopback');
+config = (config.test && config.test.oracle) || {};
+
 var ds = new DataSource(require('../'), {
-  host : '166.78.158.45',
-  database : 'XE',
-  username : 'strongloop',
-  password : 'str0ng100pjs',
-  debug : true
+    host: config.host || 'localhost',
+    database:'XE',
+    username:'strongloop',
+    password: config.password,
+    debug: false
 });
 
 function show(err, models) {

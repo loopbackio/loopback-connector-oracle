@@ -1,21 +1,13 @@
 process.env.NODE_ENV = 'test';
 require('should');
-
-var assert = require('assert');
+;
 var async = require('async');
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
 var db;
 
 before(function () {
 
-    db = new DataSource(require('../'), {
-        host: '166.78.158.45',
-        database: 'XE',
-        username: 'test',
-        password: 'str0ng100pjs',
-        debug: false
-    });
+    db = getSchema();
 
 });
 
