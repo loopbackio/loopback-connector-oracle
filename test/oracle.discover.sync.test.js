@@ -7,11 +7,8 @@ var DataSource = require('loopback-datasource-juggler').DataSource;
 var db;
 
 before(function () {
-    var config = require('rc')('loopback');
-    config = (config.dev && config.dev.oracle) || {};
-
+    var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
     db = new DataSource(require('../'), config);
-
 });
 
 describe('discoverModelDefinitions', function () {

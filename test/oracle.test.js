@@ -1,8 +1,8 @@
 require('loopback-datasource-juggler/test/common.batch.js');
 require('loopback-datasource-juggler/test/include.test.js');
 
+// FIXME: The following test cases are to be reactivated for Oracle
 /*
-return;
 
 test.it('should not generate malformed SQL for number columns set to empty string', function (test) {
     var Post = dataSource.define('posts', {

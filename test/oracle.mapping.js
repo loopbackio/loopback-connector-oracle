@@ -1,14 +1,12 @@
 process.env.NODE_ENV = 'test';
 require('should');
-;
+
 var async = require('async');
 
 var db;
 
 before(function () {
-
-    db = getSchema();
-
+    db = getDataSource();
 });
 
 describe('Mapping models', function () {
