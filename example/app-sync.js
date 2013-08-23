@@ -1,15 +1,8 @@
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
-var config = require('rc')('loopback');
-config = (config.test && config.test.oracle) || {};
+var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
 
-var ds = new DataSource(require('../'), {
-    host: config.host || 'localhost',
-    database:'XE',
-    username:'strongloop',
-    password: config.password,
-    debug: false
-});
+var ds = new DataSource(require('../'), config);
 
 var results = ds.connector.querySync('SELECT * from PRODUCT');
 console.log(results);

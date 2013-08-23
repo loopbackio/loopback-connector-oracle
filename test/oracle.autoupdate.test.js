@@ -1,11 +1,8 @@
 var assert = require('assert');
-var DataSource = require('loopback-datasource-juggler').DataSource;
 var ds;
 
 before(function () {
-
-    ds = getSchema();
-
+    ds = getDataSource();
 });
 
 describe('Oracle connector', function () {
