@@ -1,17 +1,8 @@
 var assert = require('assert');
-var DataSource = require('loopback-datasource-juggler').DataSource;
 var ds;
 
 before(function () {
-
-    ds = new DataSource(require('../'), {
-        host: '166.78.158.45',
-        database: 'XE',
-        username: 'test',
-        password: 'str0ng100pjs',
-        debug: false
-    });
-
+    ds = getDataSource();
 });
 
 describe('Oracle connector', function () {

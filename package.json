@@ -16,12 +16,13 @@
     "async": "latest"
   },
   "config": {
-      "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
+    "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
   },
   "devDependencies": {
     "should": "~1.2.2",
     "mocha": "~1.8.2",
-    "blanket": "latest"
+    "blanket": "latest",
+    "rc": "~0.3.0"
   },
   "repository": {
     "type": "git",
