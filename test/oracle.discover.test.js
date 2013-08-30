@@ -3,19 +3,12 @@ require('should');
 
 var assert = require('assert');
 
-var Schema = require('loopback-datasource-juggler').Schema;
+var DataSource = require('loopback-datasource-juggler').DataSource;
 var db;
 
 before(function() {
-
-  db = new Schema(require('../'), {
-    host : '127.0.0.1',
-    database : 'XE',
-    username : 'strongloop',
-    password : 'password',
-    debug : false
-  });
-
+    var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    db = new DataSource(require('../'), config);
 });
 
 describe('discoverModels', function() {

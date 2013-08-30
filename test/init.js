@@ -1,13 +1,9 @@
-var Schema = require('loopback-datasource-juggler').Schema;
+var DataSource = require('loopback-datasource-juggler').DataSource;
 
-global.getSchema = function() {
-    var db = new Schema(require('../'), {
-        host:'127.0.0.1',
-        database:'XE',
-        username:'test',
-        password:'password',
-        debug: false
-    });
+var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
+
+global.getDataSource = global.getSchema = function() {
+    var db = new DataSource(require('../'), config);
     db.log = function (a) { 
 	    // console.log(a); 
     };
