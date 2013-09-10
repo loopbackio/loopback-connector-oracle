@@ -11,8 +11,8 @@
     "coverage": "./run-coverage"
   },
   "dependencies": {
-    "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git#strongloopsuite-1.0.0-0",
-    "loopback-oracle-installer": "git+ssh://git@github.com:strongloop/loopback-oracle-installer.git#strongloopsuite-1.0.0-0",
+    "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git#strongloopsuite-1.0.0-2",
+    "loopback-oracle-installer": "git+ssh://git@github.com:strongloop/loopback-oracle-installer.git#strongloopsuite-1.0.0-2",
     "async": "~0.2.9"
   },
   "config": {
