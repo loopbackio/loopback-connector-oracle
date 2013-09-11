@@ -2,6 +2,7 @@
   "name": "loopback-connector-oracle",
   "version": "1.0.0",
   "description": "Loopback Oracle Connector",
+  "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
   "main": "index.js",
   "scripts": {
     "test": "./run-tests",
