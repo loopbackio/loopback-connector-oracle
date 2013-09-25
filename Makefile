@@ -11,5 +11,5 @@ test-verbose:
 testing:
 	$(TESTER) $(OPTS) --watch $(TESTS)
 coverage:
-	$(TESTER) $(OPTS) -r blanket -R html-cov $(TESTS) > coverage_loopback-connector-mysql.html
+	$(TESTER) $(OPTS) -r blanket -R html-cov $(TESTS) > coverage_loopback-connector-oracle.html
 .PHONY: test docs
