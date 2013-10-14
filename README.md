@@ -1,6 +1,6 @@
-## Loopback Oracle Connector
+## loopback-connector-oracle
 
-Connect Loopback to Oracle
+The Oracle Connector module for for [loopback-datasource-juggler](http://docs.strongloop.com/loopback-datasource-juggler/).
 
 ## Installation
 
@@ -263,7 +263,7 @@ The model definition consists of the following properties:
 
 ### JSON to Oracle Types
 
-* String|JSON|Text|default: VARCHAR2, default lenght is 1024
+* String|JSON|Text|default: VARCHAR2, default length is 1024
 * Number: NUMBER
 * Date: DATE
 * Timestamp: TIMESTAMP(3)
@@ -287,7 +287,7 @@ Destroying models may result in errors due to foreign key integrity. Make sure t
 After making changes to your model properties you must call `Model.automigrate()` or `Model.autoupdate()`. Only call `Model.automigrate()` on new models
 as it will drop existing tables.
 
-Loopback Oracle connector creates the following shema objects for a given model:
+LoopBack Oracle connector creates the following schema objects for a given model:
 
 * A table, for example, PRODUCT
 * A sequence for the primary key, for example, PRODUCT_ID_SEQUENCE
@@ -296,7 +296,7 @@ Loopback Oracle connector creates the following shema objects for a given model:
 
 ## Running examples
 
-* example/app.js: Demonstrate the asynchonous discovery
+* example/app.js: Demonstrate the asynchronous discovery
 * example/app-sync.js: Demonstrate the synchronous discovery
 
 ## Running tests
