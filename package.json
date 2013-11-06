@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Loopback Oracle Connector",
   "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
   "main": "index.js",
@@ -13,11 +13,12 @@
   },
   "dependencies": {
     "loopback-datasource-juggler": "git+ssh://git@github.com:strongloop/loopback-datasource-juggler.git",
-    "loopback-oracle-installer": "git+ssh://git@github.com:strongloop/loopback-oracle-installer.git",
+    "loopback-oracle-installer": "~1.1.0",
     "async": "~0.2.9"
   },
   "config": {
-    "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com"
+    "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
+    "oracleVersion": "1.0.0"
   },
   "devDependencies": {
     "should": "~1.2.2",
