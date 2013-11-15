@@ -5,11 +5,7 @@
   "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests",
-    "blanket": {
-      "pattern": "//^((?!(node_modules|test)).)*$/"
-    },
-    "coverage": "mocha -r blanket -R html-cov > coverage_loopback-connector-oracle.html"
+    "test": "./run-tests"
   },
   "dependencies": {
     "loopback-datasource-juggler": "1.x.x",
@@ -18,12 +14,11 @@
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
-    "oracleVersion": "1.0.0"
+    "oracleVersion": "1.1.0"
   },
   "devDependencies": {
     "should": "~1.2.2",
     "mocha": "~1.14.0",
-    "blanket": "~1.1.5",
     "rc": "~0.3.1"
   },
   "repository": {
