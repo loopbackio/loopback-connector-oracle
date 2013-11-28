@@ -1,5 +1,7 @@
 ## Methods for discovery
 
+***NOTE***: All the following methods are asynchronous.
+
 ### discoverModelDefinitions(options, cb)
 
 | Parameter  | Description |
