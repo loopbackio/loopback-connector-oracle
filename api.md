@@ -99,7 +99,7 @@ Example of callback function return value:
           pkTableName: 'PRODUCT',
           pkColumnName: 'ID' }
 
-## Synchronous APIs for discovery
+## Synchronous discovery methods
 
 * Oracle.prototype.discoverModelDefinitionsSync = function (options)
 * Oracle.prototype.discoverModelPropertiesSync = function (table, options)
