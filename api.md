@@ -98,7 +98,7 @@
           pkTableName: 'PRODUCT',
           pkColumnName: 'ID' }
 
-### Synchronous APIs for discovery
+## Synchronous APIs for discovery
 
 * Oracle.prototype.discoverModelDefinitionsSync = function (options)
 * Oracle.prototype.discoverModelPropertiesSync = function (table, options)
