@@ -11,11 +11,12 @@
  * owner/schema: {String} The schema/owner name
  * views: {Boolean} Whether to include views
 |
-| cb |  Get a list of table/view names, for example:
+| cb |  Get a list of table/view names; see example below. |
+
+
         {type: 'table', name: 'INVENTORY', owner: 'STRONGLOOP' }
         {type: 'table', name: 'LOCATION', owner: 'STRONGLOOP' }
         {type: 'view', name: 'INVENTORY_VIEW', owner: 'STRONGLOOP' }
-|
 
 ### discoverModelProperties(table, options, cb)
 
@@ -23,7 +24,8 @@
 | ----- | ----- | 
 | table: {String}  | The name of a table or view |
 | options |  owner/schema: {String} The schema/owner name |
-| cb | Get a list of model property definitions, for example:
+| cb | Get a list of model property definitions; see example below. |
+
           { owner: 'STRONGLOOP',
             tableName: 'PRODUCT',
             columnName: 'ID',
@@ -38,7 +40,6 @@
             dataLength: 64,
             nullable: 'Y',
             type: 'String' }
-|
 
 ### discoverPrimaryKeys(table, options, cb)
 
@@ -46,7 +47,8 @@
 | ----- | ----- | 
 |  table: {String} | Name of a table or view |
 | options | owner/schema: {String} The schema/owner name |
-| cb | Get a list of primary key definitions, for example:
+| cb | Get a list of primary key definitions; see example below. |
+
         { owner: 'STRONGLOOP',
           tableName: 'INVENTORY',
           columnName: 'PRODUCT_ID',
@@ -57,7 +59,6 @@
           columnName: 'LOCATION_ID',
           keySeq: 2,
           pkName: 'ID_PK' } 
-|
 
 ### discoverForeignKeys(table, options, cb)
 
@@ -65,7 +66,8 @@
 | ----- | ----- | 
 | table: {String} | Name of a table or view |
 | options | owner/schema: {String} The schema/owner name |
-| cb | Get a list of foreign key definitions, for example:
+| cb | Get a list of foreign key definitions; see example below. |
+
         { fkOwner: 'STRONGLOOP',
           fkName: 'PRODUCT_FK',
           fkTableName: 'INVENTORY',
@@ -75,7 +77,6 @@
           pkName: 'PRODUCT_PK',
           pkTableName: 'PRODUCT',
           pkColumnName: 'ID' }
-|
 
 ### discoverExportedForeignKeys(table, options, cb)
 
@@ -83,7 +84,8 @@
 | ----- | ----- | 
 | table: {String} | The name of a table or view |
 | options |  owner/schema: {String} The schema/owner name
-| cb |  Get a list of foreign key definitions that reference the primary key of the given table, for example:
+| cb |  Get a list of foreign key definitions that reference the primary key of the given table; see example below. |
+
         { fkName: 'PRODUCT_FK',
           fkOwner: 'STRONGLOOP',
           fkTableName: 'INVENTORY',
@@ -93,7 +95,6 @@
           pkOwner: 'STRONGLOOP',
           pkTableName: 'PRODUCT',
           pkColumnName: 'ID' }
-|
 
 ### Synchronous APIs for discovery
 
