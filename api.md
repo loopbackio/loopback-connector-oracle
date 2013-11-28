@@ -6,11 +6,11 @@
 
 | Parameter  | Description |
 | ----- | ----- | 
-| options |
- * all: {Boolean} To include tables/views from all schemas/owners
- * owner/schema: {String} The schema/owner name
- * views: {Boolean} Whether to include views
-|
+| options | all: {Boolean} To include tables/views from all schemas/owners
+
+owner/schema: {String} The schema/owner name
+
+views: {Boolean} Whether to include views |
 | cb |  Get a list of table/view names; see example below. |
 
 
