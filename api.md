@@ -10,6 +10,7 @@
 | cb |  Get a list of table/view names; see example below.|
 
 Properties of options parameter:
+
  * all: {Boolean} To include tables/views from all schemas/owners
  * owner/schema: {String} The schema/owner name
  * views: {Boolean} Whether to include views 
