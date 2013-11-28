@@ -4,24 +4,17 @@
 
 ### discoverModelDefinitions(options, cb)
 
-<table>
-  <thead>
-    <tr>
-      <th>Parameter </th>
-      <th>Description </th>
-    </tr>
-  </thead>
-  <tbody>
-<tr><td> options </td><td> Properties:
-<ul>
-<li> all: {Boolean} To include tables/views from all schemas/owners
-<li> owner/schema: {String} The schema/owner name
-<li> views: {Boolean} Whether to include views 
-</ul>
-</td></tr>
-<tr><td> cb </td><td>  Get a list of table/view names; see example below. </td></tr>
-</table>
+| Parameter  | Description |
+| ----- | ----- | 
+| options| Object with properties described below.|
+| cb |  Get a list of table/view names; see example below.|
 
+Properties of options parameter:
+ * all: {Boolean} To include tables/views from all schemas/owners
+ * owner/schema: {String} The schema/owner name
+ * views: {Boolean} Whether to include views 
+
+Example of callback function return value:
 
         {type: 'table', name: 'INVENTORY', owner: 'STRONGLOOP' }
         {type: 'table', name: 'LOCATION', owner: 'STRONGLOOP' }
