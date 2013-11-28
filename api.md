@@ -4,14 +4,23 @@
 
 ### discoverModelDefinitions(options, cb)
 
-| Parameter  | Description |
-| ----- | ----- | 
-| options | all: {Boolean} To include tables/views from all schemas/owners
-
-owner/schema: {String} The schema/owner name
-
-views: {Boolean} Whether to include views |
-| cb |  Get a list of table/view names; see example below. |
+<table>
+  <thead>
+    <tr>
+      <th>Parameter </th>
+      <th>Description </th>
+    </tr>
+  </thead>
+  <tbody>
+<tr><td> options </td><td> Properties:
+<ul>
+<li> all: {Boolean} To include tables/views from all schemas/owners
+<li> owner/schema: {String} The schema/owner name
+<li> views: {Boolean} Whether to include views 
+</ul>
+</td></tr>
+<tr><td> cb </td><td>  Get a list of table/view names; see example below. </td></tr>
+</table>
 
 
         {type: 'table', name: 'INVENTORY', owner: 'STRONGLOOP' }
