@@ -4,7 +4,7 @@ The Oracle Connector module for for [loopback-datasource-juggler](http://docs.st
 
 For full documentation, see [StrongLoop Suite Documentation](http://docs.strongloop.com/display/DOC/Oracle+connector).
 
-See [api.md](API documentation).
+See [API documentation](api.md).
 
 ## Installation
 
