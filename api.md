@@ -6,9 +6,7 @@
 
 | Parameter  | Description |
 | ----- | ----- | 
-| options 
-|
-
+| options |
  * all: {Boolean} To include tables/views from all schemas/owners
  * owner/schema: {String} The schema/owner name
  * views: {Boolean} Whether to include views
