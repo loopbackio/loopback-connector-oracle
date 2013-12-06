@@ -1,6 +1,5 @@
 {
 "content": [
-    "README.md",
     {"title": "LoopBack Oracle Connector API", "depth": 2},
     "lib/oracle.js"
   ],
