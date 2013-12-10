@@ -5,7 +5,8 @@
   "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests mocha --timeout 30000 --require test/init/init.js"
+    "test": "./run-tests istanbul test -- _mocha --timeout 30000 --require test/init/init.js",
+    "coverage": "npm test --coverage && istanbul report"
   },
   "dependencies": {
     "loopback-oracle-installer": "~1.1.0",
@@ -22,7 +23,8 @@
     "loopback-datasource-juggler": "1.x.x",
     "should": "~1.2.2",
     "mocha": "~1.14.0",
-    "rc": "~0.3.1"
+    "rc": "~0.3.1",
+    "istanbul": "~0.1.46"
   },
   "repository": {
     "type": "git",
