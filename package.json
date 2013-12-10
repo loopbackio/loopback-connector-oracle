@@ -5,7 +5,7 @@
   "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "./run-tests mocha --timeout 30000 --require test/init/init.js"
   },
   "dependencies": {
     "loopback-oracle-installer": "~1.1.0",
