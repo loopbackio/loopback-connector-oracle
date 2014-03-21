@@ -1,20 +1,27 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "Loopback Oracle Connector",
-  "keywords": [ "StrongLoop", "LoopBack", "Oracle", "DataSource", "Connector" ],
+  "keywords": [
+    "StrongLoop",
+    "LoopBack",
+    "Oracle",
+    "DataSource",
+    "Connector"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "./run-tests istanbul test -- _mocha --timeout 30000 --require test/init/init.js",
     "coverage": "npm test --coverage && istanbul report"
   },
   "dependencies": {
-    "loopback-oracle-installer": "~1.1.0",
-    "async": "~0.2.9"
+    "loopback-oracle-installer": "~1.2.0",
+    "async": "~0.2.9",
+    "debug": "~0.7.4"
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
-    "oracleVersion": "1.1.1"
+    "oracleVersion": "1.2.0"
   },
   "peerDependencies": {
     "loopback-datasource-juggler": "1.x.x"
