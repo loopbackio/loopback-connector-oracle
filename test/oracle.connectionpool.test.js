@@ -22,7 +22,6 @@ describe('Oracle connector', function () {
       info.should.have.property('incrConnections', 1);
       info.should.have.property('busyOption', 0);
       info.should.have.property('timeout', 10);
-      db.disconnect();
       done();
     });
   });
@@ -53,28 +52,6 @@ describe('Oracle connector', function () {
         // console.log(info);
         done();
       });
-      /*
-       db.connector.pool.getConnection(function (err, connection1) {
-       var info = db.connector.pool.getInfo();
-       info.should.have.property('openConnections', 1);
-       info.should.have.property('busyConnections', 1);
-       db.connector.pool.getConnection(function (err, connection2) {
-       var info = db.connector.pool.getInfo();
-       // console.log(info);
-       info.should.have.property('openConnections', 2);
-       info.should.have.property('busyConnections', 2);
-       connection1.close();
-       info = db.connector.pool.getInfo();
-       info.should.have.property('busyConnections', 1);
-       // console.log(info);
-       connection2.close();
-       info = db.connector.pool.getInfo();
-       // console.log(info);
-       info.should.have.property('busyConnections', 0);
-       done();
-       });
-       });
-       */
     });
   });
 });
