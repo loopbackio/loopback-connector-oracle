@@ -124,8 +124,8 @@ describe('discoverModelDefinitions', function () {
 
   });
 
-  describe('Discover ADL schema from a table', function () {
-    it('should return an ADL schema for INVENTORY', function () {
+  describe('Discover LDL schema from a table', function () {
+    it('should return an LDL schema for INVENTORY', function () {
       var schema = db.discoverSchemasSync('INVENTORY', {owner: 'STRONGLOOP', visited: {}})['STRONGLOOP.INVENTORY'];
       // console.log('%j', schema);
       assert(schema.name === 'Inventory');
