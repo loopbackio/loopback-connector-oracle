@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",
@@ -21,7 +21,7 @@
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
-    "oracleVersion": "1.2.0"
+    "oracleVersion": "1.3.0"
   },
   "peerDependencies": {
     "loopback-datasource-juggler": "1.x.x"
