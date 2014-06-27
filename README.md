@@ -1,10 +1,8 @@
 ## loopback-connector-oracle
 
-The Oracle Connector module for for [loopback-datasource-juggler](http://docs.strongloop.com/loopback-datasource-juggler/).
+The Oracle Connector module for for [loopback-datasource-juggler](https://github.com/strongloop/loopback-datasource-juggler).
 
-For full documentation, see [StrongLoop Suite Documentation](http://docs.strongloop.com/display/DOC/Oracle+connector).
-
-See [API documentation](api.md).
+For full documentation, see the official [StrongLoop  Documentation](http://docs.strongloop.com/display/LB/Oracle+connector).
 
 ## Installation
 
