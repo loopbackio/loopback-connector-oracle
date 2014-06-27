@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",
@@ -15,10 +15,10 @@
     "coverage": "npm test --coverage && istanbul report"
   },
   "dependencies": {
-    "loopback-oracle-installer": "~1.2.0",
+    "loopback-oracle-installer": "~1.2.1",
     "loopback-connector": "1.x",
     "async": "~0.9.0",
-    "debug": "~0.8.0"
+    "debug": "~1.0.2"
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
@@ -27,8 +27,8 @@
   "devDependencies": {
     "loopback-datasource-juggler": "1.x.x",
     "should": "~1.2.2",
-    "mocha": "~1.18.0",
-    "rc": "~0.3.1",
+    "mocha": "~1.20.1",
+    "rc": "~0.4.0",
     "istanbul": "~0.2.10"
   },
   "repository": {
