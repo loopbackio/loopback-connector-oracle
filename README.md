@@ -31,7 +31,7 @@ http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com
 
 `libaio` library is required on Linux systems:
 
-* On Unbuntu/Debian
+* On Ubuntu/Debian
 
         ﻿sudo apt-get install libaio1
 
