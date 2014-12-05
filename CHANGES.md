@@ -1,3 +1,9 @@
+2014-12-05, Version 1.4.5
+=========================
+
+ * Map required/id properties to NOT NULL (Raymond Feng)
+
+
 2014-11-27, Version 1.4.4
 =========================
 
@@ -65,6 +71,10 @@
 
  * Update the license file (Raymond Feng)
 
+
+2014-03-26, Version 1.2.0
+=========================
+
  * Catch exception for disconnect (Raymond Feng)
 
  * Remove the disconnect() to avoid racing condition (Raymond Feng)
@@ -80,6 +90,8 @@
  * Use parameterized query to handle CLOB (Raymond Feng)
 
  * Align the lines around 80 chars (Raymond Feng)
+
+ * Reformat code (Raymond Feng)
 
  * Allow use TNS compiled string for connection (Sergey Nosenko)
 
@@ -196,20 +208,12 @@
  * Changed tag to strongloopsuite-1.0.0-2 (cgole)
 
 
-2013-09-05, Version strongloopsuite-1.0.0-0
-===========================================
-
-
-
 2013-09-05, Version strongloopsuite-1.0.0-1
 ===========================================
 
- * Updated to use tagged version strongloopsuite-1.0.0-0 of dependencies (cgole)
-
- * Update sql to import data (Raymond Feng)
 
 
-2013-09-04, Version 1.2.0
-=========================
+2013-09-05, Version strongloopsuite-1.0.0-0
+===========================================
 
  * First release!
