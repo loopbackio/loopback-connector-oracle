@@ -31,7 +31,7 @@ describe('SQL server connector', function () {
         },
         "email": {
           "type": "String",
-          "required": false,
+          "required": true,
           "length": 40
         },
         "age": {
@@ -83,13 +83,18 @@ describe('SQL server connector', function () {
 
     ds.createModel(schema_v1.name, schema_v1.properties, schema_v1.options);
 
-    ds.automigrate(function () {
+    ds.automigrate(function (err) {
+      console.log(err);
 
       ds.discoverModelProperties('CUSTOMER_TEST', function (err, props) {
         assert.equal(props.length, 4);
         var names = props.map(function (p) {
           return p.columnName;
         });
+        assert.equal(props[0].nullable, 'N');
+        assert.equal(props[1].nullable, 'Y');
+        assert.equal(props[2].nullable, 'N');
+        assert.equal(props[3].nullable, 'Y');
         assert.equal(names[0], 'ID');
         assert.equal(names[1], 'NAME');
         assert.equal(names[2], 'EMAIL');
