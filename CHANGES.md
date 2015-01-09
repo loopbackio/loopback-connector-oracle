@@ -1,3 +1,13 @@
+2015-01-09, Version 1.5.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Fix SQL injection (Raymond Feng)
+
+ * Fix bad CLA URL in CONTRIBUTING.md (Ryan Graham)
+
+
 2014-12-05, Version 1.4.5
 =========================
 
