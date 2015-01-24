@@ -42,7 +42,6 @@ ds.discoverSchema(table, {owner: 'STRONGLOOP'}, function(err, schema) {
     model.all(show);
 });
 
-/*
 ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true}, function (err, models) {
 
     for(var m in models) {
@@ -60,5 +59,4 @@ ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associ
 });
 
 
-*/
 
