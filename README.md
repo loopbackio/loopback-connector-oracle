@@ -4,6 +4,8 @@ The Oracle Connector module for for [loopback-datasource-juggler](https://github
 
 For full documentation, see the official [StrongLoop  Documentation](http://docs.strongloop.com/display/LB/Oracle+connector).
 
+**NOTE**: This connector is not compatible with Node v. 0.11.
+
 ## Installation
 
 To simplify the installation of [node-oracle](https://github.com/strongloop/node-oracle) module and Oracle instant clients,
