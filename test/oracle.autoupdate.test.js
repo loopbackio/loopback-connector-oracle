@@ -5,7 +5,7 @@ before(function () {
   ds = getDataSource();
 });
 
-describe('SQL server connector', function () {
+describe('Oracle connector', function () {
   it('should auto migrate/update tables', function (done) {
 
     var schema_v1 =
@@ -84,7 +84,6 @@ describe('SQL server connector', function () {
     ds.createModel(schema_v1.name, schema_v1.properties, schema_v1.options);
 
     ds.automigrate(function (err) {
-      console.log(err);
 
       ds.discoverModelProperties('CUSTOMER_TEST', function (err, props) {
         assert.equal(props.length, 4);
