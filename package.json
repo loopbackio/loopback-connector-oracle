@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",
@@ -41,6 +41,6 @@
     "url": "https://github.com/strongloop/loopback-connector-oracle/blob/master/LICENSE"
   },
   "optionalDependencies": {
-    "sl-blip": "http://blip.strongloop.com/loopback-connector-oracle@1.5.0"
+    "sl-blip": "http://blip.strongloop.com/loopback-connector-oracle@1.6.0"
   }
 }

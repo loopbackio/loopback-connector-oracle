@@ -1,3 +1,13 @@
+2015-02-21, Version 1.6.0
+=========================
+
+ * Fix test failures with juggler@2.18.1 (Raymond Feng)
+
+ * Tweaked Node version caveat. (Rand McKinney)
+
+ * Caveat re Node v 0.11 per Al (Rand McKinney)
+
+
 2015-01-09, Version 1.5.0
 =========================
 
@@ -168,62 +178,5 @@
 
 2013-11-20, Version 1.1.3
 =========================
-
- * Bump version (Raymond Feng)
-
- * Make the check more robust (Raymond Feng)
-
- * Remove blanket coverage (Raymond Feng)
-
- * Allow PK to be string (Raymond Feng)
-
- * Remove blanket (Raymond Feng)
-
- * Bump version and update deps (Raymond Feng)
-
- * Bump version and update dependencies (Raymond Feng)
-
- * Fix a few typos (Raymond Feng)
-
- * Calling super class (Raymond Feng)
-
- * covergae report name change (cgole)
-
- * Fix for build failure due to the way code-coverage tool was run (cgole)
-
- * Add keywords to package.json (Raymond Feng)
-
-
-2013-09-11, Version strongloopsuite-1.0.0-4
-===========================================
-
-
-
-2013-09-11, Version strongloopsuite-1.0.0-5
-===========================================
-
-
-
-2013-09-11, Version strongloopsuite-1.0.0-3
-===========================================
-
- * Add keywords to package.json (Raymond Feng)
-
-
-2013-09-10, Version strongloopsuite-1.0.0-2
-===========================================
-
- * Finalize package.json for sls-1.0.0 (Raymond Feng)
-
- * Changed tag to strongloopsuite-1.0.0-2 (cgole)
-
-
-2013-09-05, Version strongloopsuite-1.0.0-1
-===========================================
-
-
-
-2013-09-05, Version strongloopsuite-1.0.0-0
-===========================================
 
  * First release!
