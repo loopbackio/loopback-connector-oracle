@@ -51,4 +51,9 @@ http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com
 
 ## Running tests
 
-    npm test
+The tests in this repository are mainly integration tests, meaning you will need
+to run them using our preconfigured test server.
+
+1. Ask a core developer for instructions on how to set up test server
+   credentials on your machine
+2. `npm test`
