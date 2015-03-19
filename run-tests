@@ -9,7 +9,7 @@ else
   export PATH="$PATH:$ROOT/node_modules/instantclient"
 fi
 if [ -z "$*" ]; then
-  export UV_THREADPOOL_SIZE=8
+  export UV_THREADPOOL_SIZE=32
   $ROOT/node_modules/.bin/mocha -R spec --timeout 30000 --require $ROOT/test/init/init.js
 else
   echo "Running provided test command: $*"

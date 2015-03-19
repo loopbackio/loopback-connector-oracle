@@ -6,12 +6,16 @@ var assert = require('assert');
 var DataSource = require('loopback-datasource-juggler').DataSource;
 var db;
 
-before(function () {
-  var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
-  db = new DataSource(require('../'), config);
-});
-
 describe('discoverModels', function () {
+  before(function () {
+    var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    db = new DataSource(require('../'), config);
+  });
+
+  after(function () {
+    db.disconnect();
+  });
+
   describe('Discover models including views', function () {
     it('should return an array of tables and views', function (done) {
 
