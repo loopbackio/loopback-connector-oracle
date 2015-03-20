@@ -22,6 +22,7 @@ describe('Oracle connector', function () {
       info.should.have.property('incrConnections', 1);
       info.should.have.property('busyOption', 0);
       info.should.have.property('timeout', 10);
+      db.disconnect();
       done();
     });
   });
@@ -50,6 +51,7 @@ describe('Oracle connector', function () {
         connections.should.have.property('length', 3);
         // var info = db.connector.pool.getInfo();
         // console.log(info);
+        db.disconnect();
         done();
       });
     });
