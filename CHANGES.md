@@ -1,4 +1,18 @@
-2015-02-21, Version 1.6.0
+2015-03-26, Version 1.7.0
+=========================
+
+ * Upgrade oracle driver to pass all tests (Raymond Feng)
+
+ * Return count when updating or deleting models (Simon Ho)
+
+ * Improve concurrency for testing (Raymond Feng)
+
+ * Add strongloop license check (Raymond Feng)
+
+ * Add instructions to running tests section (Simon Ho)
+
+
+2015-02-20, Version 1.6.0
 =========================
 
  * Fix test failures with juggler@2.18.1 (Raymond Feng)
