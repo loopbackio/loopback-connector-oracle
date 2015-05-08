@@ -29,7 +29,7 @@ describe('Oracle connector', function () {
       info.should.have.property('poolMax', 10);
       info.should.have.property('poolMin', 1);
       info.should.have.property('poolIncrement', 1);
-      info.should.have.property('poolTimeout', 10);
+      info.should.have.property('poolTimeout', 60);
       db.disconnect(done);
     });
   });
