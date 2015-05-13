@@ -1,3 +1,15 @@
+2015-05-13, Version 2.0.0
+=========================
+
+ * Update deps (Raymond Feng)
+
+ * Refactor the oracle connector to use base SqlConnector (Raymond Feng)
+
+ * Fix the trigger so that it is only invoked when the id is not set (Raymond Feng)
+
+ * Update the README (Raymond Feng)
+
+
 2015-03-26, Version 1.7.0
 =========================
 
