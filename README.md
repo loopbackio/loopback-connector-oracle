@@ -57,3 +57,45 @@ to run them using our preconfigured test server.
 1. Ask a core developer for instructions on how to set up test server
    credentials on your machine
 2. `npm test`
+
+# Troubleshooting
+
+## ORA-24408
+
+```
+Error: ORA-24408: could not generate unique server group name
+```
+
+The Oracle 11g client requires an entry with your hostname pointing to
+`127.0.0.1`.
+
+###1. Get your hostname
+
+Check your hostname by running:
+
+```
+$ hostname
+earth # assuming your machine's name is `earth`
+```
+
+###2. Update `/etc/hosts`
+
+Map `127.0.0.1` to your hostname in`/etc/hosts`:
+
+```
+...
+127.0.0.1 localhost earth # change `earth` to match your hostname
+...
+```
+
+###3. Verify the fix
+
+Run the example in `examples/app.js`:
+
+```
+$ node examples/app.js
+```
+
+### References
+
+- http://stackoverflow.com/questions/10484231/ora-24408-could-not-generate-unique-server-group-name
