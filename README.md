@@ -27,9 +27,9 @@ The bundle file name is `loopback-oracle-<platform>-<arch>-<version>.tar.gz`. Th
 
 **The `oracleUrl` can be overridden via LOOPBACK_ORACLE_URL environment variable.**
 
-For MacOSX, the full URL is:
+For example, the full URL for v1.5.0 for MacOSX is:
 
-http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com/loopback-oracle-MacOSX-x64-0.0.1.tar.gz
+http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com/loopback-oracle-MacOSX-x64-1.5.0.tar.gz
 
 `libaio` library is required on Linux systems:
 
