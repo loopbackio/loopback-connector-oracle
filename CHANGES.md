@@ -1,3 +1,11 @@
+2015-08-01, Version 2.2.0
+=========================
+
+ * Update link (Raymond Feng)
+
+ * Add ORA-22408 troubleshooting notes (Simon Ho)
+
+
 2015-05-18, Version 2.1.0
 =========================
 
