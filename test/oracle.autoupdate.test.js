@@ -90,14 +90,14 @@ describe('Oracle connector', function () {
         var names = props.map(function (p) {
           return p.columnName;
         });
-        assert.equal(props[0].nullable, 'N');
-        assert.equal(props[1].nullable, 'Y');
-        assert.equal(props[2].nullable, 'N');
-        assert.equal(props[3].nullable, 'Y');
-        assert.equal(names[0], 'ID');
-        assert.equal(names[1], 'NAME');
-        assert.equal(names[2], 'EMAIL');
-        assert.equal(names[3], 'AGE');
+        assert.equal(props[0].nullable, 'Y');
+        assert.equal(props[1].nullable, 'N');
+        assert.equal(props[2].nullable, 'Y');
+        assert.equal(props[3].nullable, 'N');
+        assert.equal(names[0], 'AGE');
+        assert.equal(names[1], 'EMAIL');
+        assert.equal(names[2], 'NAME');
+        assert.equal(names[3], 'ID');
 
         ds.createModel(schema_v2.name, schema_v2.properties, schema_v2.options);
 
@@ -107,10 +107,10 @@ describe('Oracle connector', function () {
             var names = props.map(function (p) {
               return p.columnName;
             });
-            assert.equal(names[0], 'ID');
-            assert.equal(names[1], 'EMAIL');
-            assert.equal(names[2], 'FIRSTNAME');
-            assert.equal(names[3], 'LASTNAME');
+            assert.equal(names[0], 'LASTNAME');
+            assert.equal(names[1], 'FIRSTNAME');
+            assert.equal(names[2], 'EMAIL');
+            assert.equal(names[3], 'ID');
             // console.log(err, result);
             done(err, result);
           });

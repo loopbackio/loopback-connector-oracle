@@ -19,7 +19,7 @@ describe('Mapping models', function () {
       "options": {
         "idInjection": false,
         "oracle": {
-          "schema": "STRONGLOOP", "table": "INVENTORYTEST"
+          "schema": "TEST", "table": "INVENTORY_TEST"
         }
       },
       "properties": {
