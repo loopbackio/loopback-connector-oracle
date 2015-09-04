@@ -55,9 +55,13 @@ describe('Oracle connector', function () {
       }
       async.parallel(tasks, function (err, connections) {
         connections.should.have.property('length', 3);
-        // var info = db.connector.pool;
-        // console.log(info);
-        db.disconnect(done);
+        async.each(connections, function(c, done) {
+          c.release(done);
+        }, function(err) {
+          // var info = db.connector.pool;
+          // console.log(info);
+          db.disconnect(done);
+        });
       });
     });
   });
