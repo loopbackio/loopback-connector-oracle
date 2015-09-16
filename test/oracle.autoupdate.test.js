@@ -1,4 +1,5 @@
 var assert = require('assert');
+var should = require('should');
 var ds;
 
 before(function () {
@@ -84,34 +85,36 @@ describe('Oracle connector', function () {
     ds.createModel(schema_v1.name, schema_v1.properties, schema_v1.options);
 
     ds.automigrate(function (err) {
+      if(err) return done(err);
 
       ds.discoverModelProperties('CUSTOMER_TEST', function (err, props) {
         assert.equal(props.length, 4);
-        var names = props.map(function (p) {
-          return p.columnName;
+        var columns = {};
+        props.forEach(function (p) {
+          columns[p.columnName] = p.nullable;
         });
-        assert.equal(props[0].nullable, 'Y');
-        assert.equal(props[1].nullable, 'N');
-        assert.equal(props[2].nullable, 'Y');
-        assert.equal(props[3].nullable, 'N');
-        assert.equal(names[0], 'AGE');
-        assert.equal(names[1], 'EMAIL');
-        assert.equal(names[2], 'NAME');
-        assert.equal(names[3], 'ID');
+        columns.should.be.eql({
+          AGE: 'Y',
+          EMAIL: 'N',
+          NAME: 'Y',
+          ID: 'N'
+        });
 
         ds.createModel(schema_v2.name, schema_v2.properties, schema_v2.options);
 
         ds.autoupdate(function (err, result) {
           ds.discoverModelProperties('CUSTOMER_TEST', function (err, props) {
             assert.equal(props.length, 4);
-            var names = props.map(function (p) {
-              return p.columnName;
+            var columns = {};
+            props.forEach(function (p) {
+              columns[p.columnName] = p.nullable;
             });
-            assert.equal(names[0], 'LASTNAME');
-            assert.equal(names[1], 'FIRSTNAME');
-            assert.equal(names[2], 'EMAIL');
-            assert.equal(names[3], 'ID');
-            // console.log(err, result);
+            columns.should.be.eql({
+              LASTNAME: 'Y',
+              FIRSTNAME: 'Y',
+              EMAIL: 'Y',
+              ID: 'N'
+            });
             done(err, result);
           });
         });
