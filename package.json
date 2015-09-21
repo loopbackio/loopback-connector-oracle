@@ -35,10 +35,7 @@
     "type": "git",
     "url": "https://github.com/strongloop/loopback-connector-oracle.git"
   },
-  "license": {
-    "name": "StrongLoop",
-    "url": "https://github.com/strongloop/loopback-connector-oracle/blob/master/LICENSE"
-  },
+  "license": "SEE LICENSE IN LICENSE.md",
   "optionalDependencies": {
     "sl-blip": "http://blip.strongloop.com/loopback-connector-oracle@2.2.0"
   }
