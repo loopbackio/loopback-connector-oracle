@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "./run-tests && ./node_modules/.bin/mocha -R spec --timeout 12000 --require ./test/init/init.js"
   },
   "dependencies": {
     "async": "^0.9.0",
