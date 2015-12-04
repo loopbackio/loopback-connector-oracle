@@ -1,3 +1,19 @@
+2015-12-04, Version 2.3.0
+=========================
+
+ * Upgrade oracle driver version (Raymond Feng)
+
+ * Refer to licenses with a link (Sam Roberts)
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+ * Fix the test to make it agnositic to the order of columns (Raymond Feng)
+
+ * Tidy up tests (Raymond Feng)
+
+ * Increase the timeout (Raymond Feng)
+
+
 2015-08-01, Version 2.2.0
 =========================
 
