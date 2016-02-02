@@ -1,0 +1,24 @@
+This module automatically installs a copy of Oracle Instant Client under
+node_modules/instantclient. Oracle Instant client is required by a dependent
+strong-oracle module (https://github.com/strongloop/strong-oracle) to provide
+access to Oracle databases.
+
+For more information about Oracle Instant Client, please visit
+http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html.
+
+The Oracle Instant Client is redistributed by IBM, a partner in the Oracle
+Partner Network (https://solutions.oracle.com/scwar/scr/Partner/SC2PP-IBM.html)
+with the following terms:
+
+1. Any use of an Oracle object be under terms that make no guarantee as to
+continuing maintenance in the form of upgrades and updates/bug fixes/etc. and
+in such form as to allow its easy removal from the value added package if such
+value added package affords functionality beyond that provided by the embedded
+object that we would want the end user to continue to be able to use.
+
+2. Further distribution or redistribution of Oracle Instant Client from the end 
+user is prohibited.
+
+3. Oracle retains all ownership and intellectual property rights in Oracle
+Development Code.
+
