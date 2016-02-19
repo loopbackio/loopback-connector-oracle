@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",

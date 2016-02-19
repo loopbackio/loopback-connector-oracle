@@ -1,4 +1,14 @@
-2015-12-04, Version 2.3.0
+2016-02-19, Version 2.3.1
+=========================
+
+ * Remove sl-blip from dependencies (Miroslav Bajtoš)
+
+ * Add NOTICE (Raymond Feng)
+
+ * Upgrade should to 8.0.2 (Simon Ho)
+
+
+2015-12-03, Version 2.3.0
 =========================
 
  * Upgrade oracle driver version (Raymond Feng)
