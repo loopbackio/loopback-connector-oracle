@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",
@@ -14,18 +14,17 @@
     "test": "./run-tests"
   },
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^1.5.2",
     "debug": "^2.1.1",
     "loopback-connector": "^2.1.0",
-    "loopback-oracle-installer": "~1.4.0",
-    "strongloop-license": "^1.0.2"
+    "loopback-oracle-installer": "~1.4.0"
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
     "oracleVersion": "1.8.0"
   },
   "devDependencies": {
-    "bluebird": "^2.9.12",
+    "bluebird": "^3.3.3",
     "loopback-datasource-juggler": "^2.28.0",
     "mocha": "^2.1.0",
     "rc": "^1.0.0",
