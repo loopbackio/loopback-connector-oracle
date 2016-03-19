@@ -14,7 +14,7 @@ function show(err, models) {
         console.error(err);
     } else {
         models.forEach(function(m) {
-            console.dir(m);
+            console.log(m);
         });
     }
 }
