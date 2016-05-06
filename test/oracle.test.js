@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2013,2016. All Rights Reserved.
+// Node module: loopback-connector-oracle
+// US Government Users Restricted Rights - Use, duplication or disclosure
+// restricted by GSA ADP Schedule Contract with IBM Corp.
+
 var juggler = require('loopback-datasource-juggler');
 var CreateDS = juggler.DataSource;
 require('loopback-datasource-juggler/test/common.batch.js');

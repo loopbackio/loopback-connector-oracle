@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2013,2015. All Rights Reserved.
+// Node module: loopback-connector-oracle
+// US Government Users Restricted Rights - Use, duplication or disclosure
+// restricted by GSA ADP Schedule Contract with IBM Corp.
+
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
 var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
