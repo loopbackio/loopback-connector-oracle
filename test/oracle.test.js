@@ -161,13 +161,14 @@ describe('lazyConnect', function() {
     var ds = getDS(dsConfig);
 
     ds.on('error', function(err) {
-      err.message.should.containEql('ECONNREFUSED');
+      err.message.should.containEql('TNS');
       done();
     });
   });
+
+  var getDS = function(config) {
+    var db = new CreateDS(require('../'), config);
+    return db;
+  };
 });
 
-getDS = function(config) {
-  var db = new CreateDS(require('../'), config);
-  return db;
-};
