@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-oracle",
-  "version": "2.4.1",
+  "version": "3.0.0",
   "description": "Loopback Oracle Connector",
   "keywords": [
     "StrongLoop",
@@ -14,7 +14,7 @@
     "test": "./run-tests"
   },
   "dependencies": {
-    "async": "^1.5.2",
+    "async": "^2.0.0-rc.5",
     "debug": "^2.1.1",
     "loopback-connector": "^2.1.0",
     "oracledb": "^1.7.1"
