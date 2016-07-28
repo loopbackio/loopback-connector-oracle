@@ -3,8 +3,9 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
+var g = require('strong-globalize')();
 
+var DataSource = require('loopback-datasource-juggler').DataSource;
 var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
 
 var ds = new DataSource(require('../'), config);
@@ -49,9 +50,9 @@ ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associ
     };
 
     models.Inventory.findOne({}, function(err, inv) {
-       console.log("\nInventory: ", inv);
+       console.log(g.f("\nInventory: %s", inv));
        inv.product(function(err, prod) {
-           console.log("\nProduct: ", prod);
+           console.log(g.f("\nProduct: %s", prod));
            console.log("\n ------------- ");
            // ds.disconnect(); // This will crash node-oracle as the connection is disconnected while other statements are still running
        });
