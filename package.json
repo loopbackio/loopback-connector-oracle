@@ -22,7 +22,7 @@
     "debug": "^2.1.1",
     "loopback-connector": "^2.1.0",
     "loopback-oracle-installer": "~2.0.0",
-    "strong-globalize": "^2.5.8"
+    "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
     "bluebird": "^3.3.3",
