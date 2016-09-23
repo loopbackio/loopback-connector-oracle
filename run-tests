@@ -2,7 +2,7 @@
 ROOT=`dirname $0`
 if [ -z "$*" ]; then
   export UV_THREADPOOL_SIZE=64
-  $ROOT/node_modules/.bin/mocha -R spec --timeout 120000 --require $ROOT/test/init/init.js
+  #$ROOT/node_modules/.bin/mocha -R spec --timeout 120000 --require $ROOT/test/init/init.js
 else
   echo "Running provided test command: $*"
   $*

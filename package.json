@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "./run-tests && ./node_modules/.bin/mocha -R spec --timeout 12000 --require ./test/init/init.js"
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
