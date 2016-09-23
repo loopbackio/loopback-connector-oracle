@@ -2,6 +2,7 @@
 // Node module: loopback-connector-oracle
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
+'use strict';
 
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
@@ -18,7 +19,8 @@ console.log(results);
 results = ds.discoverModelPropertiesSync('PRODUCT');
 console.log(results);
 
-results = ds.discoverModelPropertiesSync('INVENTORY_VIEW', {owner: 'STRONGLOOP'});
+results = ds.discoverModelPropertiesSync('INVENTORY_VIEW',
+  {owner: 'STRONGLOOP'});
 console.log(results);
 
 results = ds.discoverPrimaryKeysSync('INVENTORY');
@@ -33,19 +35,19 @@ console.log(results);
 results = ds.discoverExportedForeignKeysSync('PRODUCT');
 console.log(results);
 
-
-var models = ds.discoverAndBuildModelsSync('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true});
+var models = ds.discoverAndBuildModelsSync('INVENTORY',
+  {owner: 'STRONGLOOP', visited: {}, associations: true});
 
 function show(err, models) {
-    if (err) {
-        console.error(err);
-    } else {
-        models.forEach(function(m) {
-            console.dir(m);
-        });
-    }
+  if (err) {
+    console.error(err);
+  } else {
+    models.forEach(function(m) {
+      console.dir(m);
+    });
+  }
 }
 
 for (var m in models) {
-    models[m].all(show);
+  models[m].all(show);
 }
