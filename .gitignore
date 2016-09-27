@@ -21,6 +21,3 @@ docs
 *.tgz
 .loopbackrc
 node_modules
-
-intl/*
-!intl/en/
