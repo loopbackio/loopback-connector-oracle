@@ -21,3 +21,8 @@ global.getDataSource = global.getSchema = function() {
   };
   return db;
 };
+
+global.connectorCapabilities = {
+  ilike: false,
+  nilike: false,
+};
