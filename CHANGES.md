@@ -1,3 +1,15 @@
+2016-10-13, Version 2.5.0
+=========================
+
+ * Add connectorCapabilities global object (#83) (#85) (Simon Ho)
+
+ * Use try-catch to test error message (jannyHou)
+
+ * update copyright notices and license (Ryan Graham)
+
+ * Lazy connect when booting from swagger generator (juehou)
+
+
 2016-03-04, Version 2.4.1
 =========================
 
