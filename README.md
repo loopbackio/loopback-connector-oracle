@@ -8,11 +8,11 @@ For full documentation, see the official [StrongLoop  Documentation](http://docs
 
 ## Installation
 
-To simplify the installation of [node-oracle](https://github.com/strongloop/node-oracle) module and Oracle instant clients,
+To simplify the installation of [node-oracledb](https://github.com/oracle/node-oracledb) module and Oracle instant clients,
 we introduce [loopback-oracle-installer](https://github.com/strongloop/loopback-oracle-installer) as a dependency which installs
-and configures node-oracle upon `npm install`.
+and configures node-oracledb (oracledb) upon `npm install`.
 
-Please note `config.oracleUrl` is the property to define the base URL to download the corresponding node-oracle bundle for the local
+Please note `config.oracleUrl` is the property to define the base URL to download the corresponding node-oracle (oracledb) bundle for the local
 environment.
 
 The bundle file name is `loopback-oracle-<platform>-<arch>-<version>.tar.gz`. The `version` is the same as the `version` in package.json.
