@@ -9,6 +9,9 @@
     "DataSource",
     "Connector"
   ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
