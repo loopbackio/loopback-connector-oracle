@@ -1,3 +1,61 @@
+2016-11-29, Version 3.0.0
+=========================
+
+ * Update installer dep (Raymond Feng)
+
+ * Move config to installer (#93) (Rashmi Hunt)
+
+ * Drop support for Node v0.10 and v0.12 (Miroslav Bajtoš)
+
+ * Remove the obselete example (Raymond Feng)
+
+ * Update README doc link (Candy)
+
+ * fixed a space (rashmihunt)
+
+ * fixed link to node-oracledb (rashmihunt)
+
+ * Add connectorCapabilities global object (#83) (Nicholas Duffy)
+
+ * Update translation files - round#2 (Candy)
+
+ * Add translated files (gunjpan)
+
+ * Add eslint infrastructure (Candy)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Run CI with juggler3 (Loay)
+
+ * Update strong-globalize to 2.6.2 (Simon Ho)
+
+ * Add globalization (Simon Ho)
+
+ * Update URLs in CONTRIBUTING.md (#67) (Ryan Graham)
+
+ * Fix package.json to use oracle installer (Raymond Feng)
+
+ * Update dependencies (Raymond Feng)
+
+ * Check lob type (Raymond Feng)
+
+ * Fix the merge issue (Raymond Feng)
+
+ * Upgrade to oracledb 1.0 (Raymond Feng)
+
+ * Update to oracledb driver 0.5.0 (Raymond Feng)
+
+ * Support more config properties (Raymond Feng)
+
+ * Port to the oracledb driver (Raymond Feng)
+
+ * Use try-catch to test error message (jannyHou)
+
+ * update copyright notices and license (Ryan Graham)
+
+ * Lazy connect when booting from swagger generator (juehou)
+
+
 2016-03-04, Version 2.4.1
 =========================
 
