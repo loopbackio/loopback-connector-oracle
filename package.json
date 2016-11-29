@@ -27,7 +27,7 @@
     "async": "^1.5.2",
     "debug": "^2.1.1",
     "loopback-connector": "^2.1.0",
-    "loopback-oracle-installer": "~2.0.0",
+    "loopback-oracle-installer": "~3.0.0",
     "strong-globalize": "^2.6.2"
   },
   "devDependencies": {
