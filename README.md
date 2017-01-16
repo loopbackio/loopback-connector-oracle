@@ -26,7 +26,7 @@ $ npm install loopback-connector-oracle --save
 
 If you create a Oracle data source using the data source generator as described below, you don’t have to do this, since the generator will run npm install for you.
 
-See [Installing the Oracle connector](Installing-the-Oracle-connector.html) for further installation instructions.
+See [Installing the Oracle connector](http://loopback.io/doc/en/lb3/Installing-the-Oracle-connector.html) for further installation instructions.
 
 To simplify the installation of [node-oracledb](https://github.com/oracle/node-oracledb) module and Oracle instant clients, use [loopback-oracle-installer](https://github.com/strongloop/loopback-oracle-installer) as a dependency to install and configure `node-oracledb` (oracledb) upon `npm install`.
 
