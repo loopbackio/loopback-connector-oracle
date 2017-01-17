@@ -1,20 +1,18 @@
 # loopback-connector-oracle
 
-[Oracle](https://www.oracle.com/database/index.html) is an object-relational database management system produced by Oracle Corporation. The `loopback-connector-oracle` module is the Oracle connector for the LoopBack framework.
+[Oracle](https://www.oracle.com/database/index.html) is an object-relational database management system produced by Oracle Corporation. The `loopback-connector-oracle` module is the Oracle connector for the LoopBack framework based on the [node-oracledb](https://github.com/oracle/node-oracledb) module.
 
+<div class="gh-only">
 For more information, see the [LoopBack documentation](http://loopback.io/doc/en/lb3/Oracle-connector.html).
+</div>
 
 ## Prerequisites
 
 **Node.js**: The Oracle connector is compatible with Node v.0.10.x, v.12.x, and later.  
 
-**MacOS**: The Oracle connector does not work on Mac OSX 10.11 (El Capitan) due to [SIP](https://en.wikipedia.org/wiki/System_Integrity_Protection) runtime protections and restrictions.
-Specifically, DYLD environment variables are now ignored; hence, rendering the Oracle connector inoperable due to the DYLD_LIBRARY_PATH dependency.
-For a workaround, see [How to Disable SIP in OS X El Capitan](http://osxdaily.com/2015/10/05/disable-rootless-system-integrity-protection-mac-os-x/).
+**Windows**: On 32-bit Windows systems, you must use the 32-bit version of Node.js.  On 64-bit Windows systems, you must use the 64-bit version of Node.js.  For more information, see [Node-oracledb Installation on Windows](https://github.com/oracle/node-oracledb/blob/master/INSTALL.md#-7-node-oracledb-installation-on-windows).
 
-**Windows**: On 64-bit Windows systems, the Oracle connector runs only on 64-bit version of Node.js.
-
-**Oracle**: The Oracle connector requires Oracle 8.x - 12.x.
+**Oracle**: The Oracle connector requires Oracle client libraries 11.2+ and can connect to Oracle Database Server 9.2+.
 
 ## Installation
 
