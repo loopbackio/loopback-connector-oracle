@@ -3,7 +3,7 @@
 [Oracle](https://www.oracle.com/database/index.html) is an object-relational database management system produced by Oracle Corporation. The `loopback-connector-oracle` module is the Oracle connector for the LoopBack framework based on the [node-oracledb](https://github.com/oracle/node-oracledb) module.
 
 <div class="gh-only">
-For more information, see the [LoopBack documentation](http://loopback.io/doc/en/lb3/Oracle-connector.html).
+For more information, see the <a href="http://loopback.io/doc/en/lb3/Oracle-connector.html)">LoopBack documentation</a>.
 </div>
 
 ## Prerequisites
