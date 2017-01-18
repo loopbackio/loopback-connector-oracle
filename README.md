@@ -28,8 +28,7 @@ See [Installing the Oracle connector](http://loopback.io/doc/en/lb3/Installing-
 
 To simplify the installation of [node-oracledb](https://github.com/oracle/node-oracledb) module and Oracle instant clients, use [loopback-oracle-installer](https://github.com/strongloop/loopback-oracle-installer) as a dependency to install and configure `node-oracledb` (oracledb) upon `npm install`.
 
-Please note `config.oracleUrl` is the property to define the base URL to download the corresponding node-oracle (oracledb) bundle for the local
-environment.
+Use the `config.oracleUrl` property to define the base URL to download the corresponding node-oracle (oracledb) bundle for the local environment.
 
 The bundle file name is `loopback-oracle-<platform>-<arch>-<version>.tar.gz`. The `version` is the same as the `version` in package.json.
 
@@ -63,8 +62,6 @@ On Fedora/CentOS/RHEL, get it with this command:
 ```
 sudo yum install libaio
 ```
-
-**IMPORTANT**: Ensure `c:\instantclient_12_1\vc10` comes before `c:\instantclient_12_1`.
 
 ## Creating an Oracle data source
 
