@@ -23,6 +23,17 @@ describe('discoverModels', function() {
     db.disconnect();
   });
 
+  describe('Discover database schemas', function() {
+    it('should return an array of db schemas', function(done) {
+      db.connector.discoverDatabaseSchemas(function(err, schemas) {
+        if (err) return done(err);
+        schemas.should.be.instanceof(Array);
+        schemas.length.should.be.above(0);
+        done();
+      });
+    });
+  });
+
   describe('Discover models including views', function() {
     it('should return an array of tables and views', function(done) {
       db.discoverModelDefinitions({
