@@ -5,6 +5,7 @@
 
 'use strict';
 
+/* global getDataSource */
 var async = require('async');
 
 require('./init/init');

@@ -5,6 +5,7 @@
 
 'use strict';
 
+/* global getDataSource */
 require('./init/init.js');
 require('should');
 

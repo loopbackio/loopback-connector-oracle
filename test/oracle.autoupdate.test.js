@@ -4,8 +4,10 @@
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 'use strict';
 
+/* global getDataSource */
 var assert = require('assert');
 var should = require('should');
+require('./init/init');
 var ds;
 
 before(function() {

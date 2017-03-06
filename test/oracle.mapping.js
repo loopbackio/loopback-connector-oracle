@@ -5,6 +5,7 @@
 
 'use strict';
 
+/* global getDataSource */
 process.env.NODE_ENV = 'test';
 require('should');
 require('./init/init');
