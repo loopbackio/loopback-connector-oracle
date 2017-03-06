@@ -5,6 +5,7 @@
 
 'use strict';
 
+/* global getDataSource */
 var juggler = require('loopback-datasource-juggler');
 var CreateDS = juggler.DataSource;
 require('loopback-datasource-juggler/test/common.batch.js');

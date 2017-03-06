@@ -5,8 +5,10 @@
 
 'use strict';
 
+/* global getDataSource */
 var assert = require('assert');
 var ds, Note;
+require('./init/init');
 
 before(function(done) {
   ds = getDataSource();
