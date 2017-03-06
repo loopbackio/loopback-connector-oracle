@@ -95,6 +95,7 @@ describe('Oracle connector', function() {
       if (err) return done(err);
 
       ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
+        if (err) return done(err);
         assert.equal(props.length, 4);
         var columns = {};
         props.forEach(function(p) {
