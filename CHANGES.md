@@ -1,3 +1,31 @@
+2017-03-07, Version 3.1.0
+=========================
+
+ * Upgrade to loopback-connector@4.x (Raymond Feng)
+
+ * Upgrade deps and fix styles (Raymond Feng)
+
+ * Add regexp support (Raymond Feng)
+
+ * Refactor migration methods (ssh24)
+
+ * Refactor discovery methods (Loay Gewily)
+
+ * Update test script (Loay Gewily)
+
+ * Replicate new issue_template from loopback (Siddhi Pai)
+
+ * Replicate issue_template from loopback repo (Siddhi Pai)
+
+ * Update LB connector version (Loay)
+
+ * Update readme (#102) (Rand McKinney)
+
+ * Allow oracledb settings to be honored at pool/execution levels (Raymond Feng)
+
+ * Update paid support URL (Siddhi Pai)
+
+
 2016-11-29, Version 3.0.0
 =========================
 
