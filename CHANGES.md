@@ -1,4 +1,10 @@
-2017-03-07, Version 3.1.0
+2017-03-31, Version 3.1.1
+=========================
+
+ * Change node vers. (#122) (Rand McKinney)
+
+
+2017-03-06, Version 3.1.0
 =========================
 
  * Upgrade to loopback-connector@4.x (Raymond Feng)
