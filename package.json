@@ -20,8 +20,8 @@
   },
   "config": {
     "oracleUrl": "http://7e9918db41dd01dbf98e-ec15952f71452bc0809d79c86f5751b6.r22.cf1.rackcdn.com",
-    "oracleVersion": "2.0.0",
-    "driverModule": "oracledb@^1.12.0"
+    "oracleVersion": "2.1.0",
+    "driverModule": "oracledb@^1.13.0"
   },
   "dependencies": {
     "async": "^2.1.5",
