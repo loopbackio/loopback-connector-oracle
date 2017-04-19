@@ -1,3 +1,9 @@
+2017-04-19, Version 3.2.0
+=========================
+
+ * Use fetchAsString for CLOB (Raymond Feng)
+
+
 2017-03-31, Version 3.1.1
 =========================
 
