@@ -49,12 +49,12 @@ describe('oracle connector', function() {
     Post.create({title: 'c', content: 'CCC'}, function(err, post1) {
       Post.create({title: 'd', content: 'DDD'}, function(err, post2) {
         Post.create({title: 'e', content: 'EEE'}, function(err, post3) {
-          Post.find({order: 'rand'}, function(err, randomPosts1) {
+          Post.find({order: '${random}'}, function(err, randomPosts1) {
            should.not.exists(err);
            var order1 = randomPosts1.map(function(u) { return u.id; });
            (order1.length).should.eql(randomPosts1.length);
            order1.should.containEql(1, 2, 3);
-           Post.find( {order: 'rand'}, function(err, randomPosts2) {
+           Post.find( {order: '${random}'}, function(err, randomPosts2) {
              should.not.exist(err);
              var order2 = randomPosts2.map(function(u) { return u.id; });
              (order2.length).should.eql(randomPosts2.length);
