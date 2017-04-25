@@ -50,21 +50,21 @@ describe('oracle connector', function() {
       Post.create({title: 'd', content: 'DDD'}, function(err, post2) {
         Post.create({title: 'e', content: 'EEE'}, function(err, post3) {
           Post.find({order: '${random}'}, function(err, randomPosts1) {
-           should.not.exists(err);
-           var order1 = randomPosts1.map(function(u) { return u.id; });
-           (order1.length).should.eql(randomPosts1.length);
-           order1.should.containEql(1, 2, 3);
-           Post.find( {order: '${random}'}, function(err, randomPosts2) {
-             should.not.exist(err);
-             var order2 = randomPosts2.map(function(u) { return u.id; });
-             (order2.length).should.eql(randomPosts2.length);
-             order2.should.containEql(1, 2, 3);
-               //Though it is a possibility, but probability is very low.
-             should(order1).not.eql(order2);
-             done();
-           });
-         });
-       });
+            should.not.exists(err);
+            var order1 = randomPosts1.map(function(u) { return u.id; });
+            (order1.length).should.eql(randomPosts1.length);
+            order1.should.containEql(1, 2, 3);
+            Post.find({order: '${random}'}, function(err, randomPosts2) {
+              should.not.exist(err);
+              var order2 = randomPosts2.map(function(u) { return u.id; });
+              (order2.length).should.eql(randomPosts2.length);
+              order2.should.containEql(1, 2, 3);
+               // Though it is a possibility, but probability is very low.
+              should(order1).not.eql(order2);
+              done();
+            });
+          });
+        });
       });
     });
   });
