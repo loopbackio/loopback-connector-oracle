@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "run-tests"
   },
   "dependencies": {
     "async": "^1.5.2",
