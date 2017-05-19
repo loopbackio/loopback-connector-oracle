@@ -14,15 +14,20 @@ ORACLE_CONTAINER="oracle_c"
 HOST="localhost"
 PORT=1521
 DATABASE="XE"
-USER="system"
-PASSWORD="oracle"
+USER="admin"
+PASSWORD="0raclep4ss"
 if [ "$1" ]; then
     HOST=$1
 fi
 if [ "$2" ]; then
     PORT=$2
 fi
-
+if [ "$3" ]; then
+    USER=$3
+fi
+if [ "$4" ]; then
+    PASSWORD=$4
+fi
 
 ## check if docker exists
 printf "\n${RED}>> Checking for docker${PLAIN} ${GREEN}...${PLAIN}"
@@ -80,6 +85,20 @@ fi
 printf "\n${RED}>> Exporting schema to database${PLAIN} ${GREEN}...${PLAIN}\n"
 ## copy over our db seed file
 docker cp ./test/tables.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
+
+##make user, give it privileges, and copy sql file to container
+CREATEUSER="CREATE USER ${USER} IDENTIFIED by \"${PASSWORD}\";\n \
+GRANT CONNECT, RESOURCE, DBA TO ${USER};\n \
+GRANT CREATE SESSION TO ${USER};\n \
+GRANT UNLIMITED TABLESPACE TO ${USER};\r"
+
+touch dockerusercreate.sql && echo ${CREATEUSER} > dockerusercreate.sql
+docker cp dockerusercreate.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
+rm dockerusercreate.sql
+## run create user script
+docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus sys/oracle@//${HOST}:${PORT}/${DATABASE} as sysdba @/home/dockerusercreate.sql" > /dev/null 2>&1
+
+
 ## variables needed to health check export schema
 OUTPUT=$?
 TIMEOUT=120

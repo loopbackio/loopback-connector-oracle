@@ -491,7 +491,7 @@ If you do not have a local Oracle instance, you can also run the test suite with
 ```bash
 source setup.sh <HOST> <PORT>
 ```
-where `<HOST>`, and `<PORT>` are optional parameters. The default values are `localhost`, and `1521`. The `<USER>`, `PASSWORD`, and `DATABASE` settings are always `system`, `oracle`, and `XE` respectively.
+where `<HOST>`, `<PORT>`, `<USER>`, and `PASSWORD` are optional parameters. The default values are `localhost`, `1521`, `admin`, and `0raclep4ss` respectively. The `DATABASE` setting is always `XE`.
 - Run the test:
 ```bash
 npm test
