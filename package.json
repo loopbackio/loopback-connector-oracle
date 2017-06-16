@@ -15,7 +15,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha --UV_THREADPOOL_SIZE=100 test/*.js",
+    "test": "mocha --UV_THREADPOOL_SIZE=100 --require test/init/init.js test/*.js",
     "posttest": "npm run lint"
   },
   "config": {
