@@ -3,6 +3,7 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
+'use strict';
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
 var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
@@ -33,19 +34,18 @@ console.log(results);
 results = ds.discoverExportedForeignKeysSync('PRODUCT');
 console.log(results);
 
-
 var models = ds.discoverAndBuildModelsSync('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associations: true});
 
 function show(err, models) {
-    if (err) {
-        console.error(err);
-    } else {
-        models.forEach(function(m) {
-            console.dir(m);
-        });
-    }
+  if (err) {
+    console.error(err);
+  } else {
+    models.forEach(function(m) {
+      console.dir(m);
+    });
+  }
 }
 
 for (var m in models) {
-    models[m].all(show);
+  models[m].all(show);
 }
