@@ -3,6 +3,7 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
+'use strict';
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
 var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
@@ -10,13 +11,13 @@ var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
 var ds = new DataSource(require('../'), config);
 
 function show(err, models) {
-    if (err) {
-        console.error(err);
-    } else {
-        models.forEach(function(m) {
-            console.dir(m);
-        });
-    }
+  if (err) {
+    console.error(err);
+  } else {
+    models.forEach(function(m) {
+      console.dir(m);
+    });
+  }
 }
 
 /*
@@ -32,14 +33,13 @@ ds.discoverForeignKeys('INVENTORY',  show);
 ds.discoverExportedForeignKeys('PRODUCT',  show);
 */
 
-
 var table = (process.argv.length > 2) ? process.argv[2] : 'INVENTORY_VIEW';
 
 ds.discoverSchema(table, {owner: 'STRONGLOOP'}, function(err, schema) {
-    console.log(JSON.stringify(schema));
-    var model = ds.define(schema.name, schema.properties, schema.options);
+  console.log(JSON.stringify(schema));
+  var model = ds.define(schema.name, schema.properties, schema.options);
     // console.log(model);
-    model.all(show);
+  model.all(show);
 });
 
 /*
@@ -59,6 +59,4 @@ ds.discoverAndBuildModels('INVENTORY', {owner: 'STRONGLOOP', visited: {}, associ
     });
 });
 
-
 */
-
