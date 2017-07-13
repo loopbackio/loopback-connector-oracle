@@ -3,6 +3,9 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
+'use strict';
+
+/* global getDataSource */
 var juggler = require('loopback-datasource-juggler');
 var CreateDS = juggler.DataSource;
 require('loopback-datasource-juggler/test/common.batch.js');
@@ -12,20 +15,19 @@ require('./init/init');
 var should = require('should');
 var Post, db;
 
-describe('oracle connector', function () {
-
-  before(function () {
+describe('oracle connector', function() {
+  before(function() {
     db = getDataSource();
 
     Post = db.define('PostWithBoolean', {
-      title: { type: String, length: 255, index: true },
-      content: { type: String },
-      approved: Boolean
+      title: {type: String, length: 255, index: true},
+      content: {type: String},
+      approved: Boolean,
     });
   });
 
-  it('should run migration', function (done) {
-    db.automigrate('PostWithBoolean', function () {
+  it('should run migration', function(done) {
+    db.automigrate('PostWithBoolean', function() {
       done();
     });
   });
@@ -54,9 +56,9 @@ describe('oracle connector', function () {
     });
   });
 
-
   it('should support boolean types with false value', function(done) {
-    Post.create({title: 'T2', content: 'C2', approved: false}, function(err, p) {
+    Post.create({title: 'T2', content: 'C2', approved: false},
+    function(err, p) {
       should.not.exists(err);
       post = p;
       Post.findById(p.id, function(err, p) {
@@ -129,7 +131,6 @@ describe('oracle connector', function () {
         done();
       });
     });
-
 });
 
 describe('lazyConnect', function() {

@@ -3,6 +3,9 @@
 // US Government Users Restricted Rights - Use, duplication or disclosure
 // restricted by GSA ADP Schedule Contract with IBM Corp.
 
+'use strict';
+
+/* global getDataSource */
 process.env.NODE_ENV = 'test';
 require('should');
 
@@ -21,12 +24,22 @@ describe('discoverModels', function() {
     db.disconnect();
   });
 
+  describe('Discover database schemas', function() {
+    it('should return an array of db schemas', function(done) {
+      db.connector.discoverDatabaseSchemas(function(err, schemas) {
+        if (err) return done(err);
+        schemas.should.be.instanceof(Array);
+        schemas.length.should.be.above(0);
+        done();
+      });
+    });
+  });
+
   describe('Discover models including views', function() {
     it('should return an array of tables and views', function(done) {
-
       db.discoverModelDefinitions({
         views: true,
-        limit: 3
+        limit: 3,
       }, function(err, models) {
         if (err) {
           console.error(err);
@@ -48,10 +61,9 @@ describe('discoverModels', function() {
 
   describe('Discover models excluding views', function() {
     it('should return an array of only tables', function(done) {
-
       db.discoverModelDefinitions({
         views: false,
-        limit: 3
+        limit: 3,
       }, function(err, models) {
         if (err) {
           console.error(err);
@@ -74,10 +86,9 @@ describe('discoverModels', function() {
 
   describe('Discover models including other users', function() {
     it('should return an array of all tables and views', function(done) {
-
       db.discoverModelDefinitions({
         all: true,
-        limit: 3
+        limit: 3,
       }, function(err, models) {
         if (err) {
           console.error(err);
@@ -114,7 +125,6 @@ describe('discoverModels', function() {
         });
       });
     });
-
   });
 
   describe('Discover model primary keys', function() {
@@ -133,8 +143,10 @@ describe('discoverModels', function() {
       });
     });
 
-    it('should return an array of primary keys for STRONGLOOP.PRODUCT', function(done) {
-      db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'}, function(err, models) {
+    it('should return an array of primary keys for STRONGLOOP.PRODUCT',
+    function(done) {
+      db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'},
+      function(err, models) {
         if (err) {
           console.error(err);
           done(err);
@@ -164,8 +176,10 @@ describe('discoverModels', function() {
         }
       });
     });
-    it('should return an array of foreign keys for STRONGLOOP.INVENTORY', function(done) {
-      db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'}, function(err, models) {
+    it('should return an array of foreign keys for STRONGLOOP.INVENTORY',
+    function(done) {
+      db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'},
+      function(err, models) {
         if (err) {
           console.error(err);
           done(err);
@@ -182,7 +196,8 @@ describe('discoverModels', function() {
 
   describe('Discover LDL schema from a table', function() {
     it('should return an LDL schema for INVENTORY', function(done) {
-      db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'}, function(err, schema) {
+      db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'},
+      function(err, schema) {
         // console.log('%j', schema);
         assert(schema.name === 'Inventory');
         assert(schema.options.oracle.schema === 'STRONGLOOP');
@@ -192,7 +207,8 @@ describe('discoverModels', function() {
         assert(schema.properties.productId.oracle.columnName === 'PRODUCT_ID');
         assert(schema.properties.locationId);
         assert(schema.properties.locationId.type === 'String');
-        assert(schema.properties.locationId.oracle.columnName === 'LOCATION_ID');
+        assert(schema.properties.locationId.oracle.columnName ===
+          'LOCATION_ID');
         assert(schema.properties.available);
         assert(schema.properties.available.type === 'Number');
         assert(schema.properties.total);

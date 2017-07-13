@@ -1,0 +1,9 @@
+{
+  "56b8408263e115ae231c85f10d988fdc": "\nProduto: {0}",
+  "781db463c682d5eb7259c74773ab1860": "\nInventário: {0}",
+  "1092fa6c86f124928e0f4d9d4711ebc9": "as opções devem ser um objeto: {0}",
+  "66a6a44b45094ef45fdcb0201a26fc6d": "a tabela é um argumento de sequência necessário: {0}",
+  "3d26dd09004339e3c04f61799780e5a4": "{0}. ID duplicado detectado.",
+  "b0262f0bd6f0836e16e1a0aa78953475": "isolationLevel inválido: {0}"
+}
+
