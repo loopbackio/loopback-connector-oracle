@@ -1,9 +1,10 @@
 {
-  "56b8408263e115ae231c85f10d988fdc": "\nProdotto: {0}",
-  "781db463c682d5eb7259c74773ab1860": "\nInventario: {0}",
-  "1092fa6c86f124928e0f4d9d4711ebc9": "options deve essere un oggetto: {0}",
-  "66a6a44b45094ef45fdcb0201a26fc6d": "table è un argomento stringa obbligatorio: {0}",
   "3d26dd09004339e3c04f61799780e5a4": "{0}. È stato rilevato un ID duplicato.",
-  "b0262f0bd6f0836e16e1a0aa78953475": "isolationLevel non valido: {0}"
+  "56b8408263e115ae231c85f10d988fdc": "\nProdotto: {0}",
+  "6ce5c3a3d305e965ff06e2b3e16e1252": "{{options}} deve essere un {{object}}: {0}",
+  "781db463c682d5eb7259c74773ab1860": "\nInventario: {0}",
+  "9926ce70a3a4fb85b8e19605c448c58a": "La sintassi regex {{Oracle}} non rispetta l'indicatore {{`g`}}",
+  "a0078d732b2dbabf98ed2efcdb55b402": "{{table}} è un argomento stringa obbligatorio: {0}",
+  "cac93b1aaea2a0f4601f295837eef4a7": "{{isolationLevel}} non valido: {0}"
 }
 
