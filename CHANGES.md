@@ -1,4 +1,28 @@
-2017-04-19, Version 3.2.0
+2018-05-23, Version 4.0.0
+=========================
+
+ * Upgrade to oracledb 2.x (Raymond Feng)
+
+ * Fix datatypeChanged for fields with length (Joost de Bruijn)
+
+ * fix typo in readme (#150) (Biniam Admikew)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+ * Create Issue and PR Templates (#143) (Sakib Hasan)
+
+ * Update translated strings Q3 2017 (Allen Boone)
+
+ * update messages.json (Diana Lau)
+
+ * Add CODEOWNER file (Diana Lau)
+
+ * Require init on mocha args (ssh24)
+
+ * Add docker setup (#130) (Biniam Admikew)
+
+
+2017-04-18, Version 3.2.0
 =========================
 
  * Use fetchAsString for CLOB (Raymond Feng)
