@@ -1,0 +1,10 @@
+{
+  "3d26dd09004339e3c04f61799780e5a4": "{0}. Bylo zjištěno duplicitní ID.",
+  "56b8408263e115ae231c85f10d988fdc": "\nProdukt: {0}",
+  "6ce5c3a3d305e965ff06e2b3e16e1252": "{{options}} musí být {{object}}: {0}",
+  "781db463c682d5eb7259c74773ab1860": "\nInventář: {0}",
+  "9926ce70a3a4fb85b8e19605c448c58a": "Syntaxe regulárního výrazu {{Oracle}} nerespektuje příznak {{`g`}}",
+  "a0078d732b2dbabf98ed2efcdb55b402": "{{table}} je povinný řetězcový argument: {0}",
+  "cac93b1aaea2a0f4601f295837eef4a7": "Neplatná {{isolationLevel}}: {0}"
+}
+
