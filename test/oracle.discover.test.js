@@ -124,6 +124,22 @@ describe('discoverModels', function() {
           }
         });
       });
+
+      it('should return an array of columns for PRODUCT', function(done) {
+        db.discoverModelProperties('PRODUCT', {schema: 'STRONGLOOP'},
+        function(err, models) {
+          if (err) {
+            console.error(err);
+            done(err);
+          } else {
+            models.forEach(function(m) {
+              // console.dir(m);
+              assert(m.tableName === 'PRODUCT');
+            });
+            done(null, models);
+          }
+        });
+      });
     });
   });
 
