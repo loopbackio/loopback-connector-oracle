@@ -1,3 +1,9 @@
+2018-07-17, Version 4.0.2
+=========================
+
+ * fix schema/owner for discovery (Raymond Feng)
+
+
 2018-07-10, Version 4.0.1
 =========================
 
