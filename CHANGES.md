@@ -1,4 +1,12 @@
-2018-07-17, Version 4.0.2
+2018-08-07, Version 4.1.0
+=========================
+
+ * remove unnecessary text (Diana Lau)
+
+ * Update to MIT license (Diana Lau)
+
+
+2018-07-16, Version 4.0.2
 =========================
 
  * fix schema/owner for discovery (Raymond Feng)
