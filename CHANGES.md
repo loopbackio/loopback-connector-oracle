@@ -1,3 +1,9 @@
+2018-09-19, Version 4.1.1
+=========================
+
+ * update strong-globalize to 4.x (Diana Lau)
+
+
 2018-08-07, Version 4.1.0
 =========================
 
