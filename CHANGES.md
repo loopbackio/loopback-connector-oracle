@@ -1,3 +1,11 @@
+2018-12-07, Version 4.1.2
+=========================
+
+ * chore: update CODEOWNERS (Diana Lau)
+
+ * Upgrade to oracledb 3.x (Joost de Bruijn)
+
+
 2018-09-19, Version 4.1.1
 =========================
 
