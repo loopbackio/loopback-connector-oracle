@@ -1,3 +1,9 @@
+2019-05-22, Version 4.2.0
+=========================
+
+ * Added the connection property "_enableStats" (Eric Alves)
+
+
 2018-12-07, Version 4.1.2
 =========================
 
