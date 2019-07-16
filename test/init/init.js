@@ -5,7 +5,7 @@
 
 'use strict';
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
+let DataSource = require('loopback-datasource-juggler').DataSource;
 
 var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
 config.maxConn = 64;
