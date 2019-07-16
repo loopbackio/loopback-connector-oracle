@@ -9,14 +9,14 @@
 process.env.NODE_ENV = 'test';
 require('should');
 
-var assert = require('assert');
+const assert = require('assert');
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
-var db;
+const DataSource = require('loopback-datasource-juggler').DataSource;
+let db;
 
 describe('discoverModels', function() {
   before(function() {
-    var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    const config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
     db = new DataSource(require('../'), config);
   });
 
@@ -45,7 +45,7 @@ describe('discoverModels', function() {
           console.error(err);
           done(err);
         } else {
-          var views = false;
+          let views = false;
           models.forEach(function(m) {
             // console.dir(m);
             if (m.type === 'view') {
@@ -69,7 +69,7 @@ describe('discoverModels', function() {
           console.error(err);
           done(err);
         } else {
-          var views = false;
+          let views = false;
           models.forEach(function(m) {
             // console.dir(m);
             if (m.type === 'view') {
@@ -94,7 +94,7 @@ describe('discoverModels', function() {
           console.error(err);
           done(err);
         } else {
-          var others = false;
+          let others = false;
           models.forEach(function(m) {
             // console.dir(m);
             if (m.owner !== 'STRONGLOOP') {
@@ -125,20 +125,20 @@ describe('discoverModels', function() {
         });
       });
 
-      it('should return an array of columns for PRODUCT', function(done) {
+      it('should return an array of columns for PRODUCT ', function(done) {
         db.discoverModelProperties('PRODUCT', {schema: 'STRONGLOOP'},
-        function(err, models) {
-          if (err) {
-            console.error(err);
-            done(err);
-          } else {
-            models.forEach(function(m) {
+          function(err, models) {
+            if (err) {
+              console.error(err);
+              done(err);
+            } else {
+              models.forEach(function(m) {
               // console.dir(m);
-              assert(m.tableName === 'PRODUCT');
-            });
-            done(null, models);
-          }
-        });
+                assert(m.tableName === 'PRODUCT');
+              });
+              done(null, models);
+            }
+          });
       });
     });
   });
@@ -160,21 +160,21 @@ describe('discoverModels', function() {
     });
 
     it('should return an array of primary keys for STRONGLOOP.PRODUCT',
-    function(done) {
-      db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'},
-      function(err, models) {
-        if (err) {
-          console.error(err);
-          done(err);
-        } else {
-          models.forEach(function(m) {
-            // console.dir(m);
-            assert(m.tableName === 'PRODUCT');
+      function(done) {
+        db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'},
+          function(err, models) {
+            if (err) {
+              console.error(err);
+              done(err);
+            } else {
+              models.forEach(function(m) {
+                // console.dir(m);
+                assert(m.tableName === 'PRODUCT');
+              });
+              done(null, models);
+            }
           });
-          done(null, models);
-        }
       });
-    });
   });
 
   describe('Discover model foreign keys', function() {
@@ -193,44 +193,45 @@ describe('discoverModels', function() {
       });
     });
     it('should return an array of foreign keys for STRONGLOOP.INVENTORY',
-    function(done) {
-      db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'},
-      function(err, models) {
-        if (err) {
-          console.error(err);
-          done(err);
-        } else {
-          models.forEach(function(m) {
-            // console.dir(m);
-            assert(m.fkTableName === 'INVENTORY');
+      function(done) {
+        db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'},
+          function(err, models) {
+            if (err) {
+              console.error(err);
+              done(err);
+            } else {
+              models.forEach(function(m) {
+                // console.dir(m);
+                assert(m.fkTableName === 'INVENTORY');
+              });
+              done(null, models);
+            }
           });
-          done(null, models);
-        }
       });
-    });
   });
 
   describe('Discover LDL schema from a table', function() {
     it('should return an LDL schema for INVENTORY', function(done) {
       db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'},
-      function(err, schema) {
+        function(err, schema) {
         // console.log('%j', schema);
-        assert(schema.name === 'Inventory');
-        assert(schema.options.oracle.schema === 'STRONGLOOP');
-        assert(schema.options.oracle.table === 'INVENTORY');
-        assert(schema.properties.productId);
-        assert(schema.properties.productId.type === 'String');
-        assert(schema.properties.productId.oracle.columnName === 'PRODUCT_ID');
-        assert(schema.properties.locationId);
-        assert(schema.properties.locationId.type === 'String');
-        assert(schema.properties.locationId.oracle.columnName ===
+          assert(schema.name === 'Inventory');
+          assert(schema.options.oracle.schema === 'STRONGLOOP');
+          assert(schema.options.oracle.table === 'INVENTORY');
+          assert(schema.properties.productId);
+          assert(schema.properties.productId.type === 'String');
+          assert(schema.properties.productId.oracle.columnName ===
+            'PRODUCT_ID');
+          assert(schema.properties.locationId);
+          assert(schema.properties.locationId.type === 'String');
+          assert(schema.properties.locationId.oracle.columnName ===
           'LOCATION_ID');
-        assert(schema.properties.available);
-        assert(schema.properties.available.type === 'Number');
-        assert(schema.properties.total);
-        assert(schema.properties.total.type === 'Number');
-        done(null, schema);
-      });
+          assert(schema.properties.available);
+          assert(schema.properties.available.type === 'Number');
+          assert(schema.properties.total);
+          assert(schema.properties.total.type === 'Number');
+          done(null, schema);
+        });
     });
   });
 });

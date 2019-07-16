@@ -6,16 +6,16 @@
 'use strict';
 
 /* global getDataSource */
-var async = require('async');
+const async = require('async');
 
 require('./init/init');
-var should = require('should');
-var db, User;
+const should = require('should');
+let db, User;
 
 describe('regexp', function() {
   db = getDataSource();
 
-  var User = db.define('UserRegExp', {
+  const User = db.define('UserRegExp', {
     seq: {type: Number, index: true},
     name: {type: String, index: true, sort: true},
     email: {type: String, index: true},
@@ -72,7 +72,7 @@ describe('regexp', function() {
 
   it('should support the regexp operator with regex objects', function(done) {
     User.find({where: {name: {regexp: new RegExp(/^J/)}}}, function(err,
-                                                                    users) {
+      users) {
       should.not.exist(err);
       users.length.should.equal(1);
       users[0].name.should.equal('John Lennon');
@@ -81,7 +81,7 @@ describe('regexp', function() {
   });
 
   function seed(done) {
-    var beatles = [
+    const beatles = [
       {
         seq: 0,
         name: 'John Lennon',

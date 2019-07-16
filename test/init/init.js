@@ -8,10 +8,10 @@
 const juggler = require('loopback-datasource-juggler');
 let DataSource = juggler.DataSource;
 
-var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
+const config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
 config.maxConn = 64;
 
-var db;
+let db;
 
 global.getDataSource = global.getSchema = function() {
   if (db) {
