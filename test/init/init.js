@@ -5,7 +5,8 @@
 
 'use strict';
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
+const juggler = require('loopback-datasource-juggler');
+let DataSource = juggler.DataSource;
 
 var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
 config.maxConn = 64;
@@ -21,6 +22,13 @@ global.getDataSource = global.getSchema = function() {
     // console.log(a);
   };
   return db;
+};
+
+global.resetDataSourceClass = function(ctor) {
+  DataSource = ctor || juggler.DataSource;
+  const promise = db ? db.disconnect() : Promise.resolve();
+  db = undefined;
+  return promise;
 };
 
 global.connectorCapabilities = {

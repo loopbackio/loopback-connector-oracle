@@ -15,7 +15,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha --UV_THREADPOOL_SIZE=100 --require test/init/init.js test/*.js",
+    "test": "mocha --UV_THREADPOOL_SIZE=100 test/*.test.js node_modules/juggler-v3/test.js node_modules/juggler-v4/test.js",
     "posttest": "npm run lint"
   },
   "dependencies": {
@@ -29,7 +29,9 @@
     "bluebird": "^3.3.3",
     "eslint": "^3.17.0",
     "eslint-config-loopback": "^8.0.0",
-    "loopback-datasource-juggler": "^3.0.0",
+    "juggler-v3": "file:./deps/juggler-v3",
+    "juggler-v4": "file:./deps/juggler-v4",
+    "loopback-datasource-juggler": "^3.0.0 || ^4.0.0",
     "mocha": "^5.2.0",
     "rc": "^1.0.0",
     "should": "^8.0.2"
