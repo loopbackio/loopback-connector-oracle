@@ -6,13 +6,13 @@
 'use strict';
 
 /* global getDataSource */
-var assert = require('assert');
-var ds, Note;
+const assert = require('assert');
+let ds, Note;
 require('./init/init');
 
 before(function(done) {
   ds = getDataSource();
-  var schema =
+  const schema =
     {
       name: 'ClobTest',
       options: {
@@ -36,8 +36,8 @@ before(function(done) {
 });
 
 function generateString(size, char) {
-  var str = '';
-  for (var i = 0; i < size; i++) {
+  let str = '';
+  for (let i = 0; i < size; i++) {
     str += (char || 'A');
   }
   return str;
@@ -45,7 +45,7 @@ function generateString(size, char) {
 
 describe('Oracle connector', function() {
   it('should support clob size < 4000 chars', function(done) {
-    var clob = generateString(1000, 'A');
+    const clob = generateString(1000, 'A');
     Note.create({note: clob}, function(err, note) {
       assert(!err);
       Note.findById(note.id, function(err, note) {
@@ -57,7 +57,7 @@ describe('Oracle connector', function() {
   });
 
   it('should support clob size < 32k chars', function(done) {
-    var clob = generateString(32000, 'B');
+    const clob = generateString(32000, 'B');
     Note.create({note: clob}, function(err, note) {
       assert(!err);
       Note.findById(note.id, function(err, note) {
@@ -69,7 +69,7 @@ describe('Oracle connector', function() {
   });
 
   it('should support clob size > 32k chars', function(done) {
-    var clob = generateString(50000, 'C');
+    const clob = generateString(50000, 'C');
     Note.create({note: clob}, function(err, note) {
       assert(!err);
       Note.findById(note.id, function(err, note) {

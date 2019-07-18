@@ -10,9 +10,9 @@ process.env.NODE_ENV = 'test';
 require('should');
 require('./init/init');
 
-var async = require('async');
+const async = require('async');
 
-var db;
+let db;
 
 before(function() {
   db = getDataSource();
@@ -20,7 +20,7 @@ before(function() {
 
 describe('Mapping models', function() {
   it('should honor the oracle settings for table/column', function(done) {
-    var schema =
+    const schema =
       {
         name: 'TestInventory',
         options: {
@@ -81,9 +81,9 @@ describe('Mapping models', function() {
           },
         },
       };
-    var models = db.modelBuilder.buildModels(schema);
+    const models = db.modelBuilder.buildModels(schema);
     // console.log(models);
-    var Model = models['TestInventory'];
+    const Model = models['TestInventory'];
     Model.attachTo(db);
 
     db.automigrate(function(err, data) {
@@ -94,31 +94,34 @@ describe('Mapping models', function() {
         function(callback) {
           Model.create(
             {productId: 'p001', locationId: 'l001', available: 10, total: 50},
-            callback);
+            callback
+          );
         },
         function(callback) {
           Model.create(
             {productId: 'p001', locationId: 'l002', available: 30, total: 40},
-            callback);
+            callback
+          );
         },
         function(callback) {
           Model.create(
             {productId: 'p002', locationId: 'l001', available: 15, total: 30},
-            callback);
+            callback
+          );
         },
         function(callback) {
           Model.find({fields: ['productId', 'locationId', 'available']},
-          function(err, results) {
+            function(err, results) {
             // console.log(results);
-            results.should.have.lengthOf(3);
-            results.forEach(function(r) {
-              r.should.have.property('productId');
-              r.should.have.property('locationId');
-              r.should.have.property('available');
-              r.should.have.property('total', undefined);
+              results.should.have.lengthOf(3);
+              results.forEach(function(r) {
+                r.should.have.property('productId');
+                r.should.have.property('locationId');
+                r.should.have.property('available');
+                r.should.have.property('total', undefined);
+              });
+              callback(null, results);
             });
-            callback(null, results);
-          });
         },
         function(callback) {
           Model.find({fields: {'total': false}}, function(err, results) {

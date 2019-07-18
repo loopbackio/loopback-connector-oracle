@@ -6,17 +6,17 @@
 'use strict';
 
 /* global getDataSource */
-var assert = require('assert');
-var should = require('should');
+const assert = require('assert');
+const should = require('should');
 require('./init/init');
-var ds;
+let ds;
 
 before(function() {
   ds = getDataSource();
 });
 
 describe('Oracle connector', function() {
-  var schema_v1 = // eslint-disable-line camelcase
+  const schema_v1 = // eslint-disable-line camelcase
     {
       name: 'CustomerTest',
       options: {
@@ -49,7 +49,7 @@ describe('Oracle connector', function() {
       },
     };
 
-  var schema_v2 = // eslint-disable-line camelcase
+  const schema_v2 = // eslint-disable-line camelcase
     {
       name: 'CustomerTest',
       options: {
@@ -98,7 +98,7 @@ describe('Oracle connector', function() {
       ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
         if (err) return done(err);
         assert.equal(props.length, 4);
-        var columns = {};
+        const columns = {};
         props.forEach(function(p) {
           columns[p.columnName] = p.nullable;
         });
@@ -109,7 +109,7 @@ describe('Oracle connector', function() {
           ID: 'N',
         });
 
-        var columnsLength = {};
+        const columnsLength = {};
         props.forEach(function(p) {
           columnsLength[p.columnName] = p.dataLength;
         });
@@ -125,7 +125,7 @@ describe('Oracle connector', function() {
         ds.autoupdate(function(err, result) {
           ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
             assert.equal(props.length, 4);
-            var columns = {};
+            const columns = {};
             props.forEach(function(p) {
               columns[p.columnName] = p.nullable;
             });
@@ -136,7 +136,7 @@ describe('Oracle connector', function() {
               ID: 'N',
             });
 
-            var columnsLength = {};
+            const columnsLength = {};
             props.forEach(function(p) {
               columnsLength[p.columnName] = p.dataLength;
             });
