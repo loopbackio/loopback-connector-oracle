@@ -10,7 +10,7 @@
     "Connector"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=8.9"
   },
   "main": "index.js",
   "scripts": {
