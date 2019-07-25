@@ -1,3 +1,15 @@
+2019-07-25, Version 4.3.0
+=========================
+
+ * fix eslint violations (Nora)
+
+ * update dependencies (Nora)
+
+ * run shared tests from both v3 and v4 of juggler (Nora)
+
+ * drop support for node.js 6 (Nora)
+
+
 2019-05-22, Version 4.2.0
 =========================
 
