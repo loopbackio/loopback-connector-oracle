@@ -156,6 +156,7 @@ describe('lazyConnect', function() {
       port: 4,
       lazyConnect: false,
       debug: false,
+      username: 'user',
     };
     const ds = getDS(dsConfig);
 
