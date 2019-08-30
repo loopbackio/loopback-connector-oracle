@@ -16,6 +16,8 @@ let db, config;
 
 before(function() {
   config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+  config.user = process.env.ORACLE_USER;
+  config.password = process.env.ORACLE_PASSWORD;
 });
 
 after(function() {

@@ -464,12 +464,17 @@ npm test
 ```
 
 ### Docker
+
+[ODPI-C](https://oracle.github.io/odpi/doc/installation.html) is a prerequisite, install on your system
+before performing the next steps.
+
 If you do not have a local Oracle instance, you can also run the test suite with very minimal requirements.
 - Assuming you have [Docker](https://docs.docker.com/engine/installation/) installed, run the following script which would spawn an Oracle instance on your local machine:
+
 ```bash
 source setup.sh <HOST> <PORT>
 ```
-where `<HOST>`, `<PORT>`, `<USER>`, and `PASSWORD` are optional parameters. The default values are `localhost`, `1521`, `admin`, and `0raclep4ss` respectively. The `DATABASE` setting is always `XE`.
+where `<HOST>`, `<PORT>`, `<USER>`, and `PASSWORD` are optional parameters. The default values are `localhost`, `1521`, `system`, and `oracle` respectively. The `DATABASE` setting is always `XE`.
 - Run the test:
 ```bash
 npm test

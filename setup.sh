@@ -10,12 +10,12 @@ CYAN='\033[1;36m'
 PLAIN='\033[0m'
 
 ## variables
-ORACLE_CONTAINER="oracle_c"
+ORACLE_CONTAINER="oracle-xe"
 HOST="localhost"
 PORT=1521
 DATABASE="XE"
-USER="admin"
-PASSWORD="0raclep4ss"
+USER="system"
+PASSWORD="oracle"
 if [ "$1" ]; then
     HOST=$1
 fi
@@ -46,12 +46,12 @@ printf "\n${CYAN}Clean up complete.${PLAIN}\n"
 
 ## pull latest oracle image
 printf "\n${RED}>> Pulling latest oracle image${PLAIN} ${GREEN}...${PLAIN}"
-docker pull sath89/oracle-xe-11g:latest > /dev/null 2>&1
+docker pull webdizz/oracle-xe-11g-sa:latest > /dev/null 2>&1
 printf "\n${CYAN}Image successfully built.${PLAIN}\n"
 
 ## run the oracle container
 printf "\n${RED}>> Starting the oracle container${PLAIN} ${GREEN}...${PLAIN}\n"
-docker run --name $ORACLE_CONTAINER -p $PORT:1521 -d sath89/oracle-xe-11g:latest > /dev/null 2>&1
+docker run --name $ORACLE_CONTAINER -p $PORT:1521 -d webdizz/oracle-xe-11g-sa:latest > /dev/null 2>&1
 
 ##wait for orale database container to be ready
 OUTPUT=1
