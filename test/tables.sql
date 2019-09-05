@@ -2,7 +2,7 @@
 --  File created - Thursday-September-05-2013
 --------------------------------------------------------
 DROP TABLE CUSTOMER CASCADE CONSTRAINTS PURGE;
-DROP TABLE SESSION CASCADE CONSTRAINTS PURGE;
+DROP TABLE SESS CASCADE CONSTRAINTS PURGE;
 DROP TABLE LOCATION CASCADE CONSTRAINTS PURGE;
 DROP TABLE PRODUCT CASCADE CONSTRAINTS PURGE;
 DROP TABLE INVENTORY CASCADE CONSTRAINTS PURGE;
@@ -28,7 +28,7 @@ DROP TABLE RESERVATION CASCADE CONSTRAINTS PURGE;
 	"CREATED" DATE,
 	"LASTUPDATED" DATE
    ) ;
-/
+
 --------------------------------------------------------
 --  DDL for Table INVENTORY
 --------------------------------------------------------
@@ -40,7 +40,7 @@ DROP TABLE RESERVATION CASCADE CONSTRAINTS PURGE;
 	"AVAILABLE" NUMBER(22,0),
 	"TOTAL" NUMBER(22,0)
    ) ;
-/
+
 
 -- CREATE SEQUENCE INVENTORY_ID_SEQ START WITH 1 INCREMENT BY 1 NOMAXVALUE;
 -- CREATE OR REPLACE TRIGGER INVENTORY_ID_TRIGGER BEFORE
@@ -60,7 +60,7 @@ DROP TABLE RESERVATION CASCADE CONSTRAINTS PURGE;
 	"NAME" VARCHAR2(32),
 	"GEO" VARCHAR2(1024)
    ) ;
-/
+
 --------------------------------------------------------
 --  DDL for Table PRODUCT
 --------------------------------------------------------
@@ -74,7 +74,7 @@ DROP TABLE RESERVATION CASCADE CONSTRAINTS PURGE;
 	"EXTRAS" VARCHAR2(64),
 	"FIRE_MODES" VARCHAR2(64)
    ) ;
-/
+
 --------------------------------------------------------
 --  DDL for Table RESERVATION
 --------------------------------------------------------
@@ -90,17 +90,17 @@ DROP TABLE RESERVATION CASCADE CONSTRAINTS PURGE;
 	"PICKUP_DATE" DATE,
 	"RETURN_DATE" DATE
    ) ;
-/
+
 --------------------------------------------------------
---  DDL for Table SESSION
+--  DDL for Table SESS
 --------------------------------------------------------
 
-  CREATE TABLE "SESSION"
+  CREATE TABLE "SESS"
    (	"ID" VARCHAR2(64),
 	"UID" VARCHAR2(1024),
 	"TTL" NUMBER
    ) ;
-/
+
 REM INSERTING into CUSTOMER
 SET DEFINE OFF;
 Insert into CUSTOMER (ID,USERNAME,EMAIL,PASSWORD,NAME,MILITARY_AGENCY,REALM,EMAILVERIFIED,VERIFICATIONTOKEN,CREDENTIALS,CHALLENGES,STATUS,CREATED,LASTUPDATED) values ('612','bat','bat@bar.com','$2a$10$BEG18wcYQn7TRkFIc59EB.vmnsEwqJWMlYM4DNG73iZb.MKA1rjAC',null,null,null,null,null,'[]','[]',null,null,null);
@@ -723,7 +723,7 @@ Insert into PRODUCT (ID,NAME,AUDIBLE_RANGE,EFFECTIVE_RANGE,ROUNDS,EXTRAS,FIRE_MO
 Insert into PRODUCT (ID,NAME,AUDIBLE_RANGE,EFFECTIVE_RANGE,ROUNDS,EXTRAS,FIRE_MODES) values ('5','M9 SD',0,75,15,'Silenced','Single');
 REM INSERTING into RESERVATION
 SET DEFINE OFF;
-REM INSERTING into "SESSION"
+REM INSERTING into "SESS"
 SET DEFINE OFF;
 
 --------------------------------------------------------
@@ -746,31 +746,31 @@ CREATE OR REPLACE VIEW INVENTORY_VIEW
 --------------------------------------------------------
 
   ALTER TABLE "CUSTOMER" ADD PRIMARY KEY ("ID") ENABLE;
-/
+
 --------------------------------------------------------
 --  Constraints for Table INVENTORY
 --------------------------------------------------------
 
   ALTER TABLE "INVENTORY" ADD PRIMARY KEY ("ID") ENABLE;
-/
+
 --------------------------------------------------------
 --  Constraints for Table LOCATION
 --------------------------------------------------------
 
   ALTER TABLE "LOCATION" ADD PRIMARY KEY ("ID") ENABLE;
-/
+
 --------------------------------------------------------
 --  Constraints for Table PRODUCT
 --------------------------------------------------------
 
   ALTER TABLE "PRODUCT" ADD PRIMARY KEY ("ID") ENABLE;
-/
+
 --------------------------------------------------------
---  Constraints for Table SESSION
+--  Constraints for Table SESS
 --------------------------------------------------------
 
-  ALTER TABLE "SESSION" ADD PRIMARY KEY ("ID") ENABLE;
-/
+  ALTER TABLE "SESS" ADD PRIMARY KEY ("ID") ENABLE;
+
 --------------------------------------------------------
 --  Ref Constraints for Table INVENTORY
 --------------------------------------------------------
@@ -779,7 +779,7 @@ CREATE OR REPLACE VIEW INVENTORY_VIEW
 	  REFERENCES "LOCATION" ("ID") ENABLE;
   ALTER TABLE "INVENTORY" ADD CONSTRAINT "PRODUCT_FK" FOREIGN KEY ("PRODUCT_ID")
 	  REFERENCES "PRODUCT" ("ID") ENABLE;
-/
+
 --------------------------------------------------------
 --  Ref Constraints for Table RESERVATION
 --------------------------------------------------------
@@ -790,4 +790,4 @@ CREATE OR REPLACE VIEW INVENTORY_VIEW
 	  REFERENCES "LOCATION" ("ID") ENABLE;
   ALTER TABLE "RESERVATION" ADD CONSTRAINT "RESERVATION_PRODUCT_FK" FOREIGN KEY ("PRODUCT_ID")
 	  REFERENCES "PRODUCT" ("ID") ENABLE;
-/
+
