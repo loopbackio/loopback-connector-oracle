@@ -17,7 +17,7 @@ before(function(done) {
       name: 'ClobTest',
       options: {
         oracle: {
-          schema: 'system',
+          schema: 'SYSTEM',
           table: 'CLOB_TEST',
         },
       },

@@ -26,7 +26,7 @@ describe('Mapping models', function() {
         options: {
           idInjection: false,
           oracle: {
-            schema: 'system', 'table': 'INVENTORY_TEST',
+            schema: 'SYSTEM', 'table': 'INVENTORY_TEST',
           },
         },
         properties: {

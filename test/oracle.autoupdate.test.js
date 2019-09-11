@@ -22,7 +22,7 @@ describe('Oracle connector', function() {
       options: {
         idInjection: false,
         oracle: {
-          schema: 'system',
+          schema: 'SYSTEM',
           table: 'CUSTOMER_TEST',
         },
       },
@@ -55,7 +55,7 @@ describe('Oracle connector', function() {
       options: {
         idInjection: false,
         oracle: {
-          schema: 'system',
+          schema: 'SYSTEM',
           table: 'CUSTOMER_TEST',
         },
       },

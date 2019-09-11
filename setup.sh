@@ -14,7 +14,7 @@ ORACLE_CONTAINER="oracle-xe"
 HOST="localhost"
 PORT=1521
 DATABASE="XE"
-USER="system"
+USER="SYSTEM"
 PASSWORD="oracle"
 if [ "$1" ]; then
     HOST=$1
@@ -100,7 +100,7 @@ docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus sys/oracle@//$
 
 
 ## variables needed to health check export schema
-OUTPUT=$?
+OUTPUT=1
 TIMEOUT=120
 TIME_PASSED=0
 WAIT_STRING="."
@@ -108,7 +108,7 @@ WAIT_STRING="."
 printf "\n${GREEN}Waiting for database to respond with updated schema $WAIT_STRING${PLAIN}"
 while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
     do
-        docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus ${USER}/{$PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql" > /dev/null 2>&1
+        docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus ${USER}/${PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql" > /dev/null 2>&1
         OUTPUT=$?
         sleep 1s
         TIMEOUT=$((TIMEOUT - 1))
