@@ -86,40 +86,13 @@ printf "\n${RED}>> Exporting schema to database${PLAIN} ${GREEN}...${PLAIN}\n"
 ## copy over our db seed file
 docker cp ./test/tables.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
 
-##make user, give it privileges, and copy sql file to container
-CREATEUSER="CREATE USER ${USER} IDENTIFIED by \"${PASSWORD}\";\n \
-GRANT CONNECT, RESOURCE, DBA TO ${USER};\n \
-GRANT CREATE SESSION TO ${USER};\n \
-GRANT UNLIMITED TABLESPACE TO ${USER};\r"
+## create the tables
+printf "\n${GREEN}Waiting for database to respond with updated schema ..."
+docker exec $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus ${USER}/${PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql"
 
-touch dockerusercreate.sql && echo ${CREATEUSER} > dockerusercreate.sql
-docker cp dockerusercreate.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
-rm dockerusercreate.sql
-## run create user script
-docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus sys/oracle@//${HOST}:${PORT}/${DATABASE} as sysdba @/home/dockerusercreate.sql" > /dev/null 2>&1
+OUTPUT=$?
 
-
-## variables needed to health check export schema
-OUTPUT=1
-TIMEOUT=120
-TIME_PASSED=0
-WAIT_STRING="."
-
-printf "\n${GREEN}Waiting for database to respond with updated schema $WAIT_STRING${PLAIN}"
-while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
-    do
-        docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus ${USER}/${PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql" > /dev/null 2>&1
-        OUTPUT=$?
-        sleep 1s
-        TIMEOUT=$((TIMEOUT - 1))
-        TIME_PASSED=$((TIME_PASSED + 1))
-        if [ "$TIME_PASSED" -eq 5 ]; then
-            printf "${GREEN}.${PLAIN}"
-            TIME_PASSED=0
-        fi
-    done
-
-if [ "$TIMEOUT" -le 0 ]; then
+if [ "$OUTPUT" -ne 0 ]; then
     printf "\n\n${CYAN}Status: ${PLAIN}${RED}Failed to export schema. Terminating setup.${PLAIN}\n\n"
     exit 1
 fi
