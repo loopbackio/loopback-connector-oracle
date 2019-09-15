@@ -16,7 +16,8 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "mocha --UV_THREADPOOL_SIZE=100 test/*.test.js node_modules/juggler-v3/test.js node_modules/juggler-v4/test.js",
+    "pretest": "bash ./setup.sh",
+    "test": "export ORACLE_USER=SYSTEM ORACLE_PASSWORD=oracle && mocha --UV_THREADPOOL_SIZE=100 test/*.test.js node_modules/juggler-v3/test.js node_modules/juggler-v4/test.js",
     "posttest": "npm run lint"
   },
   "dependencies": {
