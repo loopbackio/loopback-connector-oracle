@@ -17,8 +17,8 @@ let db;
 describe('discoverModels', function() {
   before(function() {
     const config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
-    config.user = process.env.ORACLE_USER;
-    config.password = process.env.ORACLE_PASSWORD;
+    config.user = config.user || process.env.ORACLE_USER;
+    config.password = config.password || process.env.ORACLE_PASSWORD;
     db = new DataSource(require('../'), config);
   });
 

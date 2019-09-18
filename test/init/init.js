@@ -10,8 +10,8 @@ let DataSource = juggler.DataSource;
 
 const config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
 config.maxConn = 64;
-config.user = process.env.ORACLE_USER;
-config.password = process.env.ORACLE_PASSWORD;
+config.user = config.user || process.env.ORACLE_USER;
+config.password = config.password || process.env.ORACLE_PASSWORD;
 
 let db;
 
