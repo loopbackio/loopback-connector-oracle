@@ -6,8 +6,8 @@
 'use strict';
 
 /* global getDataSource */
-var juggler = require('loopback-datasource-juggler');
-var CreateDS = juggler.DataSource;
+const juggler = require('loopback-datasource-juggler');
+const CreateDS = juggler.DataSource;
 
 require('./init/init');
 const should = require('should');
