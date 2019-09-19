@@ -1,3 +1,11 @@
+2019-09-19, Version 4.4.0
+=========================
+
+ * temp (Hage Yaapa)
+
+ * update oracledb to v4 (Nora)
+
+
 2019-07-25, Version 4.3.0
 =========================
 
