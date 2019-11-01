@@ -61,5 +61,5 @@ ds.discoverAndBuildModels(
         // ds.disconnect(); // This will crash node-oracle as the connection is disconnected while other statements are still running
       });
     });
-  }
+  },
 );
