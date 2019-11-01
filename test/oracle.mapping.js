@@ -94,19 +94,19 @@ describe('Mapping models', function() {
         function(callback) {
           Model.create(
             {productId: 'p001', locationId: 'l001', available: 10, total: 50},
-            callback
+            callback,
           );
         },
         function(callback) {
           Model.create(
             {productId: 'p001', locationId: 'l002', available: 30, total: 40},
-            callback
+            callback,
           );
         },
         function(callback) {
           Model.create(
             {productId: 'p002', locationId: 'l001', available: 15, total: 30},
-            callback
+            callback,
           );
         },
         function(callback) {
