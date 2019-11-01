@@ -37,7 +37,7 @@ describe('Oracle connector', function() {
     });
   });
 
-  it('should create connection pool ', function(done) {
+  it('should create connection pool with config', function(done) {
     config.minConn = 2;
     config.maxConn = 4;
     config.incrConn = 2;
@@ -65,6 +65,18 @@ describe('Oracle connector', function() {
           // console.log(info);
           db.disconnect(done);
         });
+      });
+    });
+  });
+
+  it('should close connection pool gracefully', function(done) {
+    db = new DataSource(require('../'), config);
+    db.connect(function() {
+      // Call ping to acquire/release a connection from the pool
+      db.ping(function(err) {
+        if (err) return done(err);
+        // It should disconnect gracefully
+        db.disconnect(done);
       });
     });
   });
