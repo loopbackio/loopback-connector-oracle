@@ -1,3 +1,13 @@
+2019-11-01, Version 4.5.0
+=========================
+
+ * Allow CLOB/BLOB data types for migration (ataft)
+
+ * Only callback after the connection is released (Raymond Feng)
+
+ * Fix eslint violations (Raymond Feng)
+
+
 2019-09-19, Version 4.4.0
 =========================
 
