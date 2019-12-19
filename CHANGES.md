@@ -1,3 +1,13 @@
+2019-12-19, Version 4.5.1
+=========================
+
+ * buildQueryColumns should return columns in order (ataft)
+
+ * chore: update CODEOWNERS file (Diana Lau)
+
+ * chore: improve issue and PR templates (Nora)
+
+
 2019-11-01, Version 4.5.0
 =========================
 
