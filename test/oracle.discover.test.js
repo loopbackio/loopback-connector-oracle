@@ -7,7 +7,7 @@
 
 /* global getDataSource */
 process.env.NODE_ENV = 'test';
-require('should');
+const should = require('should');
 
 const assert = require('assert');
 
@@ -144,6 +144,39 @@ describe('discoverModels', function() {
   });
 
   describe('Discover model primary keys', function() {
+    let Case;
+    before(function(done) {
+      const caseSchema = {
+        name: 'CHECKCASE',
+        options: {
+          idInjection: false,
+          oracle: {
+            schema: 'STRONGLOOP',
+            table: 'CHECKCASE',
+          },
+        },
+        properties: {
+          id: {
+            type: 'Number',
+            required: true,
+            id: 1,
+            oracle: {
+              columnName: 'camelCase',
+            },
+          },
+          USERNAME: {
+            type: 'String',
+            required: true,
+          },
+        },
+      };
+      Case = db.createModel(
+        caseSchema.name, caseSchema.properties, caseSchema.options,
+      );
+      db.automigrate(done);
+      Case.destroyAll();
+    });
+
     it('should return an array of primary keys for PRODUCT', function(done) {
       db.discoverPrimaryKeys('PRODUCT', function(err, models) {
         if (err) {
@@ -173,6 +206,31 @@ describe('discoverModels', function() {
               });
               done(null, models);
             }
+          });
+      });
+
+    it('primary key should be discovered, and db generates instances properly',
+      function(done) {
+        db.discoverPrimaryKeys('CHECKCASE', {owner: 'STRONGLOOP'},
+          function(err, models) {
+            if (err) {
+              console.error(err);
+              done(err);
+            } else {
+              assert.equal(models[0].owner, 'STRONGLOOP');
+              assert.equal(models[0].tableName, 'CHECKCASE');
+              assert.equal(models[0].columnName, 'camelCase');
+            }
+            Case.create({id: 1, USERNAME: 'checkCase'}, function(err) {
+              should.not.exists(err);
+              Case.findOne({}, function(err, c) {
+                should.not.exist(err);
+                should.exist(c);
+                assert.equal(c.id, 1);
+                assert.equal(c.USERNAME, 'checkCase');
+                done();
+              });
+            });
           });
       });
   });
