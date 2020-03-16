@@ -19,6 +19,13 @@
     "test": "mocha --UV_THREADPOOL_SIZE=100 test/*.test.js node_modules/juggler-v3/test.js node_modules/juggler-v4/test.js",
     "posttest": "npm run lint"
   },
+  "files": [
+    "intl",
+    "lib",
+    "docs.json",
+    "index.js",
+    "setup.sh"
+  ],
   "dependencies": {
     "async": "^3.1.0",
     "debug": "^4.1.1",
