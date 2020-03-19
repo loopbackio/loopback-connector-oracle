@@ -1,3 +1,13 @@
+2020-03-19, Version 4.5.2
+=========================
+
+ * Exclude 'deps' and '.github' from npm publish (Dominique Emond)
+
+ * tests: id column should be convered and mapped; (Agnes Lin)
+
+ * chore: update copyrights year (Diana Lau)
+
+
 2019-12-19, Version 4.5.1
 =========================
 
