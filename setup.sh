@@ -1,6 +1,9 @@
 #!/bin/bash
 
-### Shell script to spin up a docker container for oracle.
+set -eux
+set -o pipefail
+
+### Shell script to spin up a "$DOCKER_CLI" container for oracle.
 
 ## color codes
 RED='\033[1;31m'
@@ -10,59 +13,76 @@ CYAN='\033[1;36m'
 PLAIN='\033[0m'
 
 ## variables
-ORACLE_CONTAINER="oracle_c"
+ORACLE_CONTAINER="oracle_free_db"
 HOST="localhost"
 PORT=1521
-DATABASE="XE"
-USER="admin"
+DATABASE="FREEPDB1"
+USER="TEST"
 PASSWORD="0raclep4ss"
-if [ "$1" ]; then
-    HOST=$1
+SYS_PASSWORD='0raclep4ss'
+if [ ! -z "${1:-}" ]; then
+    HOST="$1"
 fi
-if [ "$2" ]; then
-    PORT=$2
+if [ ! -z "${2:-}" ]; then
+    PORT="$2"
 fi
-if [ "$3" ]; then
-    USER=$3
+if [ ! -z "${3:-}" ]; then
+    USER="$3"
 fi
-if [ "$4" ]; then
-    PASSWORD=$4
+if [ ! -z "${4:-}" ]; then
+    PASSWORD="$4"
 fi
 
-## check if docker exists
-printf "\n${RED}>> Checking for docker${PLAIN} ${GREEN}...${PLAIN}"
-docker -v > /dev/null 2>&1
-DOCKER_EXISTS=$?
-if [ "$DOCKER_EXISTS" -ne 0 ]; then
-    printf "\n\n${CYAN}Status: ${PLAIN}${RED}Docker not found. Terminating setup.${PLAIN}\n\n"
+if [ -z "${DOCKER_CLI:-}" ]; then
+    if [ "$(command -v podman)" ]; then
+        DOCKER_CLI='podman'
+    else
+        DOCKER_CLI='docker'
+    fi
+fi
+
+## check if "$DOCKER_CLI" exists
+printf "\n${RED}>> Checking for podman${PLAIN} ${GREEN}...${PLAIN}"
+"$DOCKER_CLI" -v > /dev/null 2>&1
+PODMAN_EXISTS=$?
+if [ "$PODMAN_EXISTS" -ne 0 ]; then
+    printf "\n\n${CYAN}Status: ${PLAIN}${RED}"$DOCKER_CLI" not found. Terminating setup.${PLAIN}\n\n"
     exit 1
 fi
-printf "\n${CYAN}Found docker. Moving on with the setup.${PLAIN}\n"
+printf "\n${CYAN}Found podman. Moving on with the setup.${PLAIN}\n"
 
-## cleaning up previous builds
-printf "\n${RED}>> Finding old builds and cleaning up${PLAIN} ${GREEN}...${PLAIN}"
-docker rm -f $ORACLE_CONTAINER > /dev/null 2>&1
-printf "\n${CYAN}Clean up complete.${PLAIN}\n"
+if [ -z "${SKIP_DB_CONTAINER_CREATION:-}" ]; then
+    ## cleaning up previous builds
+    printf "\n${RED}>> Finding old builds and cleaning up${PLAIN} ${GREEN}...${PLAIN}"
+    "$DOCKER_CLI" rm -f $ORACLE_CONTAINER > /dev/null 2>&1
+    printf "\n${CYAN}Clean up complete.${PLAIN}\n"
 
-## pull latest oracle image
-printf "\n${RED}>> Pulling latest oracle image${PLAIN} ${GREEN}...${PLAIN}"
-docker pull sath89/oracle-xe-11g:latest > /dev/null 2>&1
-printf "\n${CYAN}Image successfully built.${PLAIN}\n"
+    ## pull latest oracle image
+    printf "\n${RED}>> Pulling latest oracle image${PLAIN} ${GREEN}...${PLAIN}"
+    "$DOCKER_CLI" pull container-registry.oracle.com/database/free:latest >/dev/null 2>&1
+    printf "\n${CYAN}Image successfully built.${PLAIN}\n"
 
-## run the oracle container
-printf "\n${RED}>> Starting the oracle container${PLAIN} ${GREEN}...${PLAIN}\n"
-docker run --name $ORACLE_CONTAINER -p $PORT:1521 -d sath89/oracle-xe-11g:latest > /dev/null 2>&1
+    ## run the oracle container
+    printf "\n${RED}>> Starting the oracle container${PLAIN} ${GREEN}...${PLAIN}\n"
+    "$DOCKER_CLI" run \
+                  --name $ORACLE_CONTAINER \
+                  --rm \
+                  -p $PORT:1521 \
+                  -e "ORACLE_PWD=$SYS_PASSWORD" \
+                  -d container-registry.oracle.com/database/free:latest \
+                  >/dev/null 2>&1
+fi
 
 ##wait for orale database container to be ready
 OUTPUT=1
 TIMEOUT=300
 TIME_PASSED=0
 WAIT_STRING="."
-START_MESSAGE="Database ready to use."
+START_MESSAGE="DATABASE IS READY TO USE!"
 printf "${RED}Waiting for database to be ready${PLAIN} ${GREEN}...${PLAIN}"
 while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
   do
-    docker logs ${ORACLE_CONTAINER} 2>&1 | grep "${START_MESSAGE}" > /dev/null
+    "$DOCKER_CLI" logs ${ORACLE_CONTAINER} 2>&1 | grep "${START_MESSAGE}" > /dev/null
     OUTPUT=$?
     sleep 1s
     let "TIME_PASSED = $TIME_PASSED + 1"
@@ -84,19 +104,22 @@ fi
 ## export the schema to the oracle database
 printf "\n${RED}>> Exporting schema to database${PLAIN} ${GREEN}...${PLAIN}\n"
 ## copy over our db seed file
-docker cp ./test/tables.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
+"$DOCKER_CLI" cp ./test/tables.sql "$ORACLE_CONTAINER:/home/" > /dev/null 2>&1
 
 ##make user, give it privileges, and copy sql file to container
-CREATEUSER="CREATE USER ${USER} IDENTIFIED by \"${PASSWORD}\";\n \
-GRANT CONNECT, RESOURCE, DBA TO ${USER};\n \
-GRANT CREATE SESSION TO ${USER};\n \
-GRANT UNLIMITED TABLESPACE TO ${USER};\r"
+CREATEUSER="$(cat <<EOF
+CREATE USER ${USER} IDENTIFIED by "${PASSWORD}";
+GRANT CONNECT, RESOURCE, DBA TO ${USER};
+GRANT CREATE SESSION TO ${USER};
+GRANT UNLIMITED TABLESPACE TO ${USER};
+EOF
+)"
 
-touch dockerusercreate.sql && echo ${CREATEUSER} > dockerusercreate.sql
-docker cp dockerusercreate.sql $ORACLE_CONTAINER:/home/ > /dev/null 2>&1
-rm dockerusercreate.sql
+touch podmanusercreate.sql && echo "$CREATEUSER" > podmanusercreate.sql
+"$DOCKER_CLI" cp podmanusercreate.sql "$ORACLE_CONTAINER:/home/" > /dev/null 2>&1
+rm podmanusercreate.sql
 ## run create user script
-docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus sys/oracle@//${HOST}:${PORT}/${DATABASE} as sysdba @/home/dockerusercreate.sql" > /dev/null 2>&1
+"$DOCKER_CLI" exec -t "$ORACLE_CONTAINER" /bin/sh -c "echo exit | sqlplus sys/${SYS_PASSWORD}@//${HOST}:${PORT}/${DATABASE} as sysdba @/home/podmanusercreate.sql" > /dev/null 2>&1
 
 
 ## variables needed to health check export schema
@@ -108,7 +131,7 @@ WAIT_STRING="."
 printf "\n${GREEN}Waiting for database to respond with updated schema $WAIT_STRING${PLAIN}"
 while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
     do
-        docker exec -it $ORACLE_CONTAINER /bin/sh -c "echo exit | sqlplus ${USER}/{$PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql" > /dev/null 2>&1
+        "$DOCKER_CLI" exec -t "$ORACLE_CONTAINER" /bin/sh -c "echo exit | sqlplus ${USER}/{$PASSWORD}@//${HOST}:${PORT}/${DATABASE} @/home/tables.sql" > /dev/null 2>&1
         OUTPUT=$?
         sleep 1s
         TIMEOUT=$((TIMEOUT - 1))
@@ -133,6 +156,12 @@ export ORACLE_PORT=$PORT
 export ORACLE_USER=$USER
 export ORACLE_PASSWORD=$PASSWORD
 export ORACLE_DATABASE=$DATABASE
+export loopback_dev__oracle__user=$USER
+export loopback_dev__oracle__password=$PASSWORD
+export loopback_dev__oracle__database=$DATABASE
+export loopback_test__oracle__user=$USER
+export loopback_test__oracle__password=$PASSWORD
+export loopback_test__oracle__database=$DATABASE
 printf "\n${CYAN}Env variables set.${PLAIN}\n"
 
 printf "\n${CYAN}Status: ${PLAIN}${GREEN}Set up completed successfully.${PLAIN}\n"
