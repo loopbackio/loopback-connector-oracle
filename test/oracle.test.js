@@ -161,7 +161,7 @@ describe('lazyConnect', function() {
     const ds = getDS(dsConfig);
 
     ds.on('error', function(err) {
-      err.message.should.containEql('TNS');
+        err.should.have.property('code', 'NJS-101');
       done();
     });
   });

@@ -95,7 +95,7 @@ describe('Oracle connector', function() {
     ds.automigrate(function(err) {
       if (err) return done(err);
 
-      ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
+      ds.discoverModelProperties('CUSTOMER_TEST', {owner: 'TEST'}, function(err, props) {
         if (err) return done(err);
         assert.equal(props.length, 4);
         const columns = {};

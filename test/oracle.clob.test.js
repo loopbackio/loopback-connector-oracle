@@ -47,7 +47,8 @@ describe('Oracle connector', function() {
   it('should support clob size < 4000 chars', function(done) {
     const clob = generateString(1000, 'A');
     Note.create({note: clob}, function(err, note) {
-      assert(!err);
+      console.log(JSON.stringify(err));
+        assert(!err);
       Note.findById(note.id, function(err, note) {
         assert(!err);
         assert.equal(note.note, clob);

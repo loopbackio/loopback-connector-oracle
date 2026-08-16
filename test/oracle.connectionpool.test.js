@@ -15,7 +15,9 @@ const DataSource = require('loopback-datasource-juggler').DataSource;
 let db, config;
 
 before(function() {
-  config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    config['enableStatistics'] = true
+    //console.log(config);
 });
 
 after(function() {
@@ -26,7 +28,8 @@ describe('Oracle connector', function() {
   it('should create connection pool', function(done) {
     db = new DataSource(require('../'), config);
     db.connect(function() {
-      const info = db.connector.pool;
+      db.ping(function() {
+      const info = db.connector.pool.getStatistics();
       info.should.have.property('connectionsOpen', 1);
       info.should.have.property('connectionsInUse', 0);
       info.should.have.property('poolMax', 10);
@@ -34,6 +37,7 @@ describe('Oracle connector', function() {
       info.should.have.property('poolIncrement', 1);
       info.should.have.property('poolTimeout', 60);
       db.disconnect(done);
+      });
     });
   });
 
@@ -44,27 +48,31 @@ describe('Oracle connector', function() {
     config.timeout = 5;
     db = new DataSource(require('../'), config);
     db.connect(function() {
-      const info = db.connector.pool;
-      info.should.have.property('connectionsOpen', 2);
-      info.should.have.property('connectionsInUse', 0);
-      info.should.have.property('poolMax', 4);
-      info.should.have.property('poolMin', 2);
-      info.should.have.property('poolIncrement', 2);
-      info.should.have.property('poolTimeout', 5);
+      db.ping(function() {
+          db.ping(function() {
+              const info = db.connector.pool.getStatistics();
+              info.should.have.property('connectionsOpen', 2);
+              info.should.have.property('connectionsInUse', 0);
+              info.should.have.property('poolMax', 4);
+              info.should.have.property('poolMin', 2);
+              info.should.have.property('poolIncrement', 2);
+              info.should.have.property('poolTimeout', 5);
 
-      const tasks = [];
-      for (let i = 0; i < 3; i++) {
-        tasks.push(db.connector.pool.getConnection.bind(db.connector.pool));
-      }
-      async.parallel(tasks, function(err, connections) {
-        connections.should.have.property('length', 3);
-        async.each(connections, function(c, done) {
-          c.release(done);
-        }, function(err) {
-          // var info = db.connector.pool;
-          // console.log(info);
-          db.disconnect(done);
-        });
+              const tasks = [];
+              for (let i = 0; i < 3; i++) {
+                  tasks.push(db.connector.pool.getConnection.bind(db.connector.pool));
+              }
+              async.parallel(tasks, function(err, connections) {
+                  connections.should.have.property('length', 3);
+                  async.each(connections, function(c, done) {
+                      c.release(done);
+                  }, function(err) {
+                      // var info = db.connector.pool;
+                      // console.log(info);
+                      db.disconnect(done);
+                  });
+              });
+          });
       });
     });
   });
