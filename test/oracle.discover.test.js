@@ -173,10 +173,10 @@ describe('discoverModels', function() {
       Case = db.createModel(
         caseSchema.name, caseSchema.properties, caseSchema.options,
       );
-        db.automigrate(function(err) {
-            Case.destroyAll();
-            done(err);
-        });
+      db.automigrate(function(err) {
+        Case.destroyAll();
+        done(err);
+      });
     });
 
     it('should return an array of primary keys for PRODUCT', function(done) {

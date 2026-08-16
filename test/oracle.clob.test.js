@@ -48,7 +48,7 @@ describe('Oracle connector', function() {
     const clob = generateString(1000, 'A');
     Note.create({note: clob}, function(err, note) {
       console.log(JSON.stringify(err));
-        assert(!err);
+      assert(!err);
       Note.findById(note.id, function(err, note) {
         assert(!err);
         assert.equal(note.note, clob);
