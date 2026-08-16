@@ -42,14 +42,14 @@ if [ -z "${DOCKER_CLI:-}" ]; then
 fi
 
 ## check if "$DOCKER_CLI" exists
-printf "\n${RED}>> Checking for podman${PLAIN} ${GREEN}...${PLAIN}"
+printf "\n${RED}>> Checking for ${DOCKER_CLI}${PLAIN} ${GREEN}...${PLAIN}"
 "$DOCKER_CLI" -v > /dev/null 2>&1
 PODMAN_EXISTS=$?
 if [ "$PODMAN_EXISTS" -ne 0 ]; then
     printf "\n\n${CYAN}Status: ${PLAIN}${RED}"$DOCKER_CLI" not found. Terminating setup.${PLAIN}\n\n"
     exit 1
 fi
-printf "\n${CYAN}Found podman. Moving on with the setup.${PLAIN}\n"
+printf "\n${CYAN}Found ${DOCKER_CLI}. Moving on with the setup.${PLAIN}\n"
 
 if [ -z "${SKIP_DB_CONTAINER_CREATION:-}" ]; then
     ## cleaning up previous builds
@@ -71,35 +71,34 @@ if [ -z "${SKIP_DB_CONTAINER_CREATION:-}" ]; then
                   -e "ORACLE_PWD=$SYS_PASSWORD" \
                   -d container-registry.oracle.com/database/free:latest \
                   >/dev/null 2>&1
-fi
 
-##wait for orale database container to be ready
-OUTPUT=1
-TIMEOUT=300
-TIME_PASSED=0
-WAIT_STRING="."
-START_MESSAGE="DATABASE IS READY TO USE!"
-printf "${RED}Waiting for database to be ready${PLAIN} ${GREEN}...${PLAIN}"
-while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
-  do
-    "$DOCKER_CLI" logs ${ORACLE_CONTAINER} 2>&1 | grep "${START_MESSAGE}" > /dev/null
-    OUTPUT=$?
-    sleep 1s
-    let "TIME_PASSED = $TIME_PASSED + 1"
+    ## Wait for oracle database container to be ready
+    OUTPUT=1
+    TIMEOUT=300
+    TIME_PASSED=0
+    WAIT_STRING="."
+    START_MESSAGE="DATABASE IS READY TO USE!"
+    printf "${RED}Waiting for database to be ready${PLAIN} ${GREEN}...${PLAIN}"
+    while [ "$OUTPUT" -ne 0 ] && [ "$TIMEOUT" -gt 0 ]
+    do
+        "$DOCKER_CLI" logs ${ORACLE_CONTAINER} 2>&1 | grep "${START_MESSAGE}" > /dev/null
+        OUTPUT=$?
+        sleep 1s
+        let "TIME_PASSED = $TIME_PASSED + 1"
 
-    if [ "${TIME_PASSED}" -eq 5 ]; then
-      printf "${GREEN}${WAIT_STRING}${PLAIN}"
-      TIME_PASSED=0
+        if [ "${TIME_PASSED}" -eq 5 ]; then
+            printf "${GREEN}${WAIT_STRING}${PLAIN}"
+            TIME_PASSED=0
+        fi
+    done
+
+    if [ "$TIMEOUT" -lt 0 ]; then
+        printf "\n${RED}Failed to start container successfully. Terminating setup ...${PLAIN}\n"
+        exit 1
+    else
+        printf "\n${CYAN}Container is up and running.${PLAIN}\n"
     fi
-  done
-
-if [ "$TIMEOUT" -lt 0 ]; then
-    printf "\n${RED}Failed to start container successfully. Terminating setup ...${PLAIN}\n"
-    exit 1
-else
-    printf "\n${CYAN}Container is up and running.${PLAIN}\n"
 fi
-
 
 ## export the schema to the oracle database
 printf "\n${RED}>> Exporting schema to database${PLAIN} ${GREEN}...${PLAIN}\n"
