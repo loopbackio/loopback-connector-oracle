@@ -97,7 +97,7 @@ describe('discoverModels', function() {
           let others = false;
           models.forEach(function(m) {
             // console.dir(m);
-            if (m.owner !== 'STRONGLOOP') {
+            if (m.owner !== 'TEST') {
               others = true;
             }
           });
@@ -126,7 +126,7 @@ describe('discoverModels', function() {
       });
 
       it('should return an array of columns for PRODUCT ', function(done) {
-        db.discoverModelProperties('PRODUCT', {schema: 'STRONGLOOP'},
+        db.discoverModelProperties('PRODUCT', {schema: 'TEST'},
           function(err, models) {
             if (err) {
               console.error(err);
@@ -151,7 +151,7 @@ describe('discoverModels', function() {
         options: {
           idInjection: false,
           oracle: {
-            schema: 'STRONGLOOP',
+            schema: 'TEST',
             table: 'CHECKCASE',
           },
         },
@@ -173,8 +173,10 @@ describe('discoverModels', function() {
       Case = db.createModel(
         caseSchema.name, caseSchema.properties, caseSchema.options,
       );
-      db.automigrate(done);
-      Case.destroyAll();
+      db.automigrate(function(err) {
+        Case.destroyAll();
+        done(err);
+      });
     });
 
     it('should return an array of primary keys for PRODUCT', function(done) {
@@ -192,9 +194,9 @@ describe('discoverModels', function() {
       });
     });
 
-    it('should return an array of primary keys for STRONGLOOP.PRODUCT',
+    it('should return an array of primary keys for TEST.PRODUCT',
       function(done) {
-        db.discoverPrimaryKeys('PRODUCT', {owner: 'STRONGLOOP'},
+        db.discoverPrimaryKeys('PRODUCT', {owner: 'TEST'},
           function(err, models) {
             if (err) {
               console.error(err);
@@ -211,13 +213,13 @@ describe('discoverModels', function() {
 
     it('primary key should be discovered, and db generates instances properly',
       function(done) {
-        db.discoverPrimaryKeys('CHECKCASE', {owner: 'STRONGLOOP'},
+        db.discoverPrimaryKeys('CHECKCASE', {owner: 'TEST'},
           function(err, models) {
             if (err) {
               console.error(err);
               done(err);
             } else {
-              assert.equal(models[0].owner, 'STRONGLOOP');
+              assert.equal(models[0].owner, 'TEST');
               assert.equal(models[0].tableName, 'CHECKCASE');
               assert.equal(models[0].columnName, 'camelCase');
             }
@@ -250,9 +252,9 @@ describe('discoverModels', function() {
         }
       });
     });
-    it('should return an array of foreign keys for STRONGLOOP.INVENTORY',
+    it('should return an array of foreign keys for TEST.INVENTORY',
       function(done) {
-        db.discoverForeignKeys('INVENTORY', {owner: 'STRONGLOOP'},
+        db.discoverForeignKeys('INVENTORY', {owner: 'TEST'},
           function(err, models) {
             if (err) {
               console.error(err);
@@ -270,11 +272,11 @@ describe('discoverModels', function() {
 
   describe('Discover LDL schema from a table', function() {
     it('should return an LDL schema for INVENTORY', function(done) {
-      db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'},
+      db.discoverSchema('INVENTORY', {owner: 'TEST'},
         function(err, schema) {
         // console.log('%j', schema);
           assert(schema.name === 'Inventory');
-          assert(schema.options.oracle.schema === 'STRONGLOOP');
+          assert(schema.options.oracle.schema === 'TEST');
           assert(schema.options.oracle.table === 'INVENTORY');
           assert(schema.properties.productId);
           assert(schema.properties.productId.type === 'String');

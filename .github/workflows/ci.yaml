@@ -1,0 +1,72 @@
+# This workflow is managed by gh actions-lock.
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+
+name: CI
+
+permissions: {}
+
+jobs:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [24]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    services:
+      oracle-db:
+        image: container-registry.oracle.com/database/free:latest
+        ports:
+          - 1521:1521
+        options: >-
+          --name oracle_free_db
+          --env ORACLE_PWD=0raclep4ss
+          --health-cmd /opt/oracle/checkDBStatus.sh
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: step-security/harden-runner@v2.20.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Bootstrap Dependencies
+        run: npm ci
+      - name: Run Tests
+        env:
+          DOCKER_CLI: docker
+          SKIP_DB_CONTAINER_CREATION: 1
+        run: |-
+          . ./setup.sh
+          npm test
+
+  code-lint:
+    name: Code Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: step-security/harden-runner@v2.20.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Bootstrap Dependencies
+        run: npm ci --ignore-scripts
+      - name: Check Code Lint
+        run: npm run lint

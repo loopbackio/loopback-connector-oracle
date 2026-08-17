@@ -95,62 +95,66 @@ describe('Oracle connector', function() {
     ds.automigrate(function(err) {
       if (err) return done(err);
 
-      ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
-        if (err) return done(err);
-        assert.equal(props.length, 4);
-        const columns = {};
-        props.forEach(function(p) {
-          columns[p.columnName] = p.nullable;
-        });
-        columns.should.be.eql({
-          AGE: 'Y',
-          EMAIL: 'N',
-          NAME: 'Y',
-          ID: 'N',
-        });
+      ds.discoverModelProperties('CUSTOMER_TEST',
+        {owner: 'TEST'},
+        function(err, props) {
+          if (err) return done(err);
+          assert.equal(props.length, 4);
+          const columns = {};
+          props.forEach(function(p) {
+            columns[p.columnName] = p.nullable;
+          });
+          columns.should.be.eql({
+            AGE: 'Y',
+            EMAIL: 'N',
+            NAME: 'Y',
+            ID: 'N',
+          });
 
-        const columnsLength = {};
-        props.forEach(function(p) {
-          columnsLength[p.columnName] = p.dataLength;
-        });
-        columnsLength.should.be.eql({
-          AGE: 22,
-          EMAIL: 40,
-          NAME: 40,
-          ID: 20,
-        });
+          const columnsLength = {};
+          props.forEach(function(p) {
+            columnsLength[p.columnName] = p.dataLength;
+          });
+          columnsLength.should.be.eql({
+            AGE: 22,
+            EMAIL: 40,
+            NAME: 40,
+            ID: 20,
+          });
 
-        ds.createModel(schema_v2.name, schema_v2.properties, schema_v2.options); // eslint-disable-line camelcase
+          ds.createModel(schema_v2.name, // eslint-disable-line camelcase
+            schema_v2.properties, // eslint-disable-line camelcase
+            schema_v2.options); // eslint-disable-line camelcase
 
-        ds.autoupdate(function(err, result) {
-          ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
-            assert.equal(props.length, 4);
-            const columns = {};
-            props.forEach(function(p) {
-              columns[p.columnName] = p.nullable;
+          ds.autoupdate(function(err, result) {
+            ds.discoverModelProperties('CUSTOMER_TEST', function(err, props) {
+              assert.equal(props.length, 4);
+              const columns = {};
+              props.forEach(function(p) {
+                columns[p.columnName] = p.nullable;
+              });
+              columns.should.be.eql({
+                LASTNAME: 'Y',
+                FIRSTNAME: 'Y',
+                EMAIL: 'Y',
+                ID: 'N',
+              });
+
+              const columnsLength = {};
+              props.forEach(function(p) {
+                columnsLength[p.columnName] = p.dataLength;
+              });
+              columnsLength.should.be.eql({
+                LASTNAME: 40,
+                FIRSTNAME: 40,
+                EMAIL: 60,
+                ID: 20,
+              });
+
+              done(err, result);
             });
-            columns.should.be.eql({
-              LASTNAME: 'Y',
-              FIRSTNAME: 'Y',
-              EMAIL: 'Y',
-              ID: 'N',
-            });
-
-            const columnsLength = {};
-            props.forEach(function(p) {
-              columnsLength[p.columnName] = p.dataLength;
-            });
-            columnsLength.should.be.eql({
-              LASTNAME: 40,
-              FIRSTNAME: 40,
-              EMAIL: 60,
-              ID: 20,
-            });
-
-            done(err, result);
           });
         });
-      });
     });
   });
 
